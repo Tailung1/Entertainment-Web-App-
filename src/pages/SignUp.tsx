@@ -4,15 +4,34 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function SignUp() {
-  const [signupEmailInput, setSignupEmailInput] =
-    useState<string>("");
-  const [signupPasswordInput, setSignupPasswordInput] =
-    useState<string>("");
-  const [signupConfirmPasswordInput, setSignupConfirmPasswordInput] =
-    useState<string>("");
+  const [inputValues, setInputValues] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const [isEmptyEI, setIsEmptyEI] = useState<boolean>(false);
-  const [isEmptyPI, setIsEmptyPI] = useState<boolean>(false);
+  const [inputCheck, setInputCheck] = useState({
+    emailError: false,
+    passwordError: false,
+    confirmPasswordError: false,
+  });
+  const handleChange = (
+    field: "email" | "password" | "confirmPassword",
+    val: string
+  ) => {
+    setInputValues(() => ({ ...inputValues, [field]: val }));
+    // setInputCheck((prev) => ({ ...prev, [field]: true }));
+    setInputCheck((prev) => ({ ...prev, [`${field}Error`]: false }));
+  };
+  const handleSubmit = () => {
+    const newErrors = {
+      emailError: inputValues.email.trim() === "",
+      passwordError: inputValues.password.trim() === "",
+      confirmPasswordError: inputValues.confirmPassword.trim() === "",
+    };
+    setInputCheck(newErrors);
+  };
+
   return (
     <div className='bg-[#10141E] flex flex-col gap-16 items-center h-screen pt-[48px] px-[24px] pb-[170px]'>
       <svg
@@ -39,24 +58,32 @@ export default function SignUp() {
 
         <div className='flex flex-col gap-[30px]'>
           <FloatingInput
+            onChange={(val) => handleChange("email", val)}
+            value={inputValues.email}
             label='Email address'
             type='text'
-            onChange={setSignupEmailInput}
+            isError={inputCheck.emailError}
           />
           <FloatingInput
+            onChange={(val) => handleChange("password", val)}
+            value={inputValues.password}
             label='Password'
             type='password'
-            onChange={setSignupPasswordInput}
+            isError={inputCheck.passwordError}
           />
           <FloatingInput
-          onChange
+            onChange={(val) => handleChange("confirmPassword", val)}
+            value={inputValues.confirmPassword}
             label='Confirm password'
             type='password'
-            onChange={setSignupConfirmPasswordInput}
+            isError={inputCheck.confirmPasswordError}
           />
         </div>
 
-        <button className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md'>
+        <button
+          onClick={handleSubmit}
+          className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md'
+        >
           Sign up
         </button>
 

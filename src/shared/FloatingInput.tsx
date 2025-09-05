@@ -51,7 +51,7 @@ export default function FloatingInput({
         autoComplete='off'
       />
       {isError && (
-        <p className='text-red-500 absolute top-1 right-9 '>
+        <p className='text-red-500 text-[15px] absolute top-1 right-2 '>
           Can't be empty
         </p>
       )}
