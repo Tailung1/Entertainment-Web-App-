@@ -10,6 +10,7 @@ export default function SignUp() {
     confirmPassword: "",
   });
 
+  
   const [inputCheck, setInputCheck] = useState({
     emailError: false,
     passwordError: false,
