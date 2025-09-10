@@ -10,30 +10,46 @@ export default function SignIn() {
   const [errors, setErrors] = useState({
     email: false,
     password: false,
+    emailRegexError: false,
+    passwordLengthError: false,
   });
+  const emailRegex =
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleChange = (
     field: "email" | "password",
     value: string
   ) => {
-    if (field === "email") setEmailInput(value);
-    if (field === "password") setPasswordInput(value);
-    setErrors((prev) => ({ ...prev, [field]: false }));
+    if (field === "email") {
+      if (emailRegex.test(emailInput)) {
+        setErrors((prev) => ({ ...prev, emailRegexError: false }));
+      }
+      setErrors((prev) => ({ ...prev, [field]: false }));
+      setEmailInput(value);
+    }
+
+    if (field === "password") {
+      if (value.length > 4) {
+        setErrors((prev) => ({
+          ...prev,
+          passwordLengthError: false,
+        }));
+      }
+      setErrors((prev) => ({ ...prev, [field]: false }));
+      setPasswordInput(value);
+    }
   };
   // Remove error as soon as user starts typing
   const handleSubmit = () => {
     const newErrors = {
       email: emailInput.trim() === "",
       password: passwordInput.trim() === "",
+      emailRegexError: !emailRegex.test(emailInput),
+      passwordLengthError: passwordInput.length < 5,
     };
     setErrors(newErrors);
 
-    if (!newErrors.email && !newErrors.password) {
-      console.log("Login successful:", {
-        emailInput,
-        passwordInput,
-      });
-      navigate("/home");
+    if (!Object.values(errors).includes(true)) {
     }
   };
 
@@ -67,14 +83,26 @@ export default function SignIn() {
             type='text'
             value={emailInput}
             onChange={(val) => handleChange("email", val)}
-            isError={errors.email}
+            isError={`${
+              errors.email
+                ? "emailEmptyError"
+                : errors.emailRegexError
+                ? "emailRegexError"
+                : ""
+            }`}
           />
           <FloatingInput
             label='Password'
             type='password'
             value={passwordInput}
             onChange={(val) => handleChange("password", val)}
-            isError={errors.password}
+            isError={`${
+              errors.password
+                ? "passwordEmptyError"
+                : errors.passwordLengthError
+                ? "passwordLengthError"
+                : ""
+            }`}
           />
         </div>
 

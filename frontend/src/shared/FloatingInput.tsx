@@ -6,7 +6,7 @@ interface FloatingInputProps {
   type: string;
   value: string;
   onChange: (val: string) => void;
-  isError: boolean;
+  isError: string;
 }
 
 export default function FloatingInput({
@@ -41,7 +41,7 @@ export default function FloatingInput({
       {/* Input field */}
       <input
         type={type === "password" && showPassword ? "text" : type}
-        className={`w-full border-b text-white text-[20px] pb-[14px] pl-[16px] outline-none bg-transparent ${
+        className={`w-full border-b text-white text-[16px] pb-[14px] pl-[16px] outline-none bg-transparent ${
           isError ? "border-red-600" : "border-white/20"
         }`}
         value={value}
@@ -50,9 +50,21 @@ export default function FloatingInput({
         onBlur={() => setFocused(false)}
         autoComplete='off'
       />
-      {isError && (
-        <p className='text-red-500 text-[15px] absolute top-1 right-2 '>
-          Can't be empty
+
+      {(isError === "emailEmptyError" ||
+        isError === "emailRegexError" ||
+        isError === "passwordEmptyError" ||
+        isError === "passwordLengthError") && (
+        <p className='text-red-500 text-[14px] absolute top-1 right-7'>
+          {isError === "emailEmptyError"
+            ? "Can't be empty"
+            : isError === "emailRegexError"
+            ? "Invalid email format"
+            : isError === "passwordEmptyError"
+            ? "Can't be empty"
+            : isError === "passwordLengthError"
+            ? "Min. 5 characters"
+            : ""}
         </p>
       )}
 
@@ -60,7 +72,7 @@ export default function FloatingInput({
       {type === "password" && value && (
         <button
           type='button'
-          className='absolute right-1 top-1'
+          className='absolute right-0 top-1'
           onClick={() => setShowPassword((prev) => !prev)}
         >
           {showPassword ? (

@@ -10,27 +10,81 @@ export default function SignUp() {
     confirmPassword: "",
   });
 
-  
   const [inputCheck, setInputCheck] = useState({
     emailError: false,
     passwordError: false,
     confirmPasswordError: false,
+    emailRegexError: false,
+    passwordLengthError: false,
+    confirmPasswordMatchError: false,
   });
+
+  const emailRegex =
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   const handleChange = (
     field: "email" | "password" | "confirmPassword",
     val: string
   ) => {
-    setInputValues(() => ({ ...inputValues, [field]: val }));
-    // setInputCheck((prev) => ({ ...prev, [field]: true }));
+    setInputValues((prev) => ({ ...prev, [field]: val }));
     setInputCheck((prev) => ({ ...prev, [`${field}Error`]: false }));
+
+    if (field === "email") {
+      if (emailRegex.test(val)) {
+        setInputCheck((prev) => ({
+          ...prev,
+          emailRegexError: false,
+        }));
+      } else {
+        setInputCheck((prev) => ({ ...prev, emailRegexError: true }));
+      }
+    }
+
+    if (field === "password") {
+      if (val.length >= 5) {
+        setInputCheck((prev) => ({
+          ...prev,
+          passwordLengthError: false,
+        }));
+      } else {
+        setInputCheck((prev) => ({
+          ...prev,
+          passwordLengthError: true,
+        }));
+      }
+    }
+
+    if (field === "confirmPassword") {
+      if (val === inputValues.password) {
+        setInputCheck((prev) => ({
+          ...prev,
+          confirmPasswordMatchError: false,
+        }));
+      } else {
+        setInputCheck((prev) => ({
+          ...prev,
+          confirmPasswordMatchError: true,
+        }));
+      }
+    }
   };
+
   const handleSubmit = () => {
     const newErrors = {
       emailError: inputValues.email.trim() === "",
       passwordError: inputValues.password.trim() === "",
       confirmPasswordError: inputValues.confirmPassword.trim() === "",
+      emailRegexError: !emailRegex.test(inputValues.email),
+      passwordLengthError: inputValues.password.length < 5,
+      confirmPasswordMatchError:
+        inputValues.password !== inputValues.confirmPassword,
     };
+
     setInputCheck(newErrors);
+
+    if (!Object.values(newErrors).includes(true)) {
+        
+    }
   };
 
   return (
@@ -63,21 +117,39 @@ export default function SignUp() {
             value={inputValues.email}
             label='Email address'
             type='text'
-            isError={inputCheck.emailError}
+            isError={
+              inputCheck.emailError
+                ? "emailEmptyError"
+                : inputCheck.emailRegexError
+                ? "emailRegexError"
+                : ""
+            }
           />
           <FloatingInput
             onChange={(val) => handleChange("password", val)}
             value={inputValues.password}
             label='Password'
             type='password'
-            isError={inputCheck.passwordError}
+            isError={
+              inputCheck.passwordError
+                ? "passwordEmptyError"
+                : inputCheck.passwordLengthError
+                ? "passwordLengthError"
+                : ""
+            }
           />
           <FloatingInput
             onChange={(val) => handleChange("confirmPassword", val)}
             value={inputValues.confirmPassword}
             label='Confirm password'
             type='password'
-            isError={inputCheck.confirmPasswordError}
+            isError={
+              inputCheck.confirmPasswordError
+                ? "confirmPasswordEmptyError"
+                : inputCheck.confirmPasswordMatchError
+                ? "confirmPasswordMatchError"
+                : ""
+            }
           />
         </div>
 
