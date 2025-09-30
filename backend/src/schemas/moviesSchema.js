@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
-import {v4 as uuidv4} from "uuid"
-
+import { v4 as uuidv4 } from "uuid";
 
 const movieSchema = new mongoose.Schema({
   id: {
     type: String,
     unique: true,
     required: true,
-    default:()=>uuidv4()
+    default: () => uuidv4(),
   },
   name: {
     type: String,
@@ -23,11 +22,15 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   accessibility: {
-    type: String, // To store the access level (-E, PG, +18)
+    type: String,
     required: true,
+  },
+  bookMarked: {
+    type: Boolean,
+    default: false,
   },
 });
 
 const Movie = mongoose.model("Movie", movieSchema);
 
-export default Movie
+export default Movie;

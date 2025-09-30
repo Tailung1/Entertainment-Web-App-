@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import FloatingInput from "../shared/FloatingInput";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
 export default function SignUp() {
+
   const [inputValues, setInputValues] = useState({
     email: "",
     password: "",
@@ -35,8 +35,6 @@ export default function SignUp() {
           ...prev,
           emailRegexError: false,
         }));
-      } else {
-        setInputCheck((prev) => ({ ...prev, emailRegexError: true }));
       }
     }
 
@@ -45,11 +43,6 @@ export default function SignUp() {
         setInputCheck((prev) => ({
           ...prev,
           passwordLengthError: false,
-        }));
-      } else {
-        setInputCheck((prev) => ({
-          ...prev,
-          passwordLengthError: true,
         }));
       }
     }
@@ -60,16 +53,11 @@ export default function SignUp() {
           ...prev,
           confirmPasswordMatchError: false,
         }));
-      } else {
-        setInputCheck((prev) => ({
-          ...prev,
-          confirmPasswordMatchError: true,
-        }));
       }
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newErrors = {
       emailError: inputValues.email.trim() === "",
       passwordError: inputValues.password.trim() === "",
@@ -83,12 +71,36 @@ export default function SignUp() {
     setInputCheck(newErrors);
 
     if (!Object.values(newErrors).includes(true)) {
-        
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/users/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: inputValues.email,
+              password: inputValues.password,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+        } else {
+          const errorData = await response.json();
+          console.error(errorData);
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+      }
     }
   };
 
   return (
-    <div className='bg-[#10141E] flex flex-col gap-16 items-center h-screen pt-[48px] px-[24px] pb-[170px]'>
+    <div className='bg-[#10141E] flex flex-col gap-16 items-center justify-center h-screen pt-[48px] px-[24px] pb-[170px]'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'

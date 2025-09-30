@@ -2,13 +2,18 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv"
 import moviesRouter from "./routing/moviesRouter.js"
+import usersRouter from "./routing/usersRouter.js"
+import cors from "cors"
 
 dotenv.config();
 
 const app = express();
+app.use(cors({ origin: "http://localhost:5173" }));
+
 app.use(express.json());
 
-app.use("/api", moviesRouter);
+app.use("/api/movies", moviesRouter);
+app.use("/api/users", usersRouter);
 
 const mongoURL = process.env.MONGO_URL;
 

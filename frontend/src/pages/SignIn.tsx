@@ -21,9 +21,10 @@ export default function SignIn() {
     value: string
   ) => {
     if (field === "email") {
-      if (emailRegex.test(emailInput)) {
+      if (emailRegex.test(value)) {
         setErrors((prev) => ({ ...prev, emailRegexError: false }));
       }
+
       setErrors((prev) => ({ ...prev, [field]: false }));
       setEmailInput(value);
     }
@@ -40,7 +41,7 @@ export default function SignIn() {
     }
   };
   // Remove error as soon as user starts typing
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newErrors = {
       email: emailInput.trim() === "",
       password: passwordInput.trim() === "",
@@ -49,12 +50,34 @@ export default function SignIn() {
     };
     setErrors(newErrors);
 
-    if (!Object.values(errors).includes(true)) {
+    if (!Object.values(newErrors).includes(true)) {
+      const validateReuqest = await fetch(
+        "http://localhost:3000/api/users/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: emailInput,
+            password: passwordInput,
+          }),
+        }
+      );
+      if (!validateReuqest.ok) {
+        // Handle non-200 responses (e.g., 401 Unauthorized for wrong password)
+        const errorResponse = await validateReuqest.json();
+        console.error(errorResponse.message);
+      } else {
+        const response = await validateReuqest.json();
+        console.log(response);
+        navigate("/home"); // Redirect to home page on successful login
+      }
     }
   };
 
   return (
-    <div className='bg-[#10141E] flex flex-col gap-16 items-center h-screen pt-[48px] px-[24px] pb-[170px]'>
+    <div className='bg-[#10141E] flex flex-col gap-16 items-center j h-screen pt-[48px] px-[24px] pb-[170px]'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'
