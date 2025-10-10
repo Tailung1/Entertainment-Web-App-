@@ -28,7 +28,7 @@
     rgba(200, 200, 200, 0.3) 50%,
     rgba(255, 255, 255, 0) 60%
   );
-  animation: loading 0.5s infinite ease-in-out;
+  animation: loading 1s infinite ease-in-out;
 }
 
 @keyframes loading {

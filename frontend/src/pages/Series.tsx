@@ -6,7 +6,8 @@ import SharedComponent from "../shared/SharedComponent";
 
 export default function Series() {
     ItemsFiltering()
-  const { series, setPath } = useMyContext();
+  let { series, setPath } = useMyContext();
+  series=[]
     useEffect(() => {
       setPath("/series");
     }, []);
