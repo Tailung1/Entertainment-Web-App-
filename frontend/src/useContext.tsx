@@ -95,30 +95,30 @@ export default function MovieContext({
     }
   }
 
-//   useEffect(() => {
-//     const handleBeforeUnload = async () => {
-//       try {
-//         const data = await fetch(
-//           "http://localhost:3000/api/movies/unload",
-//           {
-//             method: "PATCH",
-//             headers: {
-//               "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(fetchedItems),
-//           }
-//         );
-//         const resp = await data.json();
+  useEffect(() => {
+    const handleBeforeUnload = async () => {
+      try {
+        const data = await fetch(
+          "http://localhost:3000/api/movies/unload",
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(fetchedItems),
+          }
+        );
+        const resp = await data.json();
 
-//         console.log(resp);
-//       } catch (err) {
-//         console.log(err, "Failed in front");
-//       }
-//     };
-//     if (fetchedItems.length > 0) {
-//       handleBeforeUnload();
-//     }
-//   }, [fetchedItems]);
+        console.log(resp);
+      } catch (err) {
+        console.log(err, "Failed in front");
+      }
+    };
+    if (fetchedItems.length > 0) {
+      handleBeforeUnload();
+    }
+  }, [fetchedItems]);
 
   useEffect(() => {
     const fetchMovies = async () => {
