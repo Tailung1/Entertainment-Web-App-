@@ -12,29 +12,31 @@ export default function Header() {
     setActiveIcon(iconName);
   };
   return (
-    <div className='bg-[#161D2F] py-2 md:m-4 md:rounded-lg'>
-      <header className='flex justify-around items-center'>
-        <Icon
-          iconType='logo'
-          handleClick={() => handleClick("")}
-          fillColor={activeIcon === "logo" ? "white" : "red"}
-        />
-        <div className='flex gap-5'>
-          {iconsArr.map((icon) => (
-            <Icon
-              key={icon}
-              iconType={icon}
-              handleClick={() => handleClick(icon)}
-              fillColor={activeIcon === icon ? "white" : "#5A698F"}
-            />
-          ))}
-        </div>
-        <Icon
-          iconType='profilePic'
-          handleClick={handleClick}
-          fillColor={activeIcon === "icon" ? "white" : "none"}
-        />
-      </header>
+    <div className=' md:p-4 lg:p-6 '>
+      <div className='bg-[#161D2F] py-2  md:rounded-lg lg:p-3 lg:py-7'>
+        <header className='flex justify-around items-center lg:flex-col lg:justify-between lg:min-h-screen'>
+          <Icon
+            iconType='logo'
+            handleClick={() => handleClick("")}
+            fillColor={activeIcon === "logo" ? "white" : "red"}
+          />
+          <div className='flex gap-5 lg:flex-col'>
+            {iconsArr.map((icon) => (
+              <Icon
+                key={icon}
+                iconType={icon}
+                handleClick={() => handleClick(icon)}
+                fillColor={activeIcon === icon ? "white" : "#5A698F"}
+              />
+            ))}
+          </div>
+          <Icon
+            iconType='profilePic'
+            handleClick={handleClick}
+            fillColor={activeIcon === "icon" ? "white" : "none"}
+          />
+        </header>
+      </div>
     </div>
   );
 }

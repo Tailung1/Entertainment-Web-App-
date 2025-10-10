@@ -4,11 +4,11 @@ import { Outlet } from "react-router-dom";
 
 export default function LayoutWithHeader() {
   return (
-    <div>
+    <div className='lg:flex bg-[#10141E]'>
       <header>
         <Header />
       </header>
-      <main>
+      <main className="pt-7">
         <Input />
         <Outlet />
       </main>
