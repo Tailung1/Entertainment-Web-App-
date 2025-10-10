@@ -64,13 +64,12 @@ export default function SignIn() {
           }),
         }
       );
+      const response = await validateReuqest.json();
       if (!validateReuqest.ok) {
         // Handle non-200 responses (e.g., 401 Unauthorized for wrong password)
-        const errorResponse = await validateReuqest.json();
-        console.error(errorResponse.message);
+        console.error(response.message);
       } else {
-        const response = await validateReuqest.json();
-        console.log(response);
+        console.log(response.message);
         navigate("/home"); // Redirect to home page on successful login
       }
     }
