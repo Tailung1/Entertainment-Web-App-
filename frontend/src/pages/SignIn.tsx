@@ -76,7 +76,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className='bg-[#10141E] flex flex-col gap-16 items-center j h-screen pt-[48px] px-[24px] pb-[170px]'>
+    <div className='bg-[#10141E] flex flex-col gap-16 items-center  h-screen pt-[48px] px-[24px] '>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'
@@ -91,7 +91,7 @@ export default function SignIn() {
       </svg>
 
       <motion.div
-        initial={{ opacity: 0, x: 50 }}
+        initial={{opacity:0,x:50}}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -50 }}
         transition={{ duration: 0.3 }}

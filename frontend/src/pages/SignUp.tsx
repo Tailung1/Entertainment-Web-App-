@@ -102,7 +102,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className='bg-[#10141E] flex flex-col gap-16 items-center justify-center h-screen pt-[48px] px-[24px] pb-[170px]'>
+    <div className='bg-[#10141E] flex flex-col gap-16 items-center  min-h-screen pt-[48px] px-[24px] '>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'

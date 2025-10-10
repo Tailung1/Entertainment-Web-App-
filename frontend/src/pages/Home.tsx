@@ -21,7 +21,7 @@ export default function Home() {
       if (scrollLeft + clientWidth >= scrollWidth) {
         scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
       } else {
-        scrollContainer.scrollBy({ left: 172, behavior: "smooth" });
+        scrollContainer.scrollBy({ left: 195, behavior: "smooth" });
       }
     }, 3000);
     return () => clearInterval(interval);
@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div className='bg-[#10141E] pl-6 pr-1 min-h-screen '>
-      <h2 className='text-white text-[20px]   '>Trending</h2>
+      <h2 className='text-white text-[20px]'>Trending</h2>
       {/* Scrollable container */}
       <div
         ref={scrollRef}
@@ -47,7 +47,7 @@ export default function Home() {
           trendingItems.map((item) => (
             <div
               key={item.id}
-              className='flex flex-col   gap-2   min-w-[160px] relative   '
+              className='flex flex-col   gap-2   min-w-[180px] relative   '
             >
               <img
                 src={item.image}
@@ -56,7 +56,7 @@ export default function Home() {
                 loading='lazy'
               />
 
-              <div className='flex flex-col'>
+              <div className='flex flex-col absolute bottom-1 left-2'>
                 <div className='flex items-center text-yellow-500   text-[14px] gap-2 '>
                   <p>{item.year}</p>
                   <DotIcon />
