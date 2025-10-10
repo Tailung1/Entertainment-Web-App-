@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
 import { useMyContext } from "../useContext";
+import { useLocation } from "react-router-dom";
 
 export default function Input() {
-  const { setSearching } = useMyContext();
+  const location = useLocation();
+  const { setSearching, searching, path } = useMyContext();
+  const [searchMessage, setSearchMessage] = useState(
+    "Search for movies or TV series"
+  );
+  useEffect(() => {
+    setSearching("");
+    if (location.pathname === "/home") {
+      setSearchMessage("Search for movies or TV series");
+    } else {
+      setSearchMessage(`Search for ${path.slice(1)}`);
+    }
+    {
+    }
+  }, [path, location.pathname]);
 
   return (
     <div className='flex items-center pl-6 gap-5   bg-[#10141E] py-[24px]    '>
@@ -21,8 +37,9 @@ export default function Input() {
       </svg>
       <input
         id='1'
-        placeholder='Search for movies or TV series'
+        placeholder={searchMessage}
         type='text'
+        value={searching}
         className='text-white outline-none bg-transparent  min-w-[250px] '
         onChange={(e) => setSearching(e.target.value)}
       />

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const movieSchema = new mongoose.Schema({
   id: {
-    type: String,
+    type: Number,
     unique: true,
     required: true,
     default: () => uuidv4(),

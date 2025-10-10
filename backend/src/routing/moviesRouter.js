@@ -1,8 +1,12 @@
 import express from "express";
-import { getMovies } from "../controllers/moviesController.js";
+import {
+  getMovies,
+  handleUnload,
+} from "../controllers/moviesController.js";
 
 const router = express.Router();
 
-router.get("/",getMovies)
+router.get("/", getMovies);
+router.patch("/unload", handleUnload);
 
-export default router
+export default router;

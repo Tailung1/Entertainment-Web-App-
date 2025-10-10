@@ -3,7 +3,6 @@ import FloatingInput from "../shared/FloatingInput";
 import { motion } from "framer-motion";
 import { useState } from "react";
 export default function SignUp() {
-
   const [inputValues, setInputValues] = useState({
     email: "",
     password: "",
@@ -87,14 +86,16 @@ export default function SignUp() {
         );
 
         if (response.ok) {
+
+
           const data = await response.json();
           console.log(data);
         } else {
           const errorData = await response.json();
-          console.error(errorData);
+          console.error(errorData,"errrrr");
         }
       } catch (error) {
-        console.error("Network error:", error);
+        console.error("Network error:");
       }
     }
   };

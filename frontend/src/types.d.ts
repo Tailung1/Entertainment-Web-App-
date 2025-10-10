@@ -18,6 +18,7 @@ interface movieType {
   image: string;
   trending: boolean;
   bookMarked: boolean;
+  recommended:boolean;
 }
 
 type moviesType=movieType[]

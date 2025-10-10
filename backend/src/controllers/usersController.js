@@ -9,6 +9,10 @@ const createUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    const checking = await User.findOne({ email });
+    if (checking) {
+      return res.json({ message: "User Already exists" });
+    }
     // const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ email, password: hashedPassword });
