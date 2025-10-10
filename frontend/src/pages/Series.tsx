@@ -6,7 +6,7 @@ import SharedComponent from "../shared/SharedComponent";
 
 export default function Series() {
     ItemsFiltering()
-  const { series, setPath } = useMyContext();
+  const { series, setPath,searching } = useMyContext();
 
     useEffect(() => {
       setPath("/series");
@@ -14,6 +14,22 @@ export default function Series() {
 
 
   return (
-     <SharedComponent currentComponent={series} currentSection="Series" />
+    <div className='min-h-screen'>
+      {series.length < 1 && searching ? (
+        <h1 className='text-[25px] text-white pl-7'>
+          <div>
+            No Series  found for{" "}
+            <span className='text-green-700'>"</span>
+            <p className=' text-red-500 inline'>{searching}</p>
+            <span className='text-green-700'>"</span>{" "}
+          </div>
+        </h1>
+      ) : (
+        <SharedComponent
+          currentComponent={series}
+          currentSection='Bookmarked'
+        />
+      )}
+    </div>
   );
 }
