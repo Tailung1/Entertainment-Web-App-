@@ -5,6 +5,7 @@ import { DotIcon } from "../shared/Icon";
 import { useEffect } from "react";
 import ItemsFiltering from "../shared/ItemsFiltering";
 
+
 export default function Home() {
   ItemsFiltering();
   let { trendingItems, recommenedItems } = useMyContext();
