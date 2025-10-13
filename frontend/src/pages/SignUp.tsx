@@ -90,9 +90,8 @@ export default function SignUp() {
           }
         );
         const response = await validateRequest.json();
-        if (response.ok) {
-          toast.success(response.message);
-          //   navigate("/");
+        if (validateRequest.ok) {
+          navigate("/");
         } else {
           toast.error(response.message);
         }
@@ -170,7 +169,7 @@ export default function SignUp() {
 
         <button
           onClick={handleSubmit}
-          className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md'
+          className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md hover:bg-green-600'
         >
           Sign up
         </button>
@@ -185,6 +184,13 @@ export default function SignUp() {
           </Link>
         </p>
       </motion.div>
+      <ToastContainer
+        theme='dark'
+        position='top-left'
+        autoClose={3000}
+        limit={2}
+        className='my-toast-container'
+      />
     </div>
   );
 }

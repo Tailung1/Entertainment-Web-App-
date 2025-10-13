@@ -58,12 +58,12 @@ export default function Home() {
               trendingItems.map((item) => (
                 <div
                   key={item.id}
-                  className='flex flex-col gap-2 min-w-[180px] relative'
+                  className='flex flex-col gap-2 min-w-[180px] lg:w-[220px] relative'
                 >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className='h-[110px] rounded-lg'
+                    className='h-[110px] lg:h-[120px] rounded-lg'
                     loading='lazy'
                   />
                   <div className='flex flex-col absolute bottom-1 left-2'>
@@ -113,10 +113,10 @@ export default function Home() {
               : recommenedItems.map((item) => (
                   <div
                     key={item.id}
-                    className='flex flex-col w-[156px] relative'
+                    className='flex flex-col w-[156px] lg:w-[220px] relative'
                   >
                     <img
-                      className='h-[100px] mb-2 rounded-lg'
+                      className='h-[100px] lg:h-[120px] mb-2 rounded-lg'
                       src={item.image}
                       alt='movie picture'
                     />

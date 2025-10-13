@@ -132,7 +132,7 @@ export default function SignIn() {
 
         <button
           onClick={handleSubmit}
-          className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md'
+          className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md hover:bg-green-600 '
         >
           Login to your account
         </button>
@@ -141,9 +141,9 @@ export default function SignIn() {
           Don’t have an account?{" "}
           <Link
             to={"/signup"}
-            className='text-[#FC4747] ml-[6px] cursor-pointer'
+            className='text-[#FC4747] ml-[6px] cursor-pointer '
           >
-            Sign In
+            Sign Up
           </Link>
         </p>
       </motion.div>

@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
   try {
     const checking = await User.findOne({ email });
     if (checking) {
-      return res.json({
+      return res.status(409).json({
         message: "User already exists with provided email ",
       });
     }
@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ email, password: hashedPassword });
     await user.save();
-    res.json({ message: "Registred successfully" });
+    return res.status(201).json({ message: "Registred successfully" });
   } catch (err) {
     res.status(400).json({ message: "Unable to register" });
   }

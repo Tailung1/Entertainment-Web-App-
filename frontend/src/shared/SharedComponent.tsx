@@ -26,12 +26,12 @@ export default function SharedComponent({
           : currentComponent.map((item: movieType) => (
               <div
                 key={item.id}
-                className='flex   flex-col gap-2  relative w-[153px]   '
+                className='flex   flex-col gap-2  relative w-[153px] lg:w-[220px]   '
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  className='rounded-lg h-[110px]  '
+                  className='rounded-lg h-[110px] lg:h-[120px]  '
                   loading='lazy'
                 />
 
