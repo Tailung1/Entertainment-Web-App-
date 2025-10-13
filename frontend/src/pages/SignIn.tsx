@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+
+
 export default function SignIn() {
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState<string>("");
