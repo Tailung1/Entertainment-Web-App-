@@ -97,7 +97,7 @@ export default function SignUp() {
           toast.error(response.message);
         }
       } catch (error) {
-        console.error("Network error:");
+        toast.error("Network error");
       }
     }
   };

@@ -2,8 +2,10 @@ import { useMyContext } from "../useContext";
 import { useEffect } from "react";
 import ItemsFiltering from "../shared/ItemsFiltering";
 import SharedComponent from "../shared/SharedComponent";
+import Auth from "../shared/Auth";
 
 export default function BookMarked() {
+  Auth();
   ItemsFiltering();
   const { bookMarked, setPath, searching } = useMyContext();
 
@@ -15,7 +17,7 @@ export default function BookMarked() {
       {bookMarked.length < 1 ? (
         <h1 className='text-[25px] text-white pl-7'>
           {searching ? (
-            <div>
+            <div className='text-[20px] md:text-[25px]'>
               No Bookmarked items found for{" "}
               <span className='text-green-700'>"</span>
               <p className=' text-red-500 inline'>{searching}</p>

@@ -71,6 +71,7 @@ export default function SignIn() {
       if (!validateReuqest.ok) {
         toast.error(response.message);
       } else {
+        localStorage.setItem("auth-token",response.token)
         navigate("/home"); // Redirect to home page on successful login
       }
     }

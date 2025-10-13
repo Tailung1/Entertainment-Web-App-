@@ -3,8 +3,10 @@ import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../shared/ItemsFiltering";
+import Auth from "../shared/Auth";
 
 export default function Home() {
+    Auth()
   ItemsFiltering();
   const { trendingItems, recommenedItems, searching } =
     useMyContext();
@@ -30,10 +32,10 @@ export default function Home() {
     <div className='bg-[#10141E] pl-6 pr-1 min-h-screen'>
       {trendingItems.length < 1 && searching ? (
         <h1 className='text-[25px] text-white '>
-          <div>
+          <div className='text-[20px] md:text-[25px]'>
             No Trending items found for{" "}
             <span className='text-green-700'>"</span>
-            <p className='text-red-500 inline'>{searching}</p>
+            <p className='text-red-500  inline'>{searching}</p>
             <span className='text-green-700'>"</span>
           </div>
         </h1>
@@ -89,7 +91,7 @@ export default function Home() {
       {/* Recommended Section Feedback Message */}
       {recommenedItems.length < 1 && searching ? (
         <h1 className='text-[25px] text-white  mt-5'>
-          <div>
+          <div className='text-[20px] md:text-[25px]'>
             No Recommended items found for{" "}
             <span className='text-green-700'>"</span>
             <p className='text-red-500 inline'>{searching}</p>
