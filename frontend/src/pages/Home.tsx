@@ -28,7 +28,6 @@ export default function Home() {
 
   return (
     <div className='bg-[#10141E] pl-6 pr-1 min-h-screen'>
-      {/* Trending Section Feedback Message */}
       {trendingItems.length < 1 && searching ? (
         <h1 className='text-[25px] text-white '>
           <div>

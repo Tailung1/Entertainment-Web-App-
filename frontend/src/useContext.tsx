@@ -1,4 +1,4 @@
-import e from "express";
+
 import {
   createContext,
   useState,
@@ -11,7 +11,7 @@ import {
 interface contextTypes {
   path: string;
   setPath: React.Dispatch<SetStateAction<string>>;
-  fetchMessage: string;
+  serverMessage: string;
   fetchedItems: moviesType;
   trendingItems: moviesType;
   recommenedItems: moviesType;
@@ -39,7 +39,7 @@ export default function MovieContext({
   children: ReactNode;
 }) {
   const [path, setPath] = useState<string>("");
-  const [fetchMessage, setFetchMessage] = useState<string>("");
+  const [serverMessage, setServerMessage] = useState<string>("");
   const [fetchedItems, setFetchtedItems] = useState<moviesType>([]);
   const [trendingItems, setTrendingItems] = useState<moviesType>([]);
   const [recommenedItems, setRecommenedItems] = useState<moviesType>(
@@ -131,7 +131,7 @@ export default function MovieContext({
         });
         const response = await data.json();
         if (!data.ok) {
-          setFetchMessage("Failed to fetch movies data");
+          setServerMessage("Failed to fetch movies data");
         }
         setFetchtedItems(response);
         setTrendingItems(
@@ -146,7 +146,7 @@ export default function MovieContext({
         );
       } catch (error: unknown) {
         if (error instanceof Error)
-          setFetchMessage("Error fetching data: " + error.message);
+          setServerMessage("Error fetching data: " + error.message);
       }
     };
 
@@ -245,7 +245,7 @@ export default function MovieContext({
   return (
     <MyContext.Provider
       value={{
-        fetchMessage,
+        serverMessage,
         fetchedItems,
         trendingItems,
         bookMarked,
