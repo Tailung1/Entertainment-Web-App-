@@ -3,6 +3,9 @@ import FloatingInput from "../shared/FloatingInput";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function SignUp() {
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({
@@ -73,7 +76,7 @@ export default function SignUp() {
 
     if (!Object.values(newErrors).includes(true)) {
       try {
-        const response = await fetch(
+        const validateRequest = await fetch(
           "http://localhost:3000/api/users/register",
           {
             method: "POST",
@@ -86,14 +89,12 @@ export default function SignUp() {
             }),
           }
         );
-
+        const response = await validateRequest.json();
         if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-          navigate("/");
+          toast.success(response.message);
+          //   navigate("/");
         } else {
-          const errorData = await response.json();
-          console.error(errorData, "errrrr");
+          toast.error(response.message);
         }
       } catch (error) {
         console.error("Network error:");

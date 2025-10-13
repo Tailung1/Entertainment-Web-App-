@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -69,10 +69,9 @@ export default function SignIn() {
       );
       const response = await validateReuqest.json();
       if (!validateReuqest.ok) {
-        // Handle non-200 responses (e.g., 401 Unauthorized for wrong password)
-        console.error(response.message);
+        toast.error(response.message);
       } else {
-        console.log(response.message);
+        toast.success(response.message);
         navigate("/home"); // Redirect to home page on successful login
       }
     }
@@ -148,6 +147,12 @@ export default function SignIn() {
           </Link>
         </p>
       </motion.div>
+      <ToastContainer
+        theme='dark'
+        position='top-left'
+        autoClose={1500}
+        limit={2}
+      />
     </div>
   );
 }
