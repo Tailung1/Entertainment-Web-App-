@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.my-toast-container {
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-right: 40px;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

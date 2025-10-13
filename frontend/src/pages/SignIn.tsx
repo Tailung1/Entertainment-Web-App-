@@ -71,7 +71,6 @@ export default function SignIn() {
       if (!validateReuqest.ok) {
         toast.error(response.message);
       } else {
-        toast.success(response.message);
         navigate("/home"); // Redirect to home page on successful login
       }
     }
@@ -150,8 +149,9 @@ export default function SignIn() {
       <ToastContainer
         theme='dark'
         position='top-left'
-        autoClose={1500}
+        autoClose={2000}
         limit={2}
+        className='my-toast-container'
       />
     </div>
   );
