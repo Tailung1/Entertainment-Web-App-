@@ -17,7 +17,8 @@ interface contextTypes {
   recommenedItems: moviesType;
   movies: moviesType;
   series: moviesType;
-
+loading:boolean,
+setLoading:React.Dispatch<React.SetStateAction<boolean>>
   bookMarked: moviesType;
   setBookMarked: React.Dispatch<SetStateAction<moviesType>>;
   searching: string;
@@ -38,6 +39,8 @@ export default function MovieContext({
 }: {
   children: ReactNode;
 }) {
+  const [loading, setLoading] = useState<boolean>(false);
+    
   const [path, setPath] = useState<string>("");
   const [serverMessage, setServerMessage] = useState<string>("");
   const [fetchedItems, setFetchtedItems] = useState<moviesType>([]);
@@ -264,6 +267,8 @@ export default function MovieContext({
         setPath,
         recommenedItems,
         setRecommenedItems,
+        loading,
+        setLoading
       }}
     >
       {children}

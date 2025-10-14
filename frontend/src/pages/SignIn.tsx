@@ -1,4 +1,5 @@
 import FloatingInput from "../shared/FloatingInput";
+import { useMyContext } from "@/useContext";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -6,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 export default function SignIn() {
+    const {loading,setLoading}=useMyContext()
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
@@ -53,7 +56,8 @@ export default function SignIn() {
     };
     setErrors(newErrors);
 
-    if (!Object.values(newErrors).includes(true)) {
+    if (!Object.values(newErrors).includes(true)) {  
+        setLoading(true)
       const validateReuqest = await fetch(
         "http://localhost:3000/api/users/signin",
         {
@@ -69,10 +73,12 @@ export default function SignIn() {
       );
       const response = await validateReuqest.json();
       if (!validateReuqest.ok) {
+        setLoading(false)
         toast.error(response.message);
       } else {
-        localStorage.setItem("auth-token",response.token)
-        navigate("/home"); // Redirect to home page on successful login
+        setLoading(false)
+        localStorage.setItem("auth-token", response.token);
+        navigate("/home"); 
       }
     }
   };
@@ -129,11 +135,14 @@ export default function SignIn() {
             }`}
           />
         </div>
-
+        <div className="w-full bg-black">
+            jwekj
+        </div>
         <button
           onClick={handleSubmit}
           className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md hover:bg-green-600 '
         >
+        
           Login to your account
         </button>
 
