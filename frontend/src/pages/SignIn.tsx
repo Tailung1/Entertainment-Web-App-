@@ -73,7 +73,7 @@ export default function SignIn() {
       );
       const response = await validateReuqest.json();
       if (!validateReuqest.ok) {
-        setLoading(false);
+        // setLoading(false);
         toast.error(response.message);
       } else {
         setLoading(false);
@@ -136,16 +136,19 @@ export default function SignIn() {
           />
         </div>
         <button
+          disabled={loading}
           onClick={handleSubmit}
-          className={` {${
-            loading && "disabled: bg-violet-700 cursor-progress "
-          }} w-full cursor-pointer   text-white py-3 mt-10 mb-6 bg-violet-500 rounded-md ${
-            !loading && "hover:bg-green-600"
+          className={` bg-red-800 {${
+            loading && "bg-violet-900 cursor-progress "
+          }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${
+            !loading && "hover:bg-red-700"
           } `}
         >
           {loading ? (
             <div className='flex justify-center items-center gap-5'>
-              <p className=' text-[20px]'>Processing</p>
+              <p className=' tracking-widest text-[16px]'>
+                Processing
+              </p>
               <Spin />
             </div>
           ) : (
