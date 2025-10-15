@@ -139,12 +139,14 @@ export default function SignIn() {
           onClick={handleSubmit}
           className={` {${
             loading && "disabled: bg-violet-700 cursor-progress "
-          }} w-full cursor-pointer   text-white py-3 mt-10 mb-6 bg-violet-500 rounded-md ${!loading && "hover:bg-green-600"} `}
+          }} w-full cursor-pointer   text-white py-3 mt-10 mb-6 bg-violet-500 rounded-md ${
+            !loading && "hover:bg-green-600"
+          } `}
         >
           {loading ? (
             <div className='flex justify-center items-center gap-5'>
               <p className=' text-[20px]'>Processing</p>
-              <Spin  />
+              <Spin />
             </div>
           ) : (
             "Login to your account"
