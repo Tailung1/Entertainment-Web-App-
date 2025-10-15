@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 
 export default function SignIn() {
@@ -73,7 +73,7 @@ export default function SignIn() {
       );
       const response = await validateReuqest.json();
       if (!validateReuqest.ok) {
-        // setLoading(false);
+        setLoading(false);
         toast.error(response.message);
       } else {
         setLoading(false);

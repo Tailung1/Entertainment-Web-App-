@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import { useMyContext } from "../useContext";
 import FloatingInput from "../shared/FloatingInput";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Spin } from "antd";
 
 export default function SignUp() {
+  const { loading, setLoading } = useMyContext();
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({
     email: "",
@@ -76,6 +79,7 @@ export default function SignUp() {
 
     if (!Object.values(newErrors).includes(true)) {
       try {
+        setLoading(true);
         const validateRequest = await fetch(
           "http://localhost:3000/api/users/register",
           {
@@ -91,8 +95,10 @@ export default function SignUp() {
         );
         const response = await validateRequest.json();
         if (validateRequest.ok) {
+          setLoading(false);
           navigate("/");
         } else {
+          setLoading(false);
           toast.error(response.message);
         }
       } catch (error) {
@@ -168,10 +174,24 @@ export default function SignUp() {
         </div>
 
         <button
+          disabled={loading}
           onClick={handleSubmit}
-          className='w-full cursor-pointer text-white py-3 mt-10 mb-6 bg-[#FC4747] rounded-md hover:bg-green-600'
+          className={` bg-red-800 {${
+            loading && "bg-violet-900 cursor-progress "
+          }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${
+            !loading && "hover:bg-red-700"
+          } `}
         >
-          Sign up
+          {loading ? (
+            <div className='flex justify-center items-center gap-5'>
+              <p className=' tracking-widest text-[16px]'>
+                Processing
+              </p>
+              <Spin />
+            </div>
+          ) : (
+            "Sign up"
+          )}
         </button>
 
         <p className='text-white text-[15px] text-center'>
