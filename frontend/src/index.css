@@ -45,3 +45,19 @@
     left: 100%;
   }
 }
+
+.scroll-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  animation: scroll 5s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* Start at the original position */
+  }
+  100% {
+    transform: translateX(-100%); /* Move the content to the left */
+  }
+}

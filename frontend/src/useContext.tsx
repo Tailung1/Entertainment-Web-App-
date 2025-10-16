@@ -113,7 +113,6 @@ export default function MovieContext({
         );
         const resp = await data.json();
 
-        console.log(resp);
       } catch (err) {
         console.log(err, "Failed in front");
       }

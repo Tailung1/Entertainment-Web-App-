@@ -6,36 +6,38 @@ import ItemsFiltering from "../shared/ItemsFiltering";
 import Auth from "../shared/Auth";
 
 export default function Home() {
-    Auth()
+  Auth();
   ItemsFiltering();
   const { trendingItems, recommenedItems, searching } =
     useMyContext();
   const loadingArr = new Array(6).fill(6);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    const interval = setInterval(() => {
-      if (!scrollContainer) return;
-      const { scrollLeft, clientWidth, scrollWidth } =
-        scrollContainer;
-      if (scrollLeft + clientWidth >= scrollWidth) {
-        scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        scrollContainer.scrollBy({ left: 195, behavior: "smooth" });
-      }
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  // This useEffect is for the auto-scrolling functionality if you want to enable it later.
+//   useEffect(() => {
+//     const scrollContainer = scrollRef.current;
+//     const interval = setInterval(() => {
+//       if (!scrollContainer) return;
+//       const { scrollLeft, clientWidth, scrollWidth } =
+//         scrollContainer;
+//       if (scrollLeft + clientWidth >= scrollWidth) {
+//         scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
+//       } else {
+//         scrollContainer.scrollBy({ left: 195, behavior: "smooth" });
+//       }
+//     }, 3000);
+//     return () => clearInterval(interval);
+//   }, []);
 
   return (
     <div className='bg-[#10141E] pl-6 pr-1 min-h-screen'>
+      {/* Trending Section */}
       {trendingItems.length < 1 && searching ? (
-        <h1 className='text-[25px] text-white '>
+        <h1 className='text-[25px] text-white'>
           <div className='text-[20px] md:text-[25px]'>
             No Trending items found for{" "}
             <span className='text-green-700'>"</span>
-            <p className='text-red-500  inline'>{searching}</p>
+            <p className='text-red-500 inline'>{searching}</p>
             <span className='text-green-700'>"</span>
           </div>
         </h1>
@@ -44,7 +46,7 @@ export default function Home() {
           <h2 className='text-white text-[20px]'>Trending</h2>
           <div
             ref={scrollRef}
-            className='flex overflow-x-auto py-3 space-x-4 hide-scrollbar'
+            className='scroll-container py-3  '
           >
             {trendingItems.length < 1 ? (
               <div className='flex gap-3'>
@@ -58,7 +60,7 @@ export default function Home() {
               trendingItems.map((item) => (
                 <div
                   key={item.id}
-                  className='flex flex-col gap-2 min-w-[180px] lg:w-[220px] relative'
+                  className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[200px] lg:min-w-[220px] relative'
                 >
                   <img
                     src={item.image}
@@ -74,7 +76,7 @@ export default function Home() {
                       <DotIcon />
                       <p>{item.raiting}</p>
                     </div>
-                    <p className='text-[18px] text-white'>
+                    <p className='text-[16px] text-white'>
                       {item.title}
                     </p>
                   </div>
@@ -88,9 +90,9 @@ export default function Home() {
         </>
       )}
 
-      {/* Recommended Section Feedback Message */}
+      {/* Recommended Section */}
       {recommenedItems.length < 1 && searching ? (
-        <h1 className='text-[25px] text-white  mt-5'>
+        <h1 className='text-[25px] text-white mt-5'>
           <div className='text-[20px] md:text-[25px]'>
             No Recommended items found for{" "}
             <span className='text-green-700'>"</span>

@@ -18,7 +18,7 @@ export default function Header() {
   };
 
   return (
-    <div className=' md:p-4 lg:p-6  '>
+    <div className=' md:p-4 lg:p-6   '>
       <div className='bg-[#161D2F] py-2  md:rounded-lg lg:p-3 lg:py-7 '>
         <header className='flex justify-around items-center lg:flex-col lg:justify-between lg:h-[600px] '>
           <Icon
