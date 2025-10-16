@@ -13,7 +13,7 @@
 }
 
 .loading-placeholder {
-  width: 153px;
+  width: 200px;
   height: 110px;
   background: #e0e0e01e;
   position: relative;
@@ -49,18 +49,22 @@
 .scroll-container {
   width: 100%;
   overflow: hidden;
- 
+  animation-play-state: running;
+}
+.wrapper-div:hover {
+  animation-play-state: paused;
 }
 .wrapper-div {
-     display: flex;
-  animation: scroll 12s linear infinite;
+  display: flex;
+  animation: scroll 25s linear infinite;
+  animation-play-state: running;
 }
 
 @keyframes scroll {
   0% {
-    transform: translateX(0); /* Start at the original position */
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* Move the content to the left */
+    transform: translateX(-100%);
   }
 }

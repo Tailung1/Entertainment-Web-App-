@@ -26,8 +26,22 @@ export default function SharedComponent({
           : currentComponent.map((item: movieType) => (
               <div
                 key={item.id}
-                className='flex   flex-col gap-2  relative w-[153px] lg:w-[220px]   '
+                className='flex   flex-col gap-2  relative w-[153px] lg:w-[220px] hover:scale-105 group hover:opacity-90    '
               >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='40'
+                  height='40'
+                  viewBox='0 0 24 24'
+                  fill='red'
+                  stroke='currentColor'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  className='absolute cursor-pointer top-[40px] left-[55px]  opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-black'
+                >
+                  <polygon points='5,3 19,12 5,21 5,3' />
+                </svg>
                 <img
                   src={item.image}
                   alt={item.title}
