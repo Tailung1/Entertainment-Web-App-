@@ -49,8 +49,11 @@
 .scroll-container {
   width: 100%;
   overflow: hidden;
-  display: flex;
-  animation: scroll 5s linear infinite;
+ 
+}
+.wrapper-div {
+     display: flex;
+  animation: scroll 12s linear infinite;
 }
 
 @keyframes scroll {

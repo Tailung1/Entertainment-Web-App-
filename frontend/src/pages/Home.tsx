@@ -44,48 +44,47 @@ export default function Home() {
       ) : (
         <>
           <h2 className='text-white text-[20px]'>Trending</h2>
-          <div
-            ref={scrollRef}
-            className='scroll-container py-3  '
-          >
-            {trendingItems.length < 1 ? (
-              <div className='flex gap-3'>
-                {loadingArr.map((_, index) => (
-                  <div key={index} className='loading-placeholder'>
-                    {" "}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              trendingItems.map((item) => (
-                <div
-                  key={item.id}
-                  className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[200px] lg:min-w-[220px] relative'
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className='h-[110px] lg:h-[120px] rounded-lg'
-                    loading='lazy'
-                  />
-                  <div className='flex flex-col absolute bottom-1 left-2'>
-                    <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
-                      <p>{item.year}</p>
-                      <DotIcon />
-                      <p>{item.type}</p>
-                      <DotIcon />
-                      <p>{item.raiting}</p>
+          <div ref={scrollRef} className='scroll-container py-3   '>
+            <div className='wrapper-div'>
+              {trendingItems.length < 1 ? (
+                <div className='flex gap-3'>
+                  {loadingArr.map((_, index) => (
+                    <div key={index} className='loading-placeholder'>
+                      {" "}
                     </div>
-                    <p className='text-[16px] text-white'>
-                      {item.title}
-                    </p>
-                  </div>
-                  <button className='absolute right-0.5'>
-                    <BookMarkIcon item={item} />
-                  </button>
+                  ))}
                 </div>
-              ))
-            )}
+              ) : (
+                trendingItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[200px] lg:min-w-[220px] relative'
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className='h-[110px] lg:h-[120px] rounded-lg'
+                      loading='lazy'
+                    />
+                    <div className='flex flex-col absolute bottom-1 left-2'>
+                      <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
+                        <p>{item.year}</p>
+                        <DotIcon />
+                        <p>{item.type}</p>
+                        <DotIcon />
+                        <p>{item.raiting}</p>
+                      </div>
+                      <p className='text-[16px] text-white'>
+                        {item.title}
+                      </p>
+                    </div>
+                    <button className='absolute right-0.5'>
+                      <BookMarkIcon item={item} />
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>{" "}
           </div>
         </>
       )}
