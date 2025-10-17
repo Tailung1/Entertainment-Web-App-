@@ -19,7 +19,7 @@ import {
 export default async function handler(req, res) {
   if (req.method === "POST") {
     // Check the path to distinguish between register and signin
-    if (req.url === "/api/register") {
+    if (req.url === "/api/users/signin") {
       try {
         await createUser(req, res); // Handle user registration
       } catch (error) {

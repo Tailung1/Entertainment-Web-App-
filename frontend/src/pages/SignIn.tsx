@@ -58,27 +58,32 @@ export default function SignIn() {
 
     if (!Object.values(newErrors).includes(true)) {
       setLoading(true);
-      const validateReuqest = await fetch(
-        "http://localhost:3000/api/users/signin",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: emailInput,
-            password: passwordInput,
-          }),
+      try {
+        const validateReuqest = await fetch(
+          "http://localhost:3000/api/users/signin",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: emailInput,
+              password: passwordInput,
+            }),
+          }
+        );
+        const response = await validateReuqest.json();
+        if (!validateReuqest.ok) {
+          setLoading(false);
+          toast.error(response.message);
+        } else {
+          setLoading(false);
+          localStorage.setItem("auth-token", response.token);
+          navigate("/home");
         }
-      );
-      const response = await validateReuqest.json();
-      if (!validateReuqest.ok) {
+      } catch (e) {
         setLoading(false);
-        toast.error(response.message);
-      } else {
-        setLoading(false);
-        localStorage.setItem("auth-token", response.token);
-        navigate("/home");
+        toast.error("Unexpected error");
       }
     }
   };
