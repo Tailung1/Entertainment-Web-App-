@@ -17,6 +17,7 @@ import {
 } from "../../controllers/usersController";
 
 export default async function handler(req, res) {
+    console.log("reached")
   if (req.method === "POST") {
     // Check the path to distinguish between register and signin
     if (req.url === "/api/users/signin") {
