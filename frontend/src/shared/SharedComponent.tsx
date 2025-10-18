@@ -18,6 +18,7 @@ export default function SharedComponent({
       <h2 className='text-white text-[20px] mb-3'>
         {currentSection}
       </h2>
+   
       <div className='flex flex-wrap gap-x-4 gap-y-5 '>
         {currentComponent.length < 1
           ? loadingDivs.map((_, index) => (

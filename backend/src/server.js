@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import moviesRouter from "./routing/moviesRouter.js";
 import usersRouter from "./routing/usersRouter.js";
 import cors from "cors";
-import handler from "./routing/usersRouter.js";
 
 const app = express();
 dotenv.config();
@@ -46,10 +45,10 @@ app.use(express.json())
 //   }
 // });
 
-app.use(handler)
 
-// app.use("/api/movies", moviesRouter);
-// app.use("/api/users", usersRouter);
+
+app.use("/api/movies", moviesRouter);
+app.use("/api/users", usersRouter);
 
 const mongoURL = process.env.MONGO_URL;
 
