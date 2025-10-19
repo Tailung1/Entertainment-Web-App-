@@ -14,7 +14,6 @@ export default function Series() {
       setPath("/series");
     }, []);
 
-
   return (
     <div className='min-h-screen'>
       {series.length < 1 && searching ? (
