@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useMyContext } from "../useContext";
 
-
 export default function ItemsFiltering() {
   let {
     searching,
@@ -12,7 +11,6 @@ export default function ItemsFiltering() {
     setSeries,
     setBookMarked,
   } = useMyContext();
-
 
   useEffect(() => {
     if (searching) {
