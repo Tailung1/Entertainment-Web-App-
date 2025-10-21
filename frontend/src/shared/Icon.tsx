@@ -1,5 +1,4 @@
 import { useMyContext } from "../useContext";
-
 import { SetStateAction } from "react";
 
 export default function Icon({
