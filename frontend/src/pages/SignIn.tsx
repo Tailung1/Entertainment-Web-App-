@@ -20,6 +20,8 @@ export default function SignIn() {
     emailRegexError: false,
     passwordLengthError: false,
   });
+
+  const handleEmailCheck=()=> {}
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -33,6 +35,7 @@ export default function SignIn() {
       }
 
       setErrors((prev) => ({ ...prev, [field]: false }));
+      setResetPasswordInput(value)
       setEmailInput(value);
     }
 
@@ -120,13 +123,19 @@ export default function SignIn() {
             <FloatingInput
               label='Enter email'
               type='text'
-              value={passwordInput}
-              onChange={(val) => handleChange("password", val)}
-              isError=''
+              value={resetPasswordInput}
+              onChange={(val) => handleChange("email", val)}
+              isError={`${
+                errors.email
+                  ? "emailEmptyError"
+                  : errors.emailRegexError
+                  ? "emailRegexError"
+                  : ""
+              }`}
             />
             <button
               disabled={loading}
-              onClick={handleSubmit}
+              onClick={handleEmailCheck}
               className={` bg-red-800 {${
                 loading && "bg-violet-900 cursor-progress "
               }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${

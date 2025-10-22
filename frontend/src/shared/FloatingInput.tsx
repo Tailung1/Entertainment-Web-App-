@@ -17,7 +17,7 @@ export default function FloatingInput({
   onChange,
   isError,
 }: FloatingInputProps) {
-    const {setResetPassword}=useMyContext()
+  const { setResetPassword } = useMyContext();
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -52,23 +52,17 @@ export default function FloatingInput({
         onBlur={() => setFocused(false)}
         autoComplete='off'
       />
-
-      {(isError === "emailEmptyError" ||
-        isError === "emailRegexError" ||
-        isError === "passwordEmptyError" ||
-        isError === "passwordLengthError") && (
-        <p className='text-red-500 text-[14px] absolute top-1 right-7'>
-          {isError === "emailEmptyError"
-            ? "Can't be empty"
-            : isError === "emailRegexError"
-            ? "Invalid email format"
-            : isError === "passwordEmptyError"
-            ? "Can't be empty"
-            : isError === "passwordLengthError"
-            ? "Min. 5 characters"
-            : ""}
-        </p>
-      )}
+      <p className='text-red-500 text-[14px] absolute top-1 right-7'>
+        {isError === "emailEmptyError"
+          ? "Can't be empty"
+          : isError === "emailRegexError"
+          ? "Invalid email format"
+          : isError === "passwordEmptyError"
+          ? "Can't be empty"
+          : isError === "passwordLengthError"
+          ? "Min. 5 characters"
+          : ""}
+      </p>
 
       {/* Password toggle */}
       {type === "password" && value && (
@@ -116,7 +110,12 @@ export default function FloatingInput({
         </button>
       )}
       {type === "password" && (
-        <p onClick={()=>setResetPassword(true)} className='cursor-pointer mt-[10px] hover:text-orange-300 text-orange-500'>Forgot password?</p>
+        <p
+          onClick={() => setResetPassword(true)}
+          className='cursor-pointer mt-[10px] hover:text-orange-300 text-orange-500'
+        >
+          Forgot password?
+        </p>
       )}
     </div>
   );
