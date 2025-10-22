@@ -6,13 +6,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Spin } from "antd";
+import { Divider, Spin } from "antd";
 
 export default function SignIn() {
-  const { loading, setLoading } = useMyContext();
+  const { loading, setLoading, resetPassword } = useMyContext();
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
+  const [resetPasswordInput, setResetPasswordInput] = useState<string>("");
   const [errors, setErrors] = useState({
     email: false,
     password: false,
@@ -23,7 +24,7 @@ export default function SignIn() {
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleChange = (
-    field: "email" | "password",
+    field: "email" | "password" | "resetPassword",
     value: string
   ) => {
     if (field === "email") {
@@ -110,66 +111,93 @@ export default function SignIn() {
         transition={{ duration: 0.3 }}
         className='bg-[#161D2F] w-full max-w-sm flex flex-col rounded-xl pt-6 px-6 pb-8'
       >
-        <h2 className='text-[32px] mb-[40px] text-white'>Login</h2>
+        <h2 className='text-[32px] mb-[40px] text-white'>
+          {resetPassword ? "Reset password" : "Login"}
+        </h2>
 
-        <div className='flex flex-col gap-[30px]'>
-          <FloatingInput
-            label='Email address'
-            type='text'
-            value={emailInput}
-            onChange={(val) => handleChange("email", val)}
-            isError={`${
-              errors.email
-                ? "emailEmptyError"
-                : errors.emailRegexError
-                ? "emailRegexError"
-                : ""
-            }`}
-          />
-          <FloatingInput
-            label='Password'
-            type='password'
-            value={passwordInput}
-            onChange={(val) => handleChange("password", val)}
-            isError={`${
-              errors.password
-                ? "passwordEmptyError"
-                : errors.passwordLengthError
-                ? "passwordLengthError"
-                : ""
-            }`}
-          />
-        </div>
-        <button
-          disabled={loading}
-          onClick={handleSubmit}
-          className={` bg-red-800 {${
-            loading && "bg-violet-900 cursor-progress "
-          }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${
-            !loading && "hover:bg-red-700"
-          } `}
-        >
-          {loading ? (
-            <div className='flex justify-center items-center gap-5'>
-              <p className=' tracking-widest text-[16px]'>
-                Processing
-              </p>
-              <Spin />
+        {resetPassword ? (
+          <div>
+            <FloatingInput
+              label='Enter email'
+              type='text'
+              value={passwordInput}
+              onChange={(val) => handleChange("password", val)}
+              isError=''
+            />
+            <button
+              disabled={loading}
+              onClick={handleSubmit}
+              className={` bg-red-800 {${
+                loading && "bg-violet-900 cursor-progress "
+              }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${
+                !loading && "hover:bg-red-700"
+              } `}
+            >
+              Send request
+            </button>
+          </div>
+        ) : (
+          <div>
+            <div className='flex flex-col gap-[30px]'>
+              <FloatingInput
+                label='Email address'
+                type='text'
+                value={emailInput}
+                onChange={(val) => handleChange("email", val)}
+                isError={`${
+                  errors.email
+                    ? "emailEmptyError"
+                    : errors.emailRegexError
+                    ? "emailRegexError"
+                    : ""
+                }`}
+              />
+              <FloatingInput
+                label='Password'
+                type='password'
+                value={passwordInput}
+                onChange={(val) => handleChange("password", val)}
+                isError={`${
+                  errors.password
+                    ? "passwordEmptyError"
+                    : errors.passwordLengthError
+                    ? "passwordLengthError"
+                    : ""
+                }`}
+              />
             </div>
-          ) : (
-            "Login to your account"
-          )}
-        </button>
+            <button
+              disabled={loading}
+              onClick={handleSubmit}
+              className={` bg-red-800 {${
+                loading && "bg-violet-900 cursor-progress "
+              }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${
+                !loading && "hover:bg-red-700"
+              } `}
+            >
+              {loading ? (
+                <div className='flex justify-center items-center gap-5'>
+                  <p className=' tracking-widest text-[16px]'>
+                    Processing
+                  </p>
+                  <Spin />
+                </div>
+              ) : (
+                "Login to your account"
+              )}
+            </button>
 
-        <p className='text-white text-[15px] text-center'>
-          Don’t have an account?{" "}
-          <Link
-            to={"/signup"}
-            className='text-[#FC4747] ml-[6px] cursor-pointer '
-          >
-            Sign Up
-          </Link>
-        </p>
+            <p className='text-white text-[15px] text-center'>
+              Don’t have an account?{" "}
+              <Link
+                to={"/signup"}
+                className='text-[#FC4747] ml-[6px] cursor-pointer '
+              >
+                Sign Up
+              </Link>
+            </p>
+          </div>
+        )}
       </motion.div>
       <ToastContainer
         theme='dark'

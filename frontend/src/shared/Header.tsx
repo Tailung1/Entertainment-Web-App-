@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import Icon from "./shared/Icon";
+import Icon from "./Icon";
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();

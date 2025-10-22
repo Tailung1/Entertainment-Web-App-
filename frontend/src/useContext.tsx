@@ -1,4 +1,3 @@
-
 import {
   createContext,
   useState,
@@ -11,14 +10,16 @@ import {
 interface contextTypes {
   path: string;
   setPath: React.Dispatch<SetStateAction<string>>;
+  resetPassword:boolean,
+  setResetPassword:React.Dispatch<SetStateAction<boolean>>
   serverMessage: string;
   fetchedItems: moviesType;
   trendingItems: moviesType;
   recommenedItems: moviesType;
   movies: moviesType;
   series: moviesType;
-loading:boolean,
-setLoading:React.Dispatch<React.SetStateAction<boolean>>
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   bookMarked: moviesType;
   setBookMarked: React.Dispatch<SetStateAction<moviesType>>;
   searching: string;
@@ -40,7 +41,7 @@ export default function MovieContext({
   children: ReactNode;
 }) {
   const [loading, setLoading] = useState<boolean>(false);
-    
+  const [resetPassword, setResetPassword] = useState<boolean>(false);
   const [path, setPath] = useState<string>("");
   const [serverMessage, setServerMessage] = useState<string>("");
   const [fetchedItems, setFetchtedItems] = useState<moviesType>([]);
@@ -112,7 +113,6 @@ export default function MovieContext({
           }
         );
         const resp = await data.json();
-
       } catch (err) {
         console.log(err, "Failed in front");
       }
@@ -267,7 +267,9 @@ export default function MovieContext({
         recommenedItems,
         setRecommenedItems,
         loading,
-        setLoading
+        setLoading,
+        resetPassword,
+        setResetPassword
       }}
     >
       {children}

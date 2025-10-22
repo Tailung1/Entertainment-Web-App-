@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useMyContext } from "../useContext";
 
 interface FloatingInputProps {
   label: string;
@@ -16,6 +17,7 @@ export default function FloatingInput({
   onChange,
   isError,
 }: FloatingInputProps) {
+    const {setResetPassword}=useMyContext()
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -112,6 +114,9 @@ export default function FloatingInput({
             </svg>
           )}
         </button>
+      )}
+      {type === "password" && (
+        <p onClick={()=>setResetPassword(true)} className='cursor-pointer mt-[10px] hover:text-orange-300 text-orange-500'>Forgot password?</p>
       )}
     </div>
   );
