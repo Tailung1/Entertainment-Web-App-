@@ -15,6 +15,7 @@ export default function SignIn() {
   const [passwordInput, setPasswordInput] = useState<string>("");
   const [resetPasswordInput, setResetPasswordInput] =
     useState<string>("");
+  const [showOtpInput, setShowOtpInput] = useState<boolean>(false);
   const [errors, setErrors] = useState({
     email: false,
     password: false,
@@ -31,7 +32,7 @@ export default function SignIn() {
     };
     setErrors(newErrors);
     if (Object.values(newErrors).includes(true)) return;
-    // setLoading(true);
+    setLoading(true);
     try {
       const data = await fetch(
         "http://localhost:3000/api/users/generate-otp",
@@ -45,11 +46,12 @@ export default function SignIn() {
           }),
         }
       );
-      const response= await data.json()
-      console.log(response)
+      setLoading(false);
+      const response = await data.json();
+      setShowOtpInput(data.ok);
     } catch (err: unknown) {
-      console.log("idk");
-      console.log(resetPasswordInput);
+      console.log("failed");
+      setLoading(false);
     }
   };
 
@@ -164,6 +166,7 @@ export default function SignIn() {
                   : ""
               }`}
             />
+            <p>{showOtpInput ? "enter otp" : ""}</p>
             <button
               disabled={loading}
               onClick={handleEmailCheck}

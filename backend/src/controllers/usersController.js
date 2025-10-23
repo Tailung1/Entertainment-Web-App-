@@ -10,7 +10,7 @@ const generateOTP = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(400).send({ message: "Invalid Email" });
+    return res.status(401).send({ message: "Invalid Email" });
   }
   async function generate() {
     const otp = Math.floor(100000 + Math.random() * 900000);
@@ -21,6 +21,7 @@ const generateOTP = async (req, res) => {
     );
     if (response.acknowledged) {
       await emailService(email, otp);
+      return res.status(200).send({ message: "sent" });
     }
   }
   generate();
