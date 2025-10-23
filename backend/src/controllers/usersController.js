@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import moment from "moment";
+import emailService from "../../../utils/emailService.js";
 dotenv.config();
 
 const generateOTP = async (req, res) => {
@@ -14,11 +15,13 @@ const generateOTP = async (req, res) => {
   async function generate() {
     const otp = Math.floor(100000 + Math.random() * 900000);
     const otpExpiry = moment().add(10, "minutes").toISOString();
-    const result = await User.updateOne(
+    const response = await User.updateOne(
       { email },
       { $set: { otp, otpExpiry } }
     );
-    console.log(result);
+    if (response.acknowledged) {
+      await emailService(email, otp);
+    }
   }
   generate();
 };

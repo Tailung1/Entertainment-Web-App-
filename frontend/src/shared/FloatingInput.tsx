@@ -109,7 +109,7 @@ export default function FloatingInput({
           )}
         </button>
       )}
-      {type === "password" && (
+      {type === "password" && location.pathname === "/" && (
         <p
           onClick={() => setResetPassword(true)}
           className='cursor-pointer mt-[10px] hover:text-orange-300 text-orange-500'
