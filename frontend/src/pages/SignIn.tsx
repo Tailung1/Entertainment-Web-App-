@@ -34,7 +34,7 @@ export default function SignIn() {
     setLoading(true);
     try {
       const data = await fetch(
-        "http://localhost:3000/api/users/validateEmail",
+        "http://localhost:3000/api/users/generate-otp",
         {
           method: "POST",
           headers: {

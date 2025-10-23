@@ -2,6 +2,7 @@ import User from "../schemas/usersSchema.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import moment from "moment";
 
 dotenv.config();
 
@@ -27,10 +28,18 @@ const createUser = async (req, res) => {
   }
 };
 
-const validateEmail = async (req, res) => {
-    const { email } = req.body;
-    const user= await User.findOne({email})
-
+const generateOTP = async (req, res) => {
+  const { email } = req.body;
+  //   const user = await User.findOne({ email });
+  //   if (!user) {
+  //     return res.status(400).send({ message: "Invalid Email" });
+  //   }
+  function generate() {
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    const expiry = moment().add(10, "minute").toISOString()
+    console.log(expiry);
+  }
+  generate()
 };
 
 const signIn = async (req, res) => {
@@ -57,4 +66,4 @@ const signIn = async (req, res) => {
   }
 };
 
-export { createUser, signIn, validateEmail };
+export { createUser, signIn, generateOTP };

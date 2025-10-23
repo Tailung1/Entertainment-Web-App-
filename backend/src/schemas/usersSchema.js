@@ -10,10 +10,11 @@ const userSchema = new mongoose.Schema({
   },
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  createdAt: { type: Date,  default: Date.now },
+  otp: { type: Number },
+  otpExpiry: { type: Number },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const User = mongoose.model("User", userSchema);
 
-export default User
-
+export default User;
