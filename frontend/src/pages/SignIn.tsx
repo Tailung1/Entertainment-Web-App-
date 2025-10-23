@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
-import OtpComponent from "../features/otpComponent";
+import OtpComponent from "../features/OtpComponent";
 
 export default function SignIn() {
   const { loading, setLoading, resetPassword } = useMyContext();

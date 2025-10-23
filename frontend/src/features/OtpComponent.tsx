@@ -21,7 +21,7 @@ export default function OtpComponent() {
   });
 
   const handleChange = (field: string, val: string) => {
-    setBackError("")
+    setBackError("");
     if (field === "email") {
       if (emailRegex.test(val)) {
         setErrors((prev) => ({
@@ -81,7 +81,13 @@ export default function OtpComponent() {
             : ""
         }`}
       />
-      <p className="relative">{showOtpInput ? "enter otp" : <p className="absolute text-red-600 font-5">{backError} </p>}</p>
+      <p className='relative'>
+        {showOtpInput ? (
+          "enter otp"
+        ) : (
+          <p className='absolute text-red-600 font-5'>{backError} </p>
+        )}
+      </p>
       <button
         disabled={loading}
         onClick={handleEmailCheck}
@@ -103,3 +109,5 @@ export default function OtpComponent() {
     </div>
   );
 }
+
+const enterOtp = () => {};
