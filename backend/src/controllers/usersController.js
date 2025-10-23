@@ -3,8 +3,25 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import moment from "moment";
-
 dotenv.config();
+
+const generateOTP = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(400).send({ message: "Invalid Email" });
+  }
+  async function generate() {
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    const otpExpiry = moment().add(10, "minutes").toISOString();
+    const result = await User.updateOne(
+      { email },
+      { $set: { otp, otpExpiry } }
+    );
+    console.log(result);
+  }
+  generate();
+};
 
 const createUser = async (req, res) => {
   const { email, password } = req.body;
@@ -26,20 +43,6 @@ const createUser = async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: "Unable to register" });
   }
-};
-
-const generateOTP = async (req, res) => {
-  const { email } = req.body;
-  //   const user = await User.findOne({ email });
-  //   if (!user) {
-  //     return res.status(400).send({ message: "Invalid Email" });
-  //   }
-  function generate() {
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    const expiry = moment().add(10, "minute").toISOString()
-    console.log(expiry);
-  }
-  generate()
 };
 
 const signIn = async (req, res) => {

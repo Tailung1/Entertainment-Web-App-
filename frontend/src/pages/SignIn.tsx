@@ -31,7 +31,7 @@ export default function SignIn() {
     };
     setErrors(newErrors);
     if (Object.values(newErrors).includes(true)) return;
-    setLoading(true);
+    // setLoading(true);
     try {
       const data = await fetch(
         "http://localhost:3000/api/users/generate-otp",
