@@ -7,15 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
+import OtpComponent from "../features/otpComponent";
 
 export default function SignIn() {
   const { loading, setLoading, resetPassword } = useMyContext();
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
-  const [resetPasswordInput, setResetPasswordInput] =
-    useState<string>("");
-  const [showOtpInput, setShowOtpInput] = useState<boolean>(false);
   const [errors, setErrors] = useState({
     email: false,
     password: false,
@@ -23,55 +21,23 @@ export default function SignIn() {
     passwordLengthError: false,
   });
 
-  const handleEmailCheck = async () => {
-    const newErrors = {
-      email: resetPasswordInput.trim() === "",
-      password: false,
-      emailRegexError: !emailRegex.test(resetPasswordInput),
-      passwordLengthError: false,
-    };
-    setErrors(newErrors);
-    if (Object.values(newErrors).includes(true)) return;
-    setLoading(true);
-    try {
-      const data = await fetch(
-        "http://localhost:3000/api/users/generate-otp",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: resetPasswordInput,
-          }),
-        }
-      );
-      setLoading(false);
-      const response = await data.json();
-      setShowOtpInput(data.ok);
-    } catch (err: unknown) {
-      console.log("failed");
-      setLoading(false);
-    }
-  };
-
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleChange = (
-    field: "email" | "password" | "resetPassword",
+    field: "email" | "password" | "otpEmail",
     value: string
   ) => {
     if (field === "email") {
       if (emailRegex.test(value)) {
-        setErrors((prev) => ({ ...prev, emailRegexError: false }));
+        setErrors((prev) => ({
+          ...prev,
+          [field]: false,
+          emailRegexError: false,
+        }));
       }
-
-      setErrors((prev) => ({ ...prev, [field]: false }));
-      setResetPasswordInput(value);
       setEmailInput(value);
     }
-
     if (field === "password") {
       if (value.length > 4) {
         setErrors((prev) => ({
@@ -152,33 +118,7 @@ export default function SignIn() {
         </h2>
 
         {resetPassword ? (
-          <div>
-            <FloatingInput
-              label='Enter email'
-              type='text'
-              value={resetPasswordInput}
-              onChange={(val) => handleChange("email", val)}
-              isError={`${
-                errors.email
-                  ? "emailEmptyError"
-                  : errors.emailRegexError
-                  ? "emailRegexError"
-                  : ""
-              }`}
-            />
-            <p>{showOtpInput ? "enter otp" : ""}</p>
-            <button
-              disabled={loading}
-              onClick={handleEmailCheck}
-              className={` bg-red-800 {${
-                loading && "bg-violet-900 cursor-progress "
-              }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${
-                !loading && "hover:bg-red-700"
-              } `}
-            >
-              Send request
-            </button>
-          </div>
+          <OtpComponent />
         ) : (
           <div>
             <div className='flex flex-col gap-[30px]'>

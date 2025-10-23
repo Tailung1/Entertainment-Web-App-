@@ -1,8 +1,8 @@
 import { useMyContext } from "../useContext";
 import { useEffect } from "react";
-import ItemsFiltering from "../shared/ItemsFiltering";
+import ItemsFiltering from "../features/ItemsFiltering";
 import SharedComponent from "../shared/SharedComponent";
-import Auth from "../shared/Auth";
+import Auth from "../features/Auth";
 
 export default function BookMarked() {
   Auth();

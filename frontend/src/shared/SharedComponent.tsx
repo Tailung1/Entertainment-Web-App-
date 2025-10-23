@@ -1,6 +1,6 @@
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
-import ItemsFiltering from "../shared/ItemsFiltering";
+import ItemsFiltering from "../features/ItemsFiltering";
 
 export default function SharedComponent({
   currentComponent,

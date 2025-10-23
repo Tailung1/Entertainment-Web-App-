@@ -2,8 +2,8 @@ import { useRef, useEffect } from "react";
 import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
-import ItemsFiltering from "../shared/ItemsFiltering";
-import Auth from "../shared/Auth";
+import ItemsFiltering from "../features/ItemsFiltering";
+import Auth from "../features/Auth";
 
 export default function Home() {
   Auth();
