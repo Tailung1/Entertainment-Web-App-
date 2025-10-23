@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FloatingInput from "../shared/FloatingInput";
 import { useMyContext } from "../useContext";
+import { Spin } from "antd";
 
 export default function OtpComponent() {
   const emailRegex =
@@ -8,6 +9,8 @@ export default function OtpComponent() {
   const { loading, setLoading } = useMyContext();
   const [showOtpInput, setShowOtpInput] = useState<boolean>(false);
   const [otpEmailInput, setOtpEmailInput] = useState<string>("");
+  const [backError, setBackError] = useState<string>("");
+
   const [errors, setErrors] = useState<{
     email: boolean;
     emailRegexError: boolean;
@@ -18,6 +21,7 @@ export default function OtpComponent() {
   });
 
   const handleChange = (field: string, val: string) => {
+    setBackError("")
     if (field === "email") {
       if (emailRegex.test(val)) {
         setErrors((prev) => ({
@@ -54,8 +58,11 @@ export default function OtpComponent() {
       setLoading(false);
       const response = await data.json();
       setShowOtpInput(data.ok);
-    } catch (err: unknown) {
-      console.log("failed");
+      if (!data.ok) {
+        setBackError(response.message);
+      }
+    } catch (err: any) {
+      setBackError(err.message);
       setLoading(false);
     }
   };
@@ -74,7 +81,7 @@ export default function OtpComponent() {
             : ""
         }`}
       />
-      <p>{showOtpInput ? "enter otp" : ""}</p>
+      <p className="relative">{showOtpInput ? "enter otp" : <p className="absolute text-red-600 font-5">{backError} </p>}</p>
       <button
         disabled={loading}
         onClick={handleEmailCheck}
@@ -84,7 +91,14 @@ export default function OtpComponent() {
           !loading && "hover:bg-red-700"
         } `}
       >
-        Send request
+        {loading ? (
+          <div className='flex justify-center items-center gap-5'>
+            {" "}
+            <p>Processing</p> <Spin />{" "}
+          </div>
+        ) : (
+          "Send request"
+        )}
       </button>
     </div>
   );
