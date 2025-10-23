@@ -19,10 +19,18 @@ const createUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ email, password: hashedPassword });
     await user.save();
-    return res.status(201).json({ message: "Registred successfully" });
+    return res
+      .status(201)
+      .json({ message: "Registred successfully" });
   } catch (err) {
     res.status(400).json({ message: "Unable to register" });
   }
+};
+
+const validateEmail = async (req, res) => {
+    const { email } = req.body;
+    const user= await User.findOne({email})
+
 };
 
 const signIn = async (req, res) => {
@@ -43,10 +51,10 @@ const signIn = async (req, res) => {
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
-    res.status(201).send({message:"Logined sucessfully",token})
+    res.status(201).send({ message: "Logined sucessfully", token });
   } catch (err) {
     res.status(400).send(err.message);
   }
 };
 
-export { createUser, signIn };
+export { createUser, signIn, validateEmail };

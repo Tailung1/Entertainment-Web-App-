@@ -6,14 +6,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Divider, Spin } from "antd";
+import { Spin } from "antd";
 
 export default function SignIn() {
   const { loading, setLoading, resetPassword } = useMyContext();
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
-  const [resetPasswordInput, setResetPasswordInput] = useState<string>("");
+  const [resetPasswordInput, setResetPasswordInput] =
+    useState<string>("");
   const [errors, setErrors] = useState({
     email: false,
     password: false,
@@ -21,7 +22,37 @@ export default function SignIn() {
     passwordLengthError: false,
   });
 
-  const handleEmailCheck=()=> {}
+  const handleEmailCheck = async () => {
+    const newErrors = {
+      email: resetPasswordInput.trim() === "",
+      password: false,
+      emailRegexError: !emailRegex.test(resetPasswordInput),
+      passwordLengthError: false,
+    };
+    setErrors(newErrors);
+    if (Object.values(newErrors).includes(true)) return;
+    setLoading(true);
+    try {
+      const data = await fetch(
+        "http://localhost:3000/api/users/validateEmail",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: resetPasswordInput,
+          }),
+        }
+      );
+      const response= await data.json()
+      console.log(response)
+    } catch (err: unknown) {
+      console.log("idk");
+      console.log(resetPasswordInput);
+    }
+  };
+
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -35,7 +66,7 @@ export default function SignIn() {
       }
 
       setErrors((prev) => ({ ...prev, [field]: false }));
-      setResetPasswordInput(value)
+      setResetPasswordInput(value);
       setEmailInput(value);
     }
 
