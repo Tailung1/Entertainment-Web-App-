@@ -6,6 +6,5 @@ export default function Auth() {
   if (!checkAuth) {
     navigate("/");
   }
-
   return <div></div>;
 }
