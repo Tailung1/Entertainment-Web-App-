@@ -8,7 +8,6 @@ export default function BookMarked() {
   Auth();
   ItemsFiltering();
   const { bookMarked, setPath, searching } = useMyContext();
-
   useEffect(() => {
     setPath("/bookmarked");
   }, []);
