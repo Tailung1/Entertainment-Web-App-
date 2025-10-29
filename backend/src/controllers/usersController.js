@@ -27,6 +27,16 @@ const generateOTP = async (req, res) => {
   generate();
 };
 
+const checkOTP = async (req, res) => {
+  const { email, enteredOtp } = req.body;
+  const user = await User.findOne({ email });
+  if (user.otp === enteredOtp) {
+    res.status(200);
+  } else {
+    res.status(400).send({ message: "Invalid code" });
+  }
+};
+
 const createUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -73,4 +83,4 @@ const signIn = async (req, res) => {
   }
 };
 
-export { createUser, signIn, generateOTP };
+export { createUser, signIn, generateOTP, checkOTP };

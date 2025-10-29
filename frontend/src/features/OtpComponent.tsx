@@ -86,42 +86,8 @@ export default function OtpComponent() {
       />
       <div className='relative'>
         {enablePassChange ? (
-          //
-          //
-          //
-          ////
-          //
-          //
-          //
-          //
-          //
-          ////
-          //
-          //  //
-          //
-          //
-          ////
-          //
-          //
-          <OtpInput />
+          <OtpInput otpEmailInput={otpEmailInput} />
         ) : (
-          //
-          //
-          //
-          ////
-          //
-          //
-          //
-          //
-          //
-          ////
-          //
-          //  //
-          //
-          //
-          ////
-          //
-          //
           <p className='absolute text-red-600 font-5'>{backError} </p>
         )}
       </div>
