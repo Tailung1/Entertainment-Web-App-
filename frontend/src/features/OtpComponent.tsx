@@ -2,69 +2,71 @@ import { useState } from "react";
 import FloatingInput from "../shared/FloatingInput";
 import { useMyContext } from "../useContext";
 import { Spin } from "antd";
+import {motion} from "framer-motion"
 
 export default function OtpComponent() {
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const { loading, setLoading } = useMyContext();
-  const [showOtpInput, setShowOtpInput] = useState<boolean>(false);
+  const [enablePassChange, setEnablePassChange] =
+    useState<boolean>(false);
   const [otpEmailInput, setOtpEmailInput] = useState<string>("");
   const [backError, setBackError] = useState<string>("");
 
   const [errors, setErrors] = useState<{
     email: boolean;
     emailRegexError: boolean;
-    [key: string]: boolean;
   }>({
     email: false,
     emailRegexError: false,
   });
 
-  const handleChange = (field: string, val: string) => {
+  const handleChange = (field: "email", val: string) => {
     setBackError("");
     if (field === "email") {
       if (emailRegex.test(val)) {
         setErrors((prev) => ({
           ...prev,
-          [field]: false,
           emailRegexError: false,
         }));
       }
       setOtpEmailInput(val);
     }
+    setErrors((prev) => ({ ...prev, [field]: false }));
   };
 
   const handleEmailCheck = async () => {
-    const newErrors = {
-      email: otpEmailInput.trim() === "",
-      emailRegexError: !emailRegex.test(otpEmailInput),
-    };
-    setErrors(newErrors);
-    if (Object.values(newErrors).includes(true)) return;
-    setLoading(true);
-    try {
-      const data = await fetch(
-        "http://localhost:3000/api/users/generate-otp",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: otpEmailInput,
-          }),
-        }
-      );
-      setLoading(false);
-      const response = await data.json();
-      setShowOtpInput(data.ok);
-      if (!data.ok) {
-        setBackError(response.message);
-      }
-    } catch (err: any) {
-      setBackError(err.message);
-      setLoading(false);
-    }
+    setEnablePassChange(true);
+    // const newErrors = {
+    //   email: otpEmailInput.trim() === "",
+    //   emailRegexError: !emailRegex.test(otpEmailInput),
+    // };
+    // setErrors(newErrors);
+    // if (Object.values(newErrors).includes(true)) return;
+    // setLoading(true);
+    // try {
+    //   const data = await fetch(
+    //     "http://localhost:3000/api/users/generate-otp",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         email: otpEmailInput,
+    //       }),
+    //     }
+    //   );
+    //   setLoading(false);
+    //   const response = await data.json();
+    //   setShowOtpInput(data.ok);
+    //   if (!data.ok) {
+    //     setBackError(response.message);
+    //   }
+    // } catch (err: any) {
+    //   setBackError(err.message);
+    //   setLoading(false);
+    // }
   };
   return (
     <div>
@@ -81,13 +83,14 @@ export default function OtpComponent() {
             : ""
         }`}
       />
-      <p className='relative'>
-        {showOtpInput ? (
-          "enter otp"
+      <div className='relative'>
+        {enablePassChange ? ( 
+           
+          <motion.div> </motion.div>
         ) : (
           <p className='absolute text-red-600 font-5'>{backError} </p>
         )}
-      </p>
+      </div>
       <button
         disabled={loading}
         onClick={handleEmailCheck}

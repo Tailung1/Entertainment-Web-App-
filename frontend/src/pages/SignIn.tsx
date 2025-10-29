@@ -29,10 +29,11 @@ export default function SignIn() {
     value: string
   ) => {
     if (field === "email") {
+        console.log("d")
       if (emailRegex.test(value)) {
         setErrors((prev) => ({
           ...prev,
-          [field]: false,
+
           emailRegexError: false,
         }));
       }
@@ -45,9 +46,10 @@ export default function SignIn() {
           passwordLengthError: false,
         }));
       }
-      setErrors((prev) => ({ ...prev, [field]: false }));
+     
       setPasswordInput(value);
     }
+     setErrors((prev) => ({ ...prev, [field]: false }));
   };
   // Remove error as soon as user starts typing
   const handleSubmit = async () => {
