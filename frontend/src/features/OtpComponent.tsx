@@ -71,7 +71,7 @@ export default function OtpComponent() {
     }
   };
   return (
-    <div>
+    <div className="flex flex-col">
       <FloatingInput
         label='Enter email'
         type='text'
@@ -85,7 +85,7 @@ export default function OtpComponent() {
             : ""
         }`}
       />
-      <div className='relative'>
+      <div>
         {enableOtpEnter ? (
           <OtpInput otpEmailInput={otpEmailInput} />
         ) : (
@@ -97,7 +97,7 @@ export default function OtpComponent() {
         onClick={handleEmailCheck}
         className={` bg-red-800 {${
           loading && "bg-violet-900 cursor-progress "
-        }} w-full cursor-pointer   text-white py-3 mt-10 mb-6  rounded-lg ${
+        }} w-full cursor-pointer   text-white py-3 mt-10  mb-6  rounded-lg ${
           !loading && "hover:bg-red-700"
         } `}
       >

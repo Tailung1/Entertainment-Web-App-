@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
-export default  function OtpInput({
+export default function OtpInput({
   otpEmailInput,
 }: {
   otpEmailInput: string;
@@ -8,7 +9,7 @@ export default  function OtpInput({
   const [enteredOtp, setEnteredOtp] = useState<string>("");
   const [backResponse, setBackResponse] = useState<string>("");
   const [isBackError, setIsBackError] = useState<boolean>(false);
-  const [otp, setOtp] = useState(["", "", "", "","",""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
   const handleChange = (e: any, index: number) => {
     const value = e.target.value;
@@ -43,8 +44,13 @@ export default  function OtpInput({
     }
   };
   return (
-    <div>
-      <div className="otp-container">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{duration:0.3}}
+      className="mt-[70px]"
+    >
+      <div className='otp-container'>
         {otp.map((digit, index) => (
           <input
             key={index}
@@ -52,11 +58,10 @@ export default  function OtpInput({
             value={digit}
             maxLength={1}
             onChange={(e) => handleChange(e, index)}
-            className="otp-input"
+            className='otp-input'
           />
         ))}
       </div>
-      <button className="submit-otp">Submit</button>
-    </div>
+    </motion.div>
   );
 }
