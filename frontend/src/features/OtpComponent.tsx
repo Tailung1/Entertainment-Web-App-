@@ -2,7 +2,8 @@ import { useState } from "react";
 import FloatingInput from "../shared/FloatingInput";
 import { useMyContext } from "../useContext";
 import { Spin } from "antd";
-import {motion} from "framer-motion"
+
+import OtpInput from "./OtpInput";
 
 export default function OtpComponent() {
   const emailRegex =
@@ -84,10 +85,43 @@ export default function OtpComponent() {
         }`}
       />
       <div className='relative'>
-        {enablePassChange ? ( 
-           
-          <motion.div> </motion.div>
+        {enablePassChange ? (
+          //
+          //
+          //
+          ////
+          //
+          //
+          //
+          //
+          //
+          ////
+          //
+          //  //
+          //
+          //
+          ////
+          //
+          //
+          <OtpInput />
         ) : (
+          //
+          //
+          //
+          ////
+          //
+          //
+          //
+          //
+          //
+          ////
+          //
+          //  //
+          //
+          //
+          ////
+          //
+          //
           <p className='absolute text-red-600 font-5'>{backError} </p>
         )}
       </div>
