@@ -9,6 +9,7 @@ export default async function OtpInput({
   const [backResponse, setBackResponse] = useState<string>("");
   const [isBackError, setIsBackError] = useState<boolean>(false);
 
+  
   const handleOtpCheck = async () => {
     try {
       const request = await fetch("http://localhost:3000/checkOTP", {
