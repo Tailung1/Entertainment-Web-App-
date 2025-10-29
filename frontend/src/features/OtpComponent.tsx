@@ -71,20 +71,22 @@ export default function OtpComponent() {
     }
   };
   return (
-    <div className="flex flex-col">
-      <FloatingInput
-        label='Enter email'
-        type='text'
-        value={otpEmailInput}
-        onChange={(val) => handleChange("email", val)}
-        isError={`${
-          errors.email
-            ? "emailEmptyError"
-            : errors.emailRegexError
-            ? "emailRegexError"
-            : ""
-        }`}
-      />
+    <div className='flex flex-col'>
+      <div className={`${enableOtpEnter && "opacity-40 pointer-events-none"}`}>
+        <FloatingInput
+          label='Enter email'
+          type='text'
+          value={otpEmailInput}
+          onChange={(val) => handleChange("email", val)}
+          isError={`${
+            errors.email
+              ? "emailEmptyError"
+              : errors.emailRegexError
+              ? "emailRegexError"
+              : ""
+          }`}
+        />
+      </div>
       <div>
         {enableOtpEnter ? (
           <OtpInput otpEmailInput={otpEmailInput} />

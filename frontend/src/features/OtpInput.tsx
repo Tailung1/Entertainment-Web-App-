@@ -47,9 +47,10 @@ export default function OtpInput({
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{duration:0.3}}
-      className="mt-[70px]"
+      transition={{ duration: 0.4 }}
+      className=' flex flex-col items-center gap-[20px] mt-[30px]'
     >
+      <p className="text-green-600">OTP Sent! Check your email and enter the code below.</p>
       <div className='otp-container'>
         {otp.map((digit, index) => (
           <input
