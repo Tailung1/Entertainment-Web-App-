@@ -11,6 +11,8 @@ export default function OtpComponent() {
   const { loading, setLoading } = useMyContext();
   const [enablePassChange, setEnablePassChange] =
     useState<boolean>(false);
+  const [enableOtpEnter, setEnableOtpEnter] =
+    useState<boolean>(false);
   const [otpEmailInput, setOtpEmailInput] = useState<string>("");
   const [backError, setBackError] = useState<string>("");
 
@@ -37,37 +39,36 @@ export default function OtpComponent() {
   };
 
   const handleEmailCheck = async () => {
-    setEnablePassChange(true);
-    // const newErrors = {
-    //   email: otpEmailInput.trim() === "",
-    //   emailRegexError: !emailRegex.test(otpEmailInput),
-    // };
-    // setErrors(newErrors);
-    // if (Object.values(newErrors).includes(true)) return;
-    // setLoading(true);
-    // try {
-    //   const data = await fetch(
-    //     "http://localhost:3000/api/users/generate-otp",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         email: otpEmailInput,
-    //       }),
-    //     }
-    //   );
-    //   setLoading(false);
-    //   const response = await data.json();
-    //   setShowOtpInput(data.ok);
-    //   if (!data.ok) {
-    //     setBackError(response.message);
-    //   }
-    // } catch (err: any) {
-    //   setBackError(err.message);
-    //   setLoading(false);
-    // }
+    const newErrors = {
+      email: otpEmailInput.trim() === "",
+      emailRegexError: !emailRegex.test(otpEmailInput),
+    };
+    setErrors(newErrors);
+    if (Object.values(newErrors).includes(true)) return;
+    setLoading(true);
+    try {
+      const data = await fetch(
+        "http://localhost:3000/api/users/generate-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: otpEmailInput,
+          }),
+        }
+      );
+      setLoading(false);
+      const response = await data.json();
+      setEnableOtpEnter(data.ok);
+      if (!data.ok) {
+        setBackError(response.message);
+      }
+    } catch (err: any) {
+      setBackError(err.message);
+      setLoading(false);
+    }
   };
   return (
     <div>
@@ -85,7 +86,7 @@ export default function OtpComponent() {
         }`}
       />
       <div className='relative'>
-        {enablePassChange ? (
+        {enableOtpEnter ? (
           <OtpInput otpEmailInput={otpEmailInput} />
         ) : (
           <p className='absolute text-red-600 font-5'>{backError} </p>

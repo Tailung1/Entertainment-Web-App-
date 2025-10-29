@@ -8,7 +8,7 @@ export default  function OtpInput({
   const [enteredOtp, setEnteredOtp] = useState<string>("");
   const [backResponse, setBackResponse] = useState<string>("");
   const [isBackError, setIsBackError] = useState<boolean>(false);
-  const [otp, setOtp] = useState(["", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "","",""]);
 
   const handleChange = (e: any, index: number) => {
     const value = e.target.value;
