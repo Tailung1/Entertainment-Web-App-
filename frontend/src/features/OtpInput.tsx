@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default async function OtpInput({
+export default  function OtpInput({
   otpEmailInput,
 }: {
   otpEmailInput: string;
@@ -8,8 +8,21 @@ export default async function OtpInput({
   const [enteredOtp, setEnteredOtp] = useState<string>("");
   const [backResponse, setBackResponse] = useState<string>("");
   const [isBackError, setIsBackError] = useState<boolean>(false);
+  const [otp, setOtp] = useState(["", "", "", ""]);
 
-  
+  const handleChange = (e: any, index: number) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+
+      if (value && index < otp.length - 1) {
+        document.getElementById(`Otp-input-${index + 1}`)?.focus();
+      }
+    }
+  };
+
   const handleOtpCheck = async () => {
     try {
       const request = await fetch("http://localhost:3000/checkOTP", {
@@ -29,5 +42,21 @@ export default async function OtpInput({
       setBackResponse(err);
     }
   };
-  return <div>OtpInput</div>;
+  return (
+    <div>
+      <div className="otp-container">
+        {otp.map((digit, index) => (
+          <input
+            key={index}
+            id={`Otp-input-${index}`}
+            value={digit}
+            maxLength={1}
+            onChange={(e) => handleChange(e, index)}
+            className="otp-input"
+          />
+        ))}
+      </div>
+      <button className="submit-otp">Submit</button>
+    </div>
+  );
 }

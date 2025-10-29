@@ -37,6 +37,36 @@
   animation: loading 0.5s infinite ease-in-out;
 }
 
+.otp-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-otp {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-otp:hover {
+  background-color: #0056b3;
+}
+
+
 @keyframes loading {
   0% {
     left: -100%;
