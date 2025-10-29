@@ -2,14 +2,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function OtpInput({
-  otpEmailInput,
+  otp,
+  setOtp
 }: {
-  otpEmailInput: string;
+  otp: string[];
+  setOtp:any
 }) {
-  const [enteredOtp, setEnteredOtp] = useState<string>("");
-  const [backResponse, setBackResponse] = useState<string>("");
-  const [isBackError, setIsBackError] = useState<boolean>(false);
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+
 
   const handleChange = (e: any, index: number) => {
     const value = e.target.value;
@@ -24,25 +23,7 @@ export default function OtpInput({
     }
   };
 
-  const handleOtpCheck = async () => {
-    try {
-      const request = await fetch("http://localhost:3000/checkOTP", {
-        method: "POST",
-        headers: {
-          "Conent-Type": "application/json",
-        },
-        body: JSON.stringify({ enteredOtp, otpEmailInput }),
-      });
-      const response = await request.json();
-      if (!request.ok) {
-        throw new Error(response.message);
-      }
-      setIsBackError(false);
-    } catch (err: any) {
-      setIsBackError(true);
-      setBackResponse(err);
-    }
-  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}

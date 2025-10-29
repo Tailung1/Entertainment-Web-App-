@@ -4,6 +4,7 @@ import { useMyContext } from "../useContext";
 import { Spin } from "antd";
 
 import OtpInput from "./OtpInput";
+import e from "express";
 
 export default function OtpComponent() {
   const emailRegex =
@@ -15,6 +16,8 @@ export default function OtpComponent() {
     useState<boolean>(false);
   const [otpEmailInput, setOtpEmailInput] = useState<string>("");
   const [backError, setBackError] = useState<string>("");
+  const [isBackError, setIsBackError] = useState<boolean>(false);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
   const [errors, setErrors] = useState<{
     email: boolean;
@@ -70,9 +73,44 @@ export default function OtpComponent() {
       setLoading(false);
     }
   };
+  const handleOtpCheck = async () => {
+    setLoading(true);
+    try {
+      const request = await fetch(
+        "http://localhost:3000/api/users/check-OTP",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ otp, otpEmailInput }),
+        }
+      );
+       if (!request.ok) {
+         const response = await request.json();
+         throw new Error(response.message);
+       }
+      const response = await request.json();
+
+      console.log(response);
+
+     
+      setIsBackError(false);
+      setLoading(false);
+    } catch (err: any) {
+      setLoading(false);
+      console.log(err, "catched error");
+      setIsBackError(true);
+      setBackError(err);
+    }
+  };
   return (
     <div className='flex flex-col'>
-      <div className={`${enableOtpEnter && "opacity-40 pointer-events-none"}`}>
+      <div
+        className={`${
+          enableOtpEnter && "opacity-40 pointer-events-none"
+        }`}
+      >
         <FloatingInput
           label='Enter email'
           type='text'
@@ -89,14 +127,14 @@ export default function OtpComponent() {
       </div>
       <div>
         {enableOtpEnter ? (
-          <OtpInput otpEmailInput={otpEmailInput} />
+          <OtpInput otp={otp} setOtp={setOtp} />
         ) : (
           <p className='absolute text-red-600 font-5'>{backError} </p>
         )}
       </div>
       <button
         disabled={loading}
-        onClick={handleEmailCheck}
+        onClick={enableOtpEnter ? handleOtpCheck : handleEmailCheck}
         className={` bg-red-800 {${
           loading && "bg-violet-900 cursor-progress "
         }} w-full cursor-pointer   text-white py-3 mt-10  mb-6  rounded-lg ${
