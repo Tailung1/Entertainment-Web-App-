@@ -1,18 +1,18 @@
 import FloatingInput from "../../shared/FloatingInput";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Spin } from "antd";
+import { useMyContext } from "../../useContext";
 
 export default function ResetPassword() {
+    const {loading}=useMyContext()
   const [inputValues, setInputValues] = useState({
-    email: "",
     password: "",
     confirmPassword: "",
   });
   const [inputCheck, setInputCheck] = useState({
-    emailError: false,
     passwordError: false,
     confirmPasswordError: false,
-    emailRegexError: false,
     passwordLengthError: false,
     confirmPasswordMatchError: false,
   });
@@ -79,6 +79,23 @@ export default function ResetPassword() {
             : ""
         }
       />
+      <button
+        disabled={loading}
+        className={` bg-red-800 {${
+          loading && "bg-violet-900 cursor-progress "
+        }} w-full cursor-pointer   text-white py-3 mt-10  mb-6  rounded-lg ${
+          !loading && "hover:bg-red-700"
+        } `}
+      >
+        {loading ? (
+          <div className='absolute justify-center items-center gap-5'>
+            {" "}
+            <p>Processing</p> <Spin />{" "}
+          </div>
+        ) : (
+          "Send request"
+        )}
+      </button>
     </motion.div>
   );
 }

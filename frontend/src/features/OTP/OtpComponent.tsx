@@ -13,6 +13,8 @@ export default function OtpComponent() {
     setLoading,
     enablePassChange,
     setEnablePassChange,
+    resetPassword,
+    setResetPassword,
   } = useMyContext();
 
   const [enableOtpEnter, setEnableOtpEnter] =
@@ -104,11 +106,11 @@ export default function OtpComponent() {
     }
   };
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col '>
       <div
         className={`${
           enableOtpEnter && "opacity-40 pointer-events-none"
-        }`}
+        } `}
       >
         <FloatingInput
           label='Enter email'
@@ -126,7 +128,7 @@ export default function OtpComponent() {
       </div>
       <div className='relative'>
         {enablePassChange ? (
-          <ResetPassword  />
+          <ResetPassword />
         ) : enableOtpEnter ? (
           <OtpInput
             otp={otp}
@@ -138,24 +140,42 @@ export default function OtpComponent() {
           <p className='absolute text-red-600 top-1'>{backError} </p>
         )}
       </div>
-      <button
-        disabled={loading}
-        onClick={enableOtpEnter ? handleOtpCheck : handleEmailCheck}
-        className={` bg-red-800 {${
-          loading && "bg-violet-900 cursor-progress "
-        }} w-full cursor-pointer   text-white py-3 mt-10  mb-6  rounded-lg ${
-          !loading && "hover:bg-red-700"
-        } `}
-      >
-        {loading ? (
-          <div className='flex justify-center items-center gap-5'>
-            {" "}
-            <p>Processing</p> <Spin />{" "}
-          </div>
-        ) : (
-          "Send request"
+      <div className='flex flex-col'>
+        {!enablePassChange && (
+          <button
+            disabled={loading}
+            onClick={
+              enableOtpEnter ? handleOtpCheck : handleEmailCheck
+            }
+            className={` bg-red-800 {${
+              loading && "bg-violet-900 cursor-progress "
+            }} w-full cursor-pointer   text-white py-3 mt-10  mb-6  rounded-lg ${
+              !loading && "hover:bg-red-700"
+            } `}
+          >
+            {loading ? (
+              <div className='flex justify-center items-center gap-5'>
+                {" "}
+                <p>Processing</p> <Spin />{" "}
+              </div>
+            ) : (
+              "Send request"
+            )}
+          </button>
         )}
-      </button>
+
+        {resetPassword && (
+          <div
+            onClick={() => setResetPassword(false)}
+            className='flex items-center justify-center gap-2 pr-[170px] '
+          >
+            <p className='text-red-500'>arrow</p>
+            <button className=' text-green-500'>
+              Back to sign in
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
