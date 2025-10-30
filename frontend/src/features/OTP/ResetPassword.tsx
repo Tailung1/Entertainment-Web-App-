@@ -1,7 +1,8 @@
 import FloatingInput from "../../shared/FloatingInput";
 import { useState } from "react";
-export default function ResetPassword() {
+import { motion } from "framer-motion";
 
+export default function ResetPassword() {
   const [inputValues, setInputValues] = useState({
     email: "",
     password: "",
@@ -46,7 +47,12 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className='flex flex-col gap-7 mt-8'>
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className='flex flex-col gap-7 mt-12'
+    >
       <FloatingInput
         onChange={(val) => handleChange("newPassword", val)}
         value={inputValues.password}
@@ -73,6 +79,6 @@ export default function ResetPassword() {
             : ""
         }
       />
-    </div>
+    </motion.div>
   );
 }

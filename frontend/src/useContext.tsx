@@ -31,7 +31,7 @@ interface contextTypes {
   setRecommenedItems: React.Dispatch<SetStateAction<moviesType>>;
   setMovies: React.Dispatch<SetStateAction<moviesType>>;
   setSeries: React.Dispatch<SetStateAction<moviesType>>;
-  enablePassChange:boolean
+  enablePassChange: boolean;
   setEnablePassChange: React.Dispatch<SetStateAction<boolean>>;
 }
 
@@ -57,8 +57,8 @@ export default function MovieContext({
   const [bookMarked, setBookMarked] = useState<moviesType>([]);
   const [searching, setSearching] = useState<string>("");
   const [itemsToShow, setItemsToShows] = useState<moviesType>([]);
-    const [enablePassChange, setEnablePassChange] =
-      useState<boolean>(false);
+  const [enablePassChange, setEnablePassChange] =
+    useState<boolean>(false);
 
   //   useEffect(() => {
   //     if (fetchedItems.length < 1) return;
@@ -275,7 +275,7 @@ export default function MovieContext({
         resetPassword,
         setResetPassword,
         enablePassChange,
-        setEnablePassChange
+        setEnablePassChange,
       }}
     >
       {children}
