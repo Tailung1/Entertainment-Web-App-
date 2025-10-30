@@ -5,6 +5,7 @@ import { Spin } from "antd";
 
 import OtpInput from "./OtpInput";
 import e from "express";
+import { number } from "framer-motion";
 
 export default function OtpComponent() {
   const emailRegex =
@@ -74,8 +75,11 @@ export default function OtpComponent() {
     }
   };
   const handleOtpCheck = async () => {
+    if (otp.some((item) => item === "")) return;
     setLoading(true);
+
     try {
+      const otpString = Number(otp.join(""));
       const request = await fetch(
         "http://localhost:3000/api/users/check-OTP",
         {
@@ -83,20 +87,20 @@ export default function OtpComponent() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ otp, otpEmailInput }),
+          body: JSON.stringify({ otpString, otpEmailInput }),
         }
       );
-       if (!request.ok) {
-         const response = await request.json();
-         throw new Error(response.message);
-       }
+      if (!request.ok) {
+        const response = await request.json();
+        throw new Error(response.message);
+      } else {
+        setLoading(false);
+      }
       const response = await request.json();
 
       console.log(response);
 
-     
       setIsBackError(false);
-      setLoading(false);
     } catch (err: any) {
       setLoading(false);
       console.log(err, "catched error");

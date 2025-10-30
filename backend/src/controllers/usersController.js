@@ -28,10 +28,10 @@ const generateOTP = async (req, res) => {
 };
 
 const checkOTP = async (req, res) => {
-  const { otpEmailInput, otp } = req.body;
-  const user = await User.findOne({ otpEmailInput });
-  if (user.otp === otp) {
-    res.status(200);
+  const { otpEmailInput, otpString } = req.body;
+  const user = await User.findOne({ email: otpEmailInput });
+  if (user.otp === otpString) {
+    res.status(200).json({ message: "OPT mached" });
   } else {
     res.status(400).send({ message: "Invalid code" });
   }
