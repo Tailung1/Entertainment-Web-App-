@@ -1,23 +1,24 @@
 import { useState } from "react";
-import FloatingInput from "../shared/FloatingInput";
-import { useMyContext } from "../useContext";
+import FloatingInput from "../../shared/FloatingInput";
+import { useMyContext } from "../../useContext";
 import { Spin } from "antd";
-
 import OtpInput from "./OtpInput";
-import e from "express";
-import { number } from "framer-motion";
+import ResetPassword from "./ResetPassword";
 
 export default function OtpComponent() {
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const { loading, setLoading } = useMyContext();
-  const [enablePassChange, setEnablePassChange] =
-    useState<boolean>(false);
+  const {
+    loading,
+    setLoading,
+    enablePassChange,
+    setEnablePassChange,
+  } = useMyContext();
+
   const [enableOtpEnter, setEnableOtpEnter] =
     useState<boolean>(false);
   const [otpEmailInput, setOtpEmailInput] = useState<string>("");
   const [backError, setBackError] = useState<string>("");
-  const [isBackError, setIsBackError] = useState<boolean>(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
   const [errors, setErrors] = useState<{
@@ -74,6 +75,7 @@ export default function OtpComponent() {
       setLoading(false);
     }
   };
+
   const handleOtpCheck = async () => {
     if (otp.some((item) => item === "")) return;
     setLoading(true);
@@ -92,20 +94,13 @@ export default function OtpComponent() {
       );
       if (!request.ok) {
         const response = await request.json();
+        setBackError(response.message);
         throw new Error(response.message);
-      } else {
-        setLoading(false);
       }
-      const response = await request.json();
-
-      console.log(response);
-
-      setIsBackError(false);
+      setEnablePassChange(true);
+      setLoading(false);
     } catch (err: any) {
       setLoading(false);
-      console.log(err, "catched error");
-      setIsBackError(true);
-      setBackError(err);
     }
   };
   return (
@@ -129,11 +124,18 @@ export default function OtpComponent() {
           }`}
         />
       </div>
-      <div>
-        {enableOtpEnter ? (
-          <OtpInput otp={otp} setOtp={setOtp} />
+      <div className='relative'>
+        {enablePassChange ? (
+          <ResetPassword  />
+        ) : enableOtpEnter ? (
+          <OtpInput
+            otp={otp}
+            setOtp={setOtp}
+            backError={backError}
+            setBackError={setBackError}
+          />
         ) : (
-          <p className='absolute text-red-600 font-5'>{backError} </p>
+          <p className='absolute text-red-600 top-1'>{backError} </p>
         )}
       </div>
       <button

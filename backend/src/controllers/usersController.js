@@ -33,7 +33,9 @@ const checkOTP = async (req, res) => {
   if (user.otp === otpString) {
     res.status(200).json({ message: "OPT mached" });
   } else {
-    res.status(400).send({ message: "Invalid code" });
+    res
+      .status(400)
+      .send({ message: "You entered incorrect Otp code" });
   }
 };
 

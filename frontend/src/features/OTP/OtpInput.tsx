@@ -1,16 +1,18 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function OtpInput({
   otp,
-  setOtp
+  setOtp,
+  backError,
+  setBackError,
 }: {
   otp: string[];
-  setOtp:any
+  setOtp: any;
+  backError: string;
+  setBackError: any;
 }) {
-
-
   const handleChange = (e: any, index: number) => {
+    setBackError("");
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
       const newOtp = [...otp];
@@ -23,7 +25,6 @@ export default function OtpInput({
     }
   };
 
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -31,7 +32,15 @@ export default function OtpInput({
       transition={{ duration: 0.4 }}
       className=' flex flex-col items-center gap-[20px] mt-[30px]'
     >
-      <p className="text-green-600">OTP Sent! Check your email and enter the code below.</p>
+      <p
+        className={`${
+          backError ? "text-red-600" : "text-green-600 "
+        } h-[55px]`}
+      >
+        {backError
+          ? backError
+          : "OTP Sent! Check your email and enter the code below."}
+      </p>
       <div className='otp-container'>
         {otp.map((digit, index) => (
           <input

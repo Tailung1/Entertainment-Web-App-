@@ -10,8 +10,8 @@ import {
 interface contextTypes {
   path: string;
   setPath: React.Dispatch<SetStateAction<string>>;
-  resetPassword:boolean,
-  setResetPassword:React.Dispatch<SetStateAction<boolean>>
+  resetPassword: boolean;
+  setResetPassword: React.Dispatch<SetStateAction<boolean>>;
   serverMessage: string;
   fetchedItems: moviesType;
   trendingItems: moviesType;
@@ -31,6 +31,8 @@ interface contextTypes {
   setRecommenedItems: React.Dispatch<SetStateAction<moviesType>>;
   setMovies: React.Dispatch<SetStateAction<moviesType>>;
   setSeries: React.Dispatch<SetStateAction<moviesType>>;
+  enablePassChange:boolean
+  setEnablePassChange: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const MyContext = createContext({} as contextTypes);
@@ -55,6 +57,8 @@ export default function MovieContext({
   const [bookMarked, setBookMarked] = useState<moviesType>([]);
   const [searching, setSearching] = useState<string>("");
   const [itemsToShow, setItemsToShows] = useState<moviesType>([]);
+    const [enablePassChange, setEnablePassChange] =
+      useState<boolean>(false);
 
   //   useEffect(() => {
   //     if (fetchedItems.length < 1) return;
@@ -269,7 +273,9 @@ export default function MovieContext({
         loading,
         setLoading,
         resetPassword,
-        setResetPassword
+        setResetPassword,
+        enablePassChange,
+        setEnablePassChange
       }}
     >
       {children}
