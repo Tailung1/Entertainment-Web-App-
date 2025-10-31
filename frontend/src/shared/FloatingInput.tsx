@@ -17,7 +17,7 @@ export default function FloatingInput({
   onChange,
   isError,
 }: FloatingInputProps) {
-  const { setResetPassword,enablePassChange } = useMyContext();
+  const { setResetPassword, enablePassChange } = useMyContext();
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -109,14 +109,16 @@ export default function FloatingInput({
           )}
         </button>
       )}
-      {type === "password" && location.pathname === "/" && !enablePassChange && (
-        <p
-          onClick={() => setResetPassword(true)}
-          className='cursor-pointer mt-[10px] hover:text-orange-300 text-orange-500'
-        >
-          Forgot password?
-        </p>
-      )}
+      {type === "password" &&
+        location.pathname === "/" &&
+        !enablePassChange && (
+          <p
+            onClick={() => setResetPassword(true)}
+            className='cursor-pointer mt-[10px] hover:text-orange-300 text-orange-500'
+          >
+            Forgot password?
+          </p>
+        )}
     </div>
   );
 }
