@@ -4,8 +4,12 @@ import { motion } from "framer-motion";
 import { Spin } from "antd";
 import { useMyContext } from "../../useContext";
 
-export default function ResetPassword() {
-  const { loading } = useMyContext();
+export default function ResetPassword({
+  otpEmailInput,
+}: {
+  otpEmailInput: string;
+}) {
+  const { loading, setEnablePassChange } = useMyContext();
   const [inputValues, setInputValues] = useState({
     newPassword: "",
     confirmNewPassword: "",
@@ -22,7 +26,6 @@ export default function ResetPassword() {
     val: string
   ) => {
     setInputValues((prev) => ({ ...prev, [field]: val }));
-    
 
     if (field === "newPassword") {
       if (val.length >= 5) {
@@ -30,7 +33,7 @@ export default function ResetPassword() {
           ...prev,
           passwordLengthError: false,
         }));
-      } 
+      }
     }
 
     if (field === "confirmNewPassword") {
@@ -52,15 +55,43 @@ export default function ResetPassword() {
     const confirmPass = inputValues.confirmNewPassword.trim();
     const newError = {
       newPasswordError: pass.length < 1,
-      passwordLengthError:pass.length < 5,
+      passwordLengthError: pass.length < 5,
       confirmNewPasswordError: confirmPass.length < 1,
-      confirmPasswordMatchError:
-     confirmPass !== pass,
+      confirmPasswordMatchError: confirmPass !== pass,
     };
     setInputCheck(newError);
-  
+
     if (Object.values(newError).includes(true)) return;
-      console.log("all good");
+
+    let sendRequest = async () => {
+      try {
+        const sendData = await fetch(
+          "http://localhost:3000/api/users/change-password",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              newPassword: inputValues.newPassword,
+              otpEmailInput,
+            }),
+          }
+        );
+        if (!sendData.ok) {
+          const errorResponse = await sendData.json();
+          throw new Error(
+            errorResponse.message || "Failed to change password"
+          );
+        }
+        const response = await sendData.json();
+        console.log(response.message);
+  
+      } catch (err: any) {
+        console.log(err.message || "An error occurred", "catched");
+      }
+    };
+    sendRequest();
   };
 
   return (

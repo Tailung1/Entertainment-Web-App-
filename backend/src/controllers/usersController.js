@@ -39,6 +39,23 @@ const checkOTP = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  const { newPassword, otpEmailInput } = req.body;
+  try {
+    const newHashedPassword = await bcrypt.hash(newPassword, 10);
+    const check = await User.updateOne(
+      { email: otpEmailInput },
+      { password: newHashedPassword }
+    );
+
+    res
+      .status(200)
+      .json({ message: "Password changes successfully" });
+  } catch (e) {
+    res.status(400).json({ message: "Failed to change password", e });
+  }
+};
+
 const createUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -85,4 +102,4 @@ const signIn = async (req, res) => {
   }
 };
 
-export { createUser, signIn, generateOTP, checkOTP };
+export { createUser, signIn, generateOTP, checkOTP, changePassword };

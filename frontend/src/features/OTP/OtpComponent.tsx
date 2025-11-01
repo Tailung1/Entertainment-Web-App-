@@ -128,7 +128,7 @@ export default function OtpComponent() {
       </div>
       <div className='relative'>
         {enablePassChange ? (
-          <ResetPassword />
+          <ResetPassword otpEmailInput={otpEmailInput} />
         ) : enableOtpEnter ? (
           <OtpInput
             otp={otp}
@@ -166,7 +166,9 @@ export default function OtpComponent() {
 
         {resetPassword && (
           <div
-            onClick={() => setResetPassword(false)}
+            onClick={() => {
+              setResetPassword(false), setEnablePassChange(false);
+            }}
             className='flex items-center justify-center gap-2 pr-[170px] '
           >
             <p className='text-red-500'>arrow</p>
