@@ -94,15 +94,15 @@ export default function SignUp() {
           }
         );
         const response = await validateRequest.json();
+        setLoading(false);
         if (validateRequest.ok) {
-          setLoading(false);
           navigate("/");
         } else {
-          setLoading(false);
           toast.error(response.message);
         }
       } catch (error) {
         toast.error("Network error");
+        setLoading(false);
       }
     }
   };
