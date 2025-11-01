@@ -43,7 +43,7 @@ const changePassword = async (req, res) => {
   const { newPassword, otpEmailInput } = req.body;
   try {
     const newHashedPassword = await bcrypt.hash(newPassword, 10);
-    const check = await User.updateOne(
+    await User.updateOne(
       { email: otpEmailInput },
       { password: newHashedPassword }
     );

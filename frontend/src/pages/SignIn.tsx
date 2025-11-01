@@ -45,10 +45,10 @@ export default function SignIn() {
           passwordLengthError: false,
         }));
       }
-     
+
       setPasswordInput(value);
     }
-     setErrors((prev) => ({ ...prev, [field]: false }));
+    setErrors((prev) => ({ ...prev, [field]: false }));
   };
   // Remove error as soon as user starts typing
   const handleSubmit = async () => {
@@ -77,11 +77,10 @@ export default function SignIn() {
           }
         );
         const response = await validateReuqest.json();
+        setLoading(false);
         if (!validateReuqest.ok) {
-          setLoading(false);
           toast.error(response.message);
         } else {
-          setLoading(false);
           localStorage.setItem("auth-token", response.token);
           navigate("/home");
         }
