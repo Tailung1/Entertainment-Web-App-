@@ -5,15 +5,15 @@ import { Spin } from "antd";
 import { useMyContext } from "../../useContext";
 
 export default function ResetPassword() {
-    const {loading}=useMyContext()
+  const { loading } = useMyContext();
   const [inputValues, setInputValues] = useState({
-    password: "",
-    confirmPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
   });
   const [inputCheck, setInputCheck] = useState({
-    passwordError: false,
-    confirmPasswordError: false,
+    newPasswordError: false,
     passwordLengthError: false,
+    confirmNewPasswordError: false,
     confirmPasswordMatchError: false,
   });
 
@@ -22,10 +22,7 @@ export default function ResetPassword() {
     val: string
   ) => {
     setInputValues((prev) => ({ ...prev, [field]: val }));
-    setInputCheck((prev) => ({
-      ...prev,
-      [`${field}Error`]: false,
-    }));
+    
 
     if (field === "newPassword") {
       if (val.length >= 5) {
@@ -33,17 +30,37 @@ export default function ResetPassword() {
           ...prev,
           passwordLengthError: false,
         }));
-      }
+      } 
     }
 
     if (field === "confirmNewPassword") {
-      if (val === inputValues.password) {
+      if (val === inputValues.newPassword) {
         setInputCheck((prev) => ({
           ...prev,
           confirmPasswordMatchError: false,
         }));
       }
     }
+    setInputCheck((prev) => ({
+      ...prev,
+      [`${field}Error`]: false,
+    }));
+  };
+
+  const hanldeSubmit = () => {
+    const pass = inputValues.newPassword.trim();
+    const confirmPass = inputValues.confirmNewPassword.trim();
+    const newError = {
+      newPasswordError: pass.length < 1,
+      passwordLengthError:pass.length < 5,
+      confirmNewPasswordError: confirmPass.length < 1,
+      confirmPasswordMatchError:
+     confirmPass !== pass,
+    };
+    setInputCheck(newError);
+  
+    if (Object.values(newError).includes(true)) return;
+      console.log("all good");
   };
 
   return (
@@ -55,11 +72,11 @@ export default function ResetPassword() {
     >
       <FloatingInput
         onChange={(val) => handleChange("newPassword", val)}
-        value={inputValues.password}
+        value={inputValues.newPassword}
         label='New password'
         type='password'
         isError={
-          inputCheck.passwordError
+          inputCheck.newPasswordError
             ? "passwordEmptyError"
             : inputCheck.passwordLengthError
             ? "passwordLengthError"
@@ -68,22 +85,23 @@ export default function ResetPassword() {
       />
       <FloatingInput
         onChange={(val) => handleChange("confirmNewPassword", val)}
-        value={inputValues.confirmPassword}
+        value={inputValues.confirmNewPassword}
         label='Confirm new password'
         type='password'
         isError={
-          inputCheck.confirmPasswordError
-            ? "confirmPasswordEmptyError"
+          inputCheck.confirmNewPasswordError
+            ? "passwordEmptyError"
             : inputCheck.confirmPasswordMatchError
-            ? "confirmPasswordMatchError"
+            ? "bla"
             : ""
         }
       />
       <button
+        onClick={hanldeSubmit}
         disabled={loading}
         className={` bg-red-800 {${
           loading && "bg-violet-900 cursor-progress "
-        }} w-full cursor-pointer   text-white py-3 mt-10  mb-6  rounded-lg ${
+        }} w-full cursor-pointer   text-white py-3 mt-5  mb-6  rounded-lg ${
           !loading && "hover:bg-red-700"
         } `}
       >

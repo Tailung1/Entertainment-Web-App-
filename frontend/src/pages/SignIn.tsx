@@ -29,7 +29,6 @@ export default function SignIn() {
     value: string
   ) => {
     if (field === "email") {
-        console.log("d")
       if (emailRegex.test(value)) {
         setErrors((prev) => ({
           ...prev,
