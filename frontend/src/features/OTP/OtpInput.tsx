@@ -7,13 +7,15 @@ export default function OtpInput({
   setOtp,
   backError,
   setBackError,
+  handleEmailCheck,
 }: {
   otp: string[];
   setOtp: any;
   backError: string;
   setBackError: any;
+  handleEmailCheck: () => void;
 }) {
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(10);
   const [otpEnterTimeExpired, setOtpEnterTimeExpired] =
     useState(false);
 
@@ -55,14 +57,25 @@ export default function OtpInput({
           backError ? "text-red-600" : "text-green-600 "
         } h-[55px]`}
       >
-        {backError
-          ? backError
-          : "OTP Sent! Check your email and enter the code below."}
+        {backError ? (
+          backError
+        ) : otpEnterTimeExpired ? (
+          <p
+            onClick={() => {
+              handleEmailCheck(), setTimer(10),setOtpEnterTimeExpired(false);
+            }}
+            className='cursor-pointer'
+          >
+            Request recover code again{" "}
+          </p>
+        ) : (
+          "OTP Sent! Check your email and enter the code below."
+        )}
       </p>
 
       <div
         className={`otp-container ${
-          otpEnterTimeExpired && "opacity-60 pointer-events-none"
+          otpEnterTimeExpired && "opacity-40 pointer-events-none"
         }`}
       >
         {otp.map((digit, index) => (

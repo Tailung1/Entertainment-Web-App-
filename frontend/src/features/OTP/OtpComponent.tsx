@@ -135,6 +135,7 @@ export default function OtpComponent() {
             setOtp={setOtp}
             backError={backError}
             setBackError={setBackError}
+            handleEmailCheck={handleEmailCheck}
           />
         ) : (
           <p className='absolute text-red-600 top-1'>{backError} </p>
