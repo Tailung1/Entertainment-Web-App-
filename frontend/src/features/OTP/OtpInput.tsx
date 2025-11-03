@@ -13,7 +13,7 @@ export default function OtpInput({
   backError: string;
   setBackError: any;
 }) {
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(5);
   const [otpEnterTimeExpired, setOtpEnterTimeExpired] =
     useState(false);
 
@@ -22,11 +22,11 @@ export default function OtpInput({
       setOtpEnterTimeExpired(true);
       return;
     }
-   const interval= setInterval(() => {
+    const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
-    },1000);
+    }, 1000);
 
-    return ()=>clearInterval(interval)
+    return () => clearInterval(interval);
   }, [timer]);
 
   const handleChange = (e: any, index: number) => {
@@ -48,7 +48,7 @@ export default function OtpInput({
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className=' flex flex-col items-center gap-[20px] mt-[30px]'
+      className='flex flex-col items-center gap-[20px] mt-[30px]'
     >
       <p
         className={`${
@@ -60,7 +60,11 @@ export default function OtpInput({
           : "OTP Sent! Check your email and enter the code below."}
       </p>
 
-      <div className='otp-container'>
+      <div
+        className={`otp-container ${
+          otpEnterTimeExpired && "opacity-60 pointer-events-none"
+        }`}
+      >
         {otp.map((digit, index) => (
           <input
             key={index}
@@ -71,7 +75,11 @@ export default function OtpInput({
             className='otp-input'
           />
         ))}
-        <p className="absolute top-11 right-0">{`Time Left:${timer}`}</p>
+        {!otpEnterTimeExpired && (
+          <div className='absolute top-[-35px] right-0  text-violet-700      '>
+            {`Time Left: ${timer}`}
+          </div>
+        )}
       </div>
     </motion.div>
   );
