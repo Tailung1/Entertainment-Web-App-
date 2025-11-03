@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function OtpInput({
   otp,
@@ -11,6 +13,22 @@ export default function OtpInput({
   backError: string;
   setBackError: any;
 }) {
+  const [timer, setTimer] = useState(60);
+  const [otpEnterTimeExpired, setOtpEnterTimeExpired] =
+    useState(false);
+
+  useEffect(() => {
+    if (timer === 0) {
+      setOtpEnterTimeExpired(true);
+      return;
+    }
+   const interval= setInterval(() => {
+      setTimer((prevTimer) => prevTimer - 1);
+    },1000);
+
+    return ()=>clearInterval(interval)
+  }, [timer]);
+
   const handleChange = (e: any, index: number) => {
     setBackError("");
     const value = e.target.value;
@@ -19,7 +37,7 @@ export default function OtpInput({
       newOtp[index] = value;
       setOtp(newOtp);
 
-      if (value && index < otp.length - 1) {
+      if (index < otp.length - 1) {
         document.getElementById(`Otp-input-${index + 1}`)?.focus();
       }
     }
@@ -41,6 +59,7 @@ export default function OtpInput({
           ? backError
           : "OTP Sent! Check your email and enter the code below."}
       </p>
+
       <div className='otp-container'>
         {otp.map((digit, index) => (
           <input
@@ -52,6 +71,7 @@ export default function OtpInput({
             className='otp-input'
           />
         ))}
+        <p className="absolute top-11 right-0">{`Time Left:${timer}`}</p>
       </div>
     </motion.div>
   );
