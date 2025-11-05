@@ -52,7 +52,11 @@ export default function FloatingInput({
         onBlur={() => setFocused(false)}
         autoComplete='off'
       />
-      <p className='text-red-500 text-[14px] absolute top-1 right-7'>
+      <p
+        className={`text-red-500 text-[14px] absolute  ${
+          value.length > 15 ? " top-[-23px]" : "top-1"
+        } right-7`}
+      >
         {isError === "emailEmptyError"
           ? "Can't be empty"
           : isError === "emailRegexError"
