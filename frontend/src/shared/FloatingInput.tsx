@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { animate, motion } from "framer-motion";
 import { useState } from "react";
 import { useMyContext } from "../useContext";
 
@@ -43,7 +43,7 @@ export default function FloatingInput({
       {/* Input field */}
       <input
         type={type === "password" && showPassword ? "text" : type}
-        className={`w-full border-b text-white text-[16px] pb-[14px] pl-[16px] outline-none bg-transparent ${
+        className={`w-full border-b text-white text-[16px] pb-[6px] pl-[16px] outline-none bg-transparent ${
           isError ? "border-red-600" : "border-white/20"
         }`}
         value={value}
@@ -53,9 +53,10 @@ export default function FloatingInput({
         autoComplete='off'
       />
       <p
-        className={`text-red-500 text-[14px] absolute  ${
-          value.length > 15 ? " top-[-23px]" : "top-1"
+        className={`text-red-500 text-[14px] absolute transition-all duration-300 ease-in-out  ${
+          value.length > 16 ? " top-[-23px]" : "top-1"
         } right-7`}
+
       >
         {isError === "emailEmptyError"
           ? "Can't be empty"
