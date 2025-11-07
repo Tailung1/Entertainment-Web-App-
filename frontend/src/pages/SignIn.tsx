@@ -118,7 +118,7 @@ export default function SignIn() {
         </h2>
 
         {resetPassword ? (
-          <OtpComponent />
+          <OtpComponent setErrors={setErrors} />
         ) : (
           <div>
             <div className='flex flex-col gap-[30px]'>

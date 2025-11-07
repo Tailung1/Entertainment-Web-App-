@@ -5,7 +5,11 @@ import { Spin } from "antd";
 import OtpInput from "./OtpInput";
 import ResetPassword from "./ResetPassword";
 
-export default function OtpComponent() {
+export default function OtpComponent({
+  setErrors
+}: {
+  setErrors: any;
+}) {
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const {
@@ -23,7 +27,7 @@ export default function OtpComponent() {
   const [backError, setBackError] = useState<string>("");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
-  const [errors, setErrors] = useState<{
+  const [errors, setErrorss] = useState<{
     email: boolean;
     emailRegexError: boolean;
   }>({
@@ -35,14 +39,14 @@ export default function OtpComponent() {
     setBackError("");
     if (field === "email") {
       if (emailRegex.test(val)) {
-        setErrors((prev) => ({
+        setErrorss((prev) => ({
           ...prev,
           emailRegexError: false,
         }));
       }
       setOtpEmailInput(val);
     }
-    setErrors((prev) => ({ ...prev, [field]: false }));
+    setErrorss((prev) => ({ ...prev, [field]: false }));
   };
 
   const handleEmailCheck = async () => {
@@ -50,7 +54,7 @@ export default function OtpComponent() {
       email: otpEmailInput.trim() === "",
       emailRegexError: !emailRegex.test(otpEmailInput),
     };
-    setErrors(newErrors);
+    setErrorss(newErrors);
     if (Object.values(newErrors).includes(true)) return;
     setLoading(true);
     try {
@@ -168,9 +172,16 @@ export default function OtpComponent() {
         {resetPassword && (
           <div
             onClick={() => {
-              setResetPassword(false), setEnablePassChange(false);
+              setResetPassword(false),
+                setEnablePassChange(false),
+                setErrors({
+                  email: false,
+                  password: false,
+                  emailRegexError: false,
+                  passwordLengthError: false,
+                });
             }}
-            className='flex items-center justify-center gap-2 pr-[170px] cursor-pointer '
+            className=' h-[10px] flex items-center justify-center gap-2 pr-[170px] cursor-pointer '
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -178,7 +189,7 @@ export default function OtpComponent() {
               viewBox='0 0 24 24'
               stroke-width='1.5'
               stroke='yellow'
-              className='transition-all duration-100 size-6 hover:size-8'
+              className='transition-all duration-100 size-6 hover:pr-1'
             >
               <path
                 stroke-linecap='round'
