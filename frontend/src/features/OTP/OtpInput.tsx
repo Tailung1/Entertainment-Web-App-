@@ -66,7 +66,7 @@ export default function OtpInput({
             }}
             className='cursor-pointer'
           >
-            Request recover code again{" "}
+         Request recover code again{" "}
           </p>
         ) : (
           "OTP Sent! Check your email and enter the code below."
