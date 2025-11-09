@@ -148,7 +148,7 @@ export default function OtpComponent({
       <div className='flex flex-col'>
         {!enablePassChange && (
           <button
-            disabled={loading}
+            
             onClick={
               enableOtpEnter ? handleOtpCheck : handleEmailCheck
             }
