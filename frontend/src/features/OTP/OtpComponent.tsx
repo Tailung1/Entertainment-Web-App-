@@ -6,7 +6,7 @@ import OtpInput from "./OtpInput";
 import ResetPassword from "./ResetPassword";
 
 export default function OtpComponent({
-  setErrors
+  setErrors,
 }: {
   setErrors: any;
 }) {
@@ -148,7 +148,7 @@ export default function OtpComponent({
       <div className='flex flex-col'>
         {!enablePassChange && (
           <button
-            
+            disabled={loading}
             onClick={
               enableOtpEnter ? handleOtpCheck : handleEmailCheck
             }
