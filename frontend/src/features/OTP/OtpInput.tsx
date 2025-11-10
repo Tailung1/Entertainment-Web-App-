@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { useState } from "react";
 
 export default function OtpInput({
   otp,
@@ -21,6 +20,7 @@ export default function OtpInput({
 }) {
   useEffect(() => {
     if (timer === 0) {
+      setOtp(["", "", "", "", "", ""]);
       return;
     }
     const interval = setInterval(() => {
@@ -73,7 +73,12 @@ export default function OtpInput({
       </p>
 
       {timer !== 0 && (
-        <div className={"otp-container"}>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className={"otp-container"}
+        >
           {otp.map((digit, index) => (
             <input
               key={index}
@@ -85,11 +90,11 @@ export default function OtpInput({
             />
           ))}
           {timer !== 0 && (
-            <div className='absolute top-[-35px] right-0  text-violet-700      '>
+            <div className='absolute top-[-35px] right-0  text-violet-700'>
               {`Time Left: ${timer}`}
             </div>
           )}
-        </div>
+        </motion.div>
       )}
     </motion.div>
   );
