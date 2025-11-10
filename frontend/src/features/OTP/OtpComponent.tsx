@@ -73,7 +73,7 @@ export default function OtpComponent({
       setLoading(false);
       const response = await data.json();
       setEnableOtpEnter(data.ok);
-      setTimer(2)
+      setTimer(60)
       if (!data.ok) {
         setBackError(response.message);
       }

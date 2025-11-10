@@ -90,8 +90,10 @@ export default function OtpInput({
             />
           ))}
           {timer !== 0 && (
-            <div className='absolute top-[-35px] right-0  text-violet-700'>
-              {`Time Left: ${timer}`}
+            <div className='absolute flex gap-3 top-[-35px] right-0  text-violet-700'>
+              <p className="relative">
+                Time left: <span className="absolute text-red-600 right-[-30px]">{timer}s</span>
+              </p>
             </div>
           )}
         </motion.div>
