@@ -20,7 +20,7 @@ export default function OtpComponent({
     resetPassword,
     setResetPassword,
   } = useMyContext();
-
+ const [timer, setTimer] = useState(10);
   const [enableOtpEnter, setEnableOtpEnter] =
     useState<boolean>(false);
   const [otpEmailInput, setOtpEmailInput] = useState<string>("");
@@ -73,6 +73,7 @@ export default function OtpComponent({
       setLoading(false);
       const response = await data.json();
       setEnableOtpEnter(data.ok);
+      setTimer(10)
       if (!data.ok) {
         setBackError(response.message);
       }
@@ -140,7 +141,9 @@ export default function OtpComponent({
             backError={backError}
             setBackError={setBackError}
             handleEmailCheck={handleEmailCheck}
-            setEnableOtpEnter={setEnableOtpEnter}
+            timer={timer}
+            setTimer={setTimer}
+          
           />
         ) : (
           <p className='absolute text-red-600 top-1'>{backError} </p>

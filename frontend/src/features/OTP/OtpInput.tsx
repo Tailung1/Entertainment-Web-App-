@@ -8,27 +8,23 @@ export default function OtpInput({
   backError,
   setBackError,
   handleEmailCheck,
-  setEnableOtpEnter,
+  timer,
+  setTimer,
 }: {
   otp: string[];
   setOtp: any;
   backError: string;
   setBackError: any;
   handleEmailCheck: () => void;
-  setEnableOtpEnter:(val:boolean)=>void
+  timer: number;
+  setTimer: (val: any) => void;
 }) {
-  const [timer, setTimer] = useState(10);
-  const [otpEnterTimeExpired, setOtpEnterTimeExpired] =
-    useState(false);
-
   useEffect(() => {
     if (timer === 0) {
-      setOtpEnterTimeExpired(true);
-      setEnableOtpEnter(false)
       return;
     }
     const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
+      setTimer((prevTimer: number) => prevTimer - 1);
     }, 1000);
 
     return () => clearInterval(interval);
@@ -62,12 +58,10 @@ export default function OtpInput({
       >
         {backError ? (
           backError
-        ) : otpEnterTimeExpired ? (
+        ) : timer === 0 ? (
           <p
             onClick={() => {
-              handleEmailCheck(),
-                setTimer(10),
-                setOtpEnterTimeExpired(false);
+              handleEmailCheck();
             }}
             className='cursor-pointer'
           >
@@ -78,27 +72,25 @@ export default function OtpInput({
         )}
       </p>
 
-      <div
-        className={`otp-container ${
-          otpEnterTimeExpired && "opacity-40 pointer-events-none"
-        }`}
-      >
-        {otp.map((digit, index) => (
-          <input
-            key={index}
-            id={`Otp-input-${index}`}
-            value={digit}
-            maxLength={1}
-            onChange={(e) => handleChange(e, index)}
-            className='otp-input'
-          />
-        ))}
-        {!otpEnterTimeExpired && (
-          <div className='absolute top-[-35px] right-0  text-violet-700      '>
-            {`Time Left: ${timer}`}
-          </div>
-        )}
-      </div>
+      {timer !== 0 && (
+        <div className={"otp-container"}>
+          {otp.map((digit, index) => (
+            <input
+              key={index}
+              id={`Otp-input-${index}`}
+              value={digit}
+              maxLength={1}
+              onChange={(e) => handleChange(e, index)}
+              className='otp-input'
+            />
+          ))}
+          {timer !== 0 && (
+            <div className='absolute top-[-35px] right-0  text-violet-700      '>
+              {`Time Left: ${timer}`}
+            </div>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }
