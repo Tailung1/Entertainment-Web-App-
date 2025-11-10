@@ -8,12 +8,14 @@ export default function OtpInput({
   backError,
   setBackError,
   handleEmailCheck,
+  setEnableOtpEnter,
 }: {
   otp: string[];
   setOtp: any;
   backError: string;
   setBackError: any;
   handleEmailCheck: () => void;
+  setEnableOtpEnter:(val:boolean)=>void
 }) {
   const [timer, setTimer] = useState(10);
   const [otpEnterTimeExpired, setOtpEnterTimeExpired] =
@@ -22,6 +24,7 @@ export default function OtpInput({
   useEffect(() => {
     if (timer === 0) {
       setOtpEnterTimeExpired(true);
+      setEnableOtpEnter(false)
       return;
     }
     const interval = setInterval(() => {
@@ -62,11 +65,13 @@ export default function OtpInput({
         ) : otpEnterTimeExpired ? (
           <p
             onClick={() => {
-              handleEmailCheck(), setTimer(10),setOtpEnterTimeExpired(false);
+              handleEmailCheck(),
+                setTimer(10),
+                setOtpEnterTimeExpired(false);
             }}
             className='cursor-pointer'
           >
-         Request recover code again{" "}
+            Request recover code again{" "}
           </p>
         ) : (
           "OTP Sent! Check your email and enter the code below."

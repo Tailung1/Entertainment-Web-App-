@@ -140,6 +140,7 @@ export default function OtpComponent({
             backError={backError}
             setBackError={setBackError}
             handleEmailCheck={handleEmailCheck}
+            setEnableOtpEnter={setEnableOtpEnter}
           />
         ) : (
           <p className='absolute text-red-600 top-1'>{backError} </p>
