@@ -86,7 +86,6 @@ export default function ResetPassword({
         }
         const response = await sendData.json();
         console.log(response.message);
-  
       } catch (err: any) {
         console.log(err.message || "An error occurred", "catched");
       }
