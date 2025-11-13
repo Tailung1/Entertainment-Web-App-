@@ -21,6 +21,7 @@ export default function OtpInput({
   useEffect(() => {
     if (timer === 0) {
       setOtp(["", "", "", "", "", ""]);
+      setBackError(false)
       return;
     }
     const interval = setInterval(() => {

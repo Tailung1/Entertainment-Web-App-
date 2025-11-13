@@ -9,11 +9,12 @@ export default function ResetPassword({
 }: {
   otpEmailInput: string;
 }) {
-  const { loading, setEnablePassChange } = useMyContext();
+  const { loading } = useMyContext();
   const [inputValues, setInputValues] = useState({
     newPassword: "",
     confirmNewPassword: "",
   });
+  const [showPassSuccessMessage,setShowPassSuccessMessage]=useState<boolean>(false)
   const [inputCheck, setInputCheck] = useState({
     newPasswordError: false,
     passwordLengthError: false,
@@ -98,7 +99,7 @@ export default function ResetPassword({
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className='flex flex-col gap-7 mt-12'
+      className='flex flex-col gap-7 '
     >
       <FloatingInput
         onChange={(val) => handleChange("newPassword", val)}
