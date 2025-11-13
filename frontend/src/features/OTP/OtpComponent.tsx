@@ -203,7 +203,7 @@ export default function OtpComponent({
             />
           </svg>
 
-          <button className='text-green-500 text-lg font-semibold hover:text-green-600 transition duration-300'>
+          <button className='text-violet-500 text-lg font-semibold hover:text-violet-700 transition duration-300'>
             Back to sign in
           </button>
         </motion.div>

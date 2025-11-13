@@ -1,7 +1,7 @@
 import FloatingInput from "../../shared/FloatingInput";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {  Spin } from "antd";
+import { Spin } from "antd";
 import { useMyContext } from "../../useContext";
 
 export default function ResetPassword({
@@ -100,7 +100,29 @@ export default function ResetPassword({
   return (
     <div>
       {showPassSuccessMessage ? (
-        <div> changed </div>
+        <motion.div
+          className='flex   justify-center items-center gap-3 mb-10'
+          animate={{ opacity: [0, 1], scale: [0.9, 1] }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className='text-green-500 text-[18px] font-semibold'>
+            Password changed successfully
+          </div>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth='1.5'
+            stroke='green'
+            className='w-8 h-8 transition-transform duration-300 hover:scale-110' // Icon hover scale effect
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M9 11l3 3L22 4'
+            />
+          </svg>
+        </motion.div>
       ) : (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
