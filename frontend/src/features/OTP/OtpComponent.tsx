@@ -18,7 +18,6 @@ export default function OtpComponent({
     setLoading,
     enablePassChange,
     setEnablePassChange,
-    resetPassword,
     setResetPassword,
     showPassSuccessMessage,
   } = useMyContext();
@@ -204,7 +203,9 @@ export default function OtpComponent({
             />
           </svg>
 
-          <button className=' text-green-500'>Back to sign in</button>
+          <button className='text-green-500 text-lg font-semibold hover:text-green-600 transition duration-300'>
+            Back to sign in
+          </button>
         </motion.div>
       </div>
     </div>
