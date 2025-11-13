@@ -33,6 +33,8 @@ interface contextTypes {
   setSeries: React.Dispatch<SetStateAction<moviesType>>;
   enablePassChange: boolean;
   setEnablePassChange: React.Dispatch<SetStateAction<boolean>>;
+  showPassSuccessMessage: boolean;
+  setShowPassSuccessMessage: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const MyContext = createContext({} as contextTypes);
@@ -51,6 +53,8 @@ export default function MovieContext({
   const [recommenedItems, setRecommenedItems] = useState<moviesType>(
     []
   );
+    const [showPassSuccessMessage, setShowPassSuccessMessage] =
+      useState<boolean>(false);
   const [movies, setMovies] = useState<moviesType>([]);
   const [series, setSeries] = useState<moviesType>([]);
 
@@ -276,6 +280,8 @@ export default function MovieContext({
         setResetPassword,
         enablePassChange,
         setEnablePassChange,
+        showPassSuccessMessage,
+        setShowPassSuccessMessage
       }}
     >
       {children}

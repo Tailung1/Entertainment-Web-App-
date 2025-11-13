@@ -1,7 +1,7 @@
 import FloatingInput from "../../shared/FloatingInput";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Spin } from "antd";
+import {  Spin } from "antd";
 import { useMyContext } from "../../useContext";
 
 export default function ResetPassword({
@@ -9,12 +9,16 @@ export default function ResetPassword({
 }: {
   otpEmailInput: string;
 }) {
-  const { loading } = useMyContext();
+  const {
+    loading,
+    showPassSuccessMessage,
+    setShowPassSuccessMessage,
+  } = useMyContext();
   const [inputValues, setInputValues] = useState({
     newPassword: "",
     confirmNewPassword: "",
   });
-  const [showPassSuccessMessage,setShowPassSuccessMessage]=useState<boolean>(false)
+
   const [inputCheck, setInputCheck] = useState({
     newPasswordError: false,
     passwordLengthError: false,
@@ -85,8 +89,7 @@ export default function ResetPassword({
             errorResponse.message || "Failed to change password"
           );
         }
-        const response = await sendData.json();
-        console.log(response.message);
+        setShowPassSuccessMessage(true);
       } catch (err: any) {
         console.log(err.message || "An error occurred", "catched");
       }
@@ -95,56 +98,64 @@ export default function ResetPassword({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className='flex flex-col gap-7 '
-    >
-      <FloatingInput
-        onChange={(val) => handleChange("newPassword", val)}
-        value={inputValues.newPassword}
-        label='New password'
-        type='password'
-        isError={
-          inputCheck.newPasswordError
-            ? "passwordEmptyError"
-            : inputCheck.passwordLengthError
-            ? "passwordLengthError"
-            : ""
-        }
-      />
-      <FloatingInput
-        onChange={(val) => handleChange("confirmNewPassword", val)}
-        value={inputValues.confirmNewPassword}
-        label='Confirm new password'
-        type='password'
-        isError={
-          inputCheck.confirmNewPasswordError
-            ? "passwordEmptyError"
-            : inputCheck.confirmPasswordMatchError
-            ? "bla"
-            : ""
-        }
-      />
-      <button
-        onClick={hanldeSubmit}
-        disabled={loading}
-        className={` bg-red-800 {${
-          loading && "bg-violet-900 cursor-progress "
-        }} w-full cursor-pointer   text-white py-3 mt-5  mb-6  rounded-lg ${
-          !loading && "hover:bg-red-700"
-        } `}
-      >
-        {loading ? (
-          <div className='absolute justify-center items-center gap-5'>
-            {" "}
-            <p>Processing</p> <Spin />{" "}
-          </div>
-        ) : (
-          "Send request"
-        )}
-      </button>
-    </motion.div>
+    <div>
+      {showPassSuccessMessage ? (
+        <div> changed </div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className='flex flex-col gap-7 '
+        >
+          <FloatingInput
+            onChange={(val) => handleChange("newPassword", val)}
+            value={inputValues.newPassword}
+            label='New password'
+            type='password'
+            isError={
+              inputCheck.newPasswordError
+                ? "passwordEmptyError"
+                : inputCheck.passwordLengthError
+                ? "passwordLengthError"
+                : ""
+            }
+          />
+          <FloatingInput
+            onChange={(val) =>
+              handleChange("confirmNewPassword", val)
+            }
+            value={inputValues.confirmNewPassword}
+            label='Confirm new password'
+            type='password'
+            isError={
+              inputCheck.confirmNewPasswordError
+                ? "passwordEmptyError"
+                : inputCheck.confirmPasswordMatchError
+                ? "bla"
+                : ""
+            }
+          />
+          <button
+            onClick={hanldeSubmit}
+            disabled={loading}
+            className={` bg-red-800 {${
+              loading && "bg-violet-900 cursor-progress "
+            }} w-full cursor-pointer   text-white py-3 mt-5  mb-6  rounded-lg ${
+              !loading && "hover:bg-red-700"
+            } `}
+          >
+            {loading ? (
+              <div className='absolute justify-center items-center gap-5'>
+                {" "}
+                <p>Processing</p> <Spin />{" "}
+              </div>
+            ) : (
+              "Send request"
+            )}
+          </button>
+        </motion.div>
+      )}
+    </div>
   );
 }

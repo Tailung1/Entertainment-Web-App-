@@ -4,6 +4,7 @@ import { useMyContext } from "../../useContext";
 import { Spin } from "antd";
 import OtpInput from "./OtpInput";
 import ResetPassword from "./ResetPassword";
+import { motion } from "framer-motion";
 
 export default function OtpComponent({
   setErrors,
@@ -19,6 +20,7 @@ export default function OtpComponent({
     setEnablePassChange,
     resetPassword,
     setResetPassword,
+    showPassSuccessMessage,
   } = useMyContext();
   const [timer, setTimer] = useState(10);
   const [enableOtpEnter, setEnableOtpEnter] =
@@ -112,7 +114,7 @@ export default function OtpComponent({
   };
   return (
     <div className='flex flex-col '>
-      {!resetPassword && (
+      {!enablePassChange && (
         <div
           className={`${
             enableOtpEnter && "opacity-40 pointer-events-none"
@@ -174,40 +176,36 @@ export default function OtpComponent({
           </button>
         )}
 
-        {resetPassword && (
-          <div
-            onClick={() => {
-              setResetPassword(false),
-                setEnablePassChange(false),
-                setErrors({
-                  email: false,
-                  password: false,
-                  emailRegexError: false,
-                  passwordLengthError: false,
-                });
-            }}
-            className=' h-[10px] flex items-center justify-center gap-2 pr-[170px] cursor-pointer '
+        <motion.div
+          onClick={() => {
+            setResetPassword(false),
+              setEnablePassChange(false),
+              setErrors({
+                email: false,
+                password: false,
+                emailRegexError: false,
+                passwordLengthError: false,
+              });
+          }}
+          className=' h-[10px] flex items-center justify-center gap-2 pr-[170px] cursor-pointer '
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='yellow'
+            className='transition-all duration-100 size-6 hover:pr-1'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke-width='1.5'
-              stroke='yellow'
-              className='transition-all duration-100 size-6 hover:pr-1'
-            >
-              <path
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18'
-              />
-            </svg>
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18'
+            />
+          </svg>
 
-            <button className=' text-green-500'>
-              Back to sign in
-            </button>
-          </div>
-        )}
+          <button className=' text-green-500'>Back to sign in</button>
+        </motion.div>
       </div>
     </div>
   );
