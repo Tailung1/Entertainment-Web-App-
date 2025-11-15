@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 import OtpComponent from "../features/OTP/OtpComponent";
 
 export default function SignIn() {
-  const { loading, setLoading, resetPassword } = useMyContext();
+
+  const { loading, setLoading, resetPassword, setSignInBackError } =
+    useMyContext();
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
@@ -79,14 +81,15 @@ export default function SignIn() {
         const response = await validateReuqest.json();
         setLoading(false);
         if (!validateReuqest.ok) {
-          toast.error(response.message);
+          setSignInBackError(response.message);
+          //   toast.error(response.message);
         } else {
           localStorage.setItem("auth-token", response.token);
           navigate("/home");
         }
       } catch (e) {
         setLoading(false);
-        toast.error("Unexpected error");
+        // toast.error("Unexpected error");
       }
     }
   };
@@ -182,13 +185,13 @@ export default function SignIn() {
           </div>
         )}
       </motion.div>
-      <ToastContainer
+      {/* <ToastContainer
         theme='dark'
         position='top-left'
         autoClose={2000}
         limit={2}
         className='my-toast-container'
-      />
+      /> */}
     </div>
   );
 }

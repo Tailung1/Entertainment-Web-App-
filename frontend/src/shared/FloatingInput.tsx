@@ -1,4 +1,4 @@
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { useMyContext } from "../useContext";
 
@@ -17,7 +17,8 @@ export default function FloatingInput({
   onChange,
   isError,
 }: FloatingInputProps) {
-  const { setResetPassword, enablePassChange } = useMyContext();
+  const { setResetPassword, enablePassChange, signInBackError } =
+    useMyContext();
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -56,7 +57,6 @@ export default function FloatingInput({
         className={`text-red-500 text-[14px] absolute transition-all duration-300 ease-in-out  ${
           value.length > 16 ? " top-[-23px]" : "top-1"
         } right-7`}
-
       >
         {isError === "emailEmptyError"
           ? "Can't be empty"
@@ -114,7 +114,10 @@ export default function FloatingInput({
           )}
         </button>
       )}
-      {type === "password" &&
+      {signInBackError.length > 0 ? (
+        <p>{signInBackError}</p>
+      ) : (
+        type === "password" &&
         location.pathname === "/" &&
         !enablePassChange && (
           <p
@@ -123,7 +126,8 @@ export default function FloatingInput({
           >
             Forgot password?
           </p>
-        )}
+        )
+      )}
     </div>
   );
 }

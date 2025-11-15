@@ -35,6 +35,8 @@ interface contextTypes {
   setEnablePassChange: React.Dispatch<SetStateAction<boolean>>;
   showPassSuccessMessage: boolean;
   setShowPassSuccessMessage: React.Dispatch<SetStateAction<boolean>>;
+  signInBackError: string;
+  setSignInBackError: React.Dispatch<SetStateAction<string>>;
 }
 
 const MyContext = createContext({} as contextTypes);
@@ -44,6 +46,7 @@ export default function MovieContext({
 }: {
   children: ReactNode;
 }) {
+  const [signInBackError, setSignInBackError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const [resetPassword, setResetPassword] = useState<boolean>(false);
   const [path, setPath] = useState<string>("");
@@ -53,8 +56,8 @@ export default function MovieContext({
   const [recommenedItems, setRecommenedItems] = useState<moviesType>(
     []
   );
-    const [showPassSuccessMessage, setShowPassSuccessMessage] =
-      useState<boolean>(false);
+  const [showPassSuccessMessage, setShowPassSuccessMessage] =
+    useState<boolean>(false);
   const [movies, setMovies] = useState<moviesType>([]);
   const [series, setSeries] = useState<moviesType>([]);
 
@@ -281,7 +284,9 @@ export default function MovieContext({
         enablePassChange,
         setEnablePassChange,
         showPassSuccessMessage,
-        setShowPassSuccessMessage
+        setShowPassSuccessMessage,
+        signInBackError,
+        setSignInBackError
       }}
     >
       {children}
