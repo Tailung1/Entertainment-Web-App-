@@ -1,28 +1,41 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, number } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useMyContext } from "../useContext";
 
 interface FloatingInputProps {
   label: string;
   type: string;
   value: string;
-  onChange: (val: string) => void;
+  PropsedOnChange: (val: string) => void;
   isError: string;
+  backError: string;
 }
 
 export default function FloatingInput({
   label,
   type,
   value,
-  onChange,
+  PropsedOnChange,
   isError,
+  backError,
 }: FloatingInputProps) {
-  const { setResetPassword, enablePassChange, signInBackError } =
-    useMyContext();
+  const {
+    setResetPassword,
+    enablePassChange,
+    signInBackError,
+    setSignInBackError,
+  } = useMyContext();
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const isActive = focused || value;
+  useEffect(() => {
+    if (backError) {
+      setTimeout(() => {
+        setSignInBackError("");
+      }, 3000);
+    }
+  }, [backError]);
 
   return (
     <div className='relative w-full'>
@@ -48,7 +61,7 @@ export default function FloatingInput({
           isError ? "border-red-600" : "border-white/20"
         }`}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => PropsedOnChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         autoComplete='off'
@@ -114,8 +127,10 @@ export default function FloatingInput({
           )}
         </button>
       )}
-      {signInBackError.length > 0 ? (
-        <p>{signInBackError}</p>
+      {backError && type === "password" ? (
+        <p className='text-red-600 cursor-pointer mt-[10px]'>
+          {backError || "Incorect credentials"}
+        </p>
       ) : (
         type === "password" &&
         location.pathname === "/" &&

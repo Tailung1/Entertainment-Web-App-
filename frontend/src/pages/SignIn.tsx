@@ -10,9 +10,13 @@ import { Spin } from "antd";
 import OtpComponent from "../features/OTP/OtpComponent";
 
 export default function SignIn() {
-
-  const { loading, setLoading, resetPassword, setSignInBackError } =
-    useMyContext();
+  const {
+    loading,
+    setLoading,
+    resetPassword,
+    setSignInBackError,
+    signInBackError,
+  } = useMyContext();
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
@@ -81,13 +85,14 @@ export default function SignIn() {
         const response = await validateReuqest.json();
         setLoading(false);
         if (!validateReuqest.ok) {
-          setSignInBackError(response.message);
-          //   toast.error(response.message);
+          throw new Error(response);
         } else {
           localStorage.setItem("auth-token", response.token);
           navigate("/home");
         }
-      } catch (e) {
+      } catch (e: any) {
+        // console.log(e)
+        setSignInBackError(e.message);
         setLoading(false);
         // toast.error("Unexpected error");
       }
@@ -129,7 +134,7 @@ export default function SignIn() {
                 label='Email address'
                 type='text'
                 value={emailInput}
-                onChange={(val) => handleChange("email", val)}
+                PropsedOnChange={(val) => handleChange("email", val)}
                 isError={`${
                   errors.email
                     ? "emailEmptyError"
@@ -137,12 +142,15 @@ export default function SignIn() {
                     ? "emailRegexError"
                     : ""
                 }`}
+                backError={signInBackError}
               />
               <FloatingInput
                 label='Password'
                 type='password'
                 value={passwordInput}
-                onChange={(val) => handleChange("password", val)}
+                PropsedOnChange={(val) =>
+                  handleChange("password", val)
+                }
                 isError={`${
                   errors.password
                     ? "passwordEmptyError"
@@ -150,6 +158,7 @@ export default function SignIn() {
                     ? "passwordLengthError"
                     : ""
                 }`}
+                backError={signInBackError}
               />
             </div>
             <button
