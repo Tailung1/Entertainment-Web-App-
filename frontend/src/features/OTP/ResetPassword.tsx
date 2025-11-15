@@ -13,6 +13,7 @@ export default function ResetPassword({
     loading,
     showPassSuccessMessage,
     setShowPassSuccessMessage,
+    signInBackError
   } = useMyContext();
   const [inputValues, setInputValues] = useState({
     newPassword: "",
@@ -131,7 +132,9 @@ export default function ResetPassword({
           className='flex flex-col gap-7 '
         >
           <FloatingInput
-            onChange={(val) => handleChange("newPassword", val)}
+            PropsedOnChange={(val) =>
+              handleChange("newPassword", val)
+            }
             value={inputValues.newPassword}
             label='New password'
             type='password'
@@ -142,9 +145,10 @@ export default function ResetPassword({
                 ? "passwordLengthError"
                 : ""
             }
+            backError={signInBackError}
           />
           <FloatingInput
-            onChange={(val) =>
+            PropsedOnChange={(val) =>
               handleChange("confirmNewPassword", val)
             }
             value={inputValues.confirmNewPassword}
@@ -157,6 +161,7 @@ export default function ResetPassword({
                 ? "bla"
                 : ""
             }
+            backError={signInBackError}
           />
           <button
             onClick={hanldeSubmit}
