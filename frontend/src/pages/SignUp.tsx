@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 
 export default function SignUp() {
-  const { loading, setLoading } = useMyContext();
+  const { loading, setLoading,signInBackError } = useMyContext();
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({
     email: "",
@@ -133,7 +133,7 @@ export default function SignUp() {
 
         <div className='flex flex-col gap-[30px]'>
           <FloatingInput
-            onChange={(val) => handleChange("email", val)}
+            PropsedOnChange={(val) => handleChange("email", val)}
             value={inputValues.email}
             label='Email address'
             type='text'
@@ -144,9 +144,10 @@ export default function SignUp() {
                 ? "emailRegexError"
                 : ""
             }
+            backError={signInBackError}
           />
           <FloatingInput
-            onChange={(val) => handleChange("password", val)}
+            PropsedOnChange={(val) => handleChange("password", val)}
             value={inputValues.password}
             label='Password'
             type='password'
@@ -157,9 +158,12 @@ export default function SignUp() {
                 ? "passwordLengthError"
                 : ""
             }
+            backError={signInBackError}
           />
           <FloatingInput
-            onChange={(val) => handleChange("confirmPassword", val)}
+            PropsedOnChange={(val) =>
+              handleChange("confirmPassword", val)
+            }
             value={inputValues.confirmPassword}
             label='Confirm password'
             type='password'
@@ -170,6 +174,7 @@ export default function SignUp() {
                 ? "confirmPasswordMatchError"
                 : ""
             }
+            backError={signInBackError}
           />
         </div>
 
