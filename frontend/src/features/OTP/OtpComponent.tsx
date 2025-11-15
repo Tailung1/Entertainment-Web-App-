@@ -19,7 +19,7 @@ export default function OtpComponent({
     enablePassChange,
     setEnablePassChange,
     setResetPassword,
-    showPassSuccessMessage,
+   signInBackError
   } = useMyContext();
   const [timer, setTimer] = useState(10);
   const [enableOtpEnter, setEnableOtpEnter] =
@@ -123,7 +123,7 @@ export default function OtpComponent({
             label='Enter email'
             type='text'
             value={otpEmailInput}
-            onChange={(val) => handleChange("email", val)}
+            PropsedOnChange={(val) => handleChange("email", val)}
             isError={`${
               errors.email
                 ? "emailEmptyError"
@@ -131,6 +131,7 @@ export default function OtpComponent({
                 ? "emailRegexError"
                 : ""
             }`}
+             backError = { signInBackError }
           />
         </div>
       )}
@@ -192,13 +193,13 @@ export default function OtpComponent({
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
-            stroke-width='1.5'
+            strokeWidth='1.5'
             stroke='yellow'
             className='transition-all duration-100 size-6 hover:pr-1'
           >
             <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
+              strokeLinecap='round'
+              strokeLinejoin='round'
               d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18'
             />
           </svg>
