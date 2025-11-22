@@ -8,7 +8,7 @@ import cors from "cors";
 const app = express();
 dotenv.config();
 app.use(cors({ origin: "http://localhost:5173" }));
-app.use(express.json())
+app.use(express.json());
 // app.use(express.raw({ type: "application/json" }));
 
 // app.post("/api/movies/unload", async (req, res) => {
@@ -44,8 +44,6 @@ app.use(express.json())
 //     });
 //   }
 // });
-
-
 
 app.use("/api/movies", moviesRouter);
 app.use("/api/users", usersRouter);
