@@ -3,10 +3,9 @@ import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../features/ItemsFiltering";
-import Auth from "../features/Auth";
 
 export default function Home() {
-  Auth();
+
   ItemsFiltering();
   const { trendingItems, recommenedItems, searching } =
     useMyContext();

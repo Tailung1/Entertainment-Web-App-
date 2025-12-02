@@ -2,10 +2,10 @@ import { useMyContext } from "../useContext";
 import { useEffect } from "react";
 import ItemsFiltering from "../features/ItemsFiltering";
 import SharedComponent from "../shared/SharedComponent";
-import Auth from "../features/Auth";
+
 
 export default function Movies() {
-  Auth();
+
   ItemsFiltering();
   const { movies, setPath, searching } = useMyContext();
 

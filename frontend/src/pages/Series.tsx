@@ -1,11 +1,9 @@
 import { useMyContext } from "../useContext";
 import { useEffect } from "react";
-import Auth from "../features/Auth";
 import ItemsFiltering from "../features/ItemsFiltering";
 import SharedComponent from "../shared/SharedComponent";
 
 export default function Series() {
-  Auth();
   ItemsFiltering();
   const { series, setPath, searching } = useMyContext();
 
