@@ -157,14 +157,16 @@ export default function Icon({
       return null;
   }
 }
-interface BookMarkIconProps {
-  item: movieType;
-  fetchedItems: moviesType;
-  setFetchtedItems: React.Dispatch<SetStateAction<moviesType>>;
-}
+// interface BookMarkIconProps {
+//   item: movieType;
+//   fetchedItems: moviesType;
+//   setFetchtedItems: React.Dispatch<SetStateAction<moviesType>>;
+// }
 export const BookMarkIcon = ({ item }: { item: movieType }) => {
   const { fetchedItems, setFetchtedItems } = useMyContext();
+
   const ToggleMarkIcon = (id: number) => {
+
     if (!id) return;
     setFetchtedItems(
       fetchedItems.map((item: movieType) =>

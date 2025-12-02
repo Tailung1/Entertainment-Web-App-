@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import Icon from "./Icon";
@@ -13,9 +12,11 @@ export default function Header() {
   );
   let iconsArr = ["home", "movies", "series", "bookmarked"];
   const handleClick = (iconName: string) => {
+    console.log(iconName)
     navigate(iconName);
     setActiveIcon(iconName);
   };
+
 
   return (
     <div className=' md:p-4 lg:p-6   '>

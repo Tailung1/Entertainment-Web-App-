@@ -2,11 +2,11 @@ import { useRef } from "react";
 import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
-import ItemsFiltering from "../features/ItemsFiltering";
+import ItemsFiltering from "../ItemsFiltering";
+
 
 export default function Home() {
-
-  ItemsFiltering();
+    ItemsFiltering()
   const { trendingItems, recommenedItems, searching } =
     useMyContext();
   const loadingArr = new Array(6).fill(6);

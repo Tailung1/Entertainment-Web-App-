@@ -1,17 +1,26 @@
 import { useMyContext } from "../useContext";
 import { useEffect } from "react";
-import ItemsFiltering from "../features/ItemsFiltering";
 import SharedComponent from "../shared/SharedComponent";
 
+import ItemsFiltering from "../ItemsFiltering";
+
 export default function BookMarked() {
-  ItemsFiltering();
-  const { bookMarked, setPath, searching } = useMyContext();
+  //   ItemsFiltering();
+  const {
+    bookMarked,
+    setPath,
+    path,
+
+    searching,
+  } = useMyContext();
+
   useEffect(() => {
-    setPath("/bookmarked");
+    setPath("Bookmarked");
   }, []);
+
   return (
     <div className='min-h-screen'>
-      {bookMarked.length < 1 ? (
+      {bookMarked.length < 1 && searching ? (
         <h1 className='text-[25px] text-white pl-7'>
           {searching ? (
             <div className='text-[20px] md:text-[25px]'>
@@ -27,7 +36,7 @@ export default function BookMarked() {
       ) : (
         <SharedComponent
           currentComponent={bookMarked}
-          currentSection='Bookmarked'
+          currentSection={path}
         />
       )}
     </div>

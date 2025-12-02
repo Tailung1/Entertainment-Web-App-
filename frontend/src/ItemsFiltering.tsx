@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useMyContext } from "../useContext";
+import { useMyContext } from "./useContext";
 
 export default function ItemsFiltering() {
   let {
@@ -13,6 +13,7 @@ export default function ItemsFiltering() {
   } = useMyContext();
 
   useEffect(() => {
+  
     if (searching) {
       switch (location.pathname) {
         case "/home":
@@ -85,19 +86,17 @@ export default function ItemsFiltering() {
       switch (location.pathname) {
         case "/home":
           setTrendingItems(
-            fetchedItems.filter((movie: movieType) => movie.trending)
+            fetchedItems.filter((item: movieType) => item.trending)
           );
           setRecommenedItems(
-            fetchedItems.filter(
-              (movie: movieType) => movie.recommended
-            )
+            fetchedItems.filter((item: movieType) => item.recommended)
           );
           break;
 
         case "/movies":
           setMovies(
             fetchedItems.filter(
-              (movie: movieType) => movie.type === "Movie"
+              (item: movieType) => item.type === "Movie"
             )
           );
           break;
@@ -105,16 +104,14 @@ export default function ItemsFiltering() {
         case "/series":
           setSeries(
             fetchedItems.filter(
-              (movie: movieType) => movie.type === "Series"
+              (item: movieType) => item.type === "Series"
             )
           );
           break;
 
         case "/bookmarked":
           setBookMarked(
-            fetchedItems.filter(
-              (movie: movieType) => movie.bookMarked
-            )
+            fetchedItems.filter((item: movieType) => item.bookMarked)
           );
           break;
 

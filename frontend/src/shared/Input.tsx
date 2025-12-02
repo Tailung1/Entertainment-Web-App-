@@ -13,7 +13,7 @@ export default function Input() {
     if (location.pathname === "/home") {
       setSearchMessage("Search for movies or TV series");
     } else {
-      setSearchMessage(`Search for ${path.slice(1)}`);
+      setSearchMessage(`Search for ${path}`);
     }
     {
     }

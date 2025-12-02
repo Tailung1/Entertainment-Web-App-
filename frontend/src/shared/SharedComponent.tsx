@@ -1,13 +1,13 @@
-import { BookMarkIcon } from "../shared/Icon";
-import { DotIcon } from "../shared/Icon";
-import ItemsFiltering from "../features/ItemsFiltering";
+import { BookMarkIcon } from "./Icon";
+import { DotIcon } from "./Icon";
+import ItemsFiltering from "../ItemsFiltering";
 
 export default function SharedComponent({
   currentComponent,
   currentSection,
 }: {
   currentComponent: moviesType;
-  currentSection:string
+  currentSection: string;
 }) {
   ItemsFiltering();
   const loadingDivs = new Array(6).fill(null);
@@ -17,7 +17,7 @@ export default function SharedComponent({
       <h2 className='text-white text-[20px] mb-3'>
         {currentSection}
       </h2>
-   
+
       <div className='flex flex-wrap gap-x-4 gap-y-5 '>
         {currentComponent.length < 1
           ? loadingDivs.map((_, index) => (
