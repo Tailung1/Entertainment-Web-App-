@@ -19,7 +19,7 @@ export default function OtpComponent({
     enablePassChange,
     setEnablePassChange,
     setResetPassword,
-   signInBackError
+    signInBackError,
   } = useMyContext();
   const [timer, setTimer] = useState(10);
   const [enableOtpEnter, setEnableOtpEnter] =
@@ -131,7 +131,7 @@ export default function OtpComponent({
                 ? "emailRegexError"
                 : ""
             }`}
-             backError = { signInBackError }
+            backError={signInBackError}
           />
         </div>
       )}

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";

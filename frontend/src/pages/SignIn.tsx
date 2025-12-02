@@ -85,13 +85,13 @@ export default function SignIn() {
         const response = await validateReuqest.json();
         setLoading(false);
         if (!validateReuqest.ok) {
-          throw new Error(response);
+          throw new Error(response.message);
         } else {
           localStorage.setItem("auth-token", response.token);
           navigate("/home");
         }
       } catch (e: any) {
-        // console.log(e)
+      
         setSignInBackError(e.message);
         setLoading(false);
         // toast.error("Unexpected error");

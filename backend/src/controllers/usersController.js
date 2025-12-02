@@ -90,7 +90,7 @@ const signIn = async (req, res) => {
         user.password
       );
       if (!isPasswordValid) {
-        return res.status(401).send({ message: "Invalid Password" });
+        return res.status(401).json({ message: "Invalid Password" });
       }
     }
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, {
