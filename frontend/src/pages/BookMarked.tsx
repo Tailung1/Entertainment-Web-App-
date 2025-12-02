@@ -3,13 +3,7 @@ import { useEffect } from "react";
 import SharedComponent from "../shared/SharedComponent";
 
 export default function BookMarked() {
-  const {
-    bookMarked,
-    setPath,
-    path,
-
-    searching,
-  } = useMyContext();
+  const { bookMarked, setPath, path, searching } = useMyContext();
 
   useEffect(() => {
     setPath("Bookmarked");

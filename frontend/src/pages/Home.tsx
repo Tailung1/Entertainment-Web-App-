@@ -4,19 +4,18 @@ import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../ItemsFiltering";
 
-
 export default function Home() {
-    ItemsFiltering()
+  ItemsFiltering();
   const { trendingItems, recommenedItems, searching } =
     useMyContext();
-  const loadingArr = new Array(6).fill(6);
+  const loadingArr = new Array(6).fill("");
   const scrollRef = useRef<HTMLDivElement>(null);
-  const notEmpty = trendingItems.length > 0;
+  const notEmptyTrending = trendingItems.length !== 0;
 
   return (
     <div className='bg-[#10141E] pl-6 pr-1 min-h-screen'>
       {/* Trending Section */}
-      {!notEmpty && searching ? (
+      {!notEmptyTrending && searching ? (
         <h1 className='text-[25px] text-white'>
           <div className='text-[20px] md:text-[25px]'>
             No Trending items found for{" "}
@@ -30,14 +29,16 @@ export default function Home() {
           <h2 className='text-white text-[20px]'>Trending</h2>
           <div
             ref={scrollRef}
-            className={` ${notEmpty && "scroll-container"} py-3    `}
+            className={` ${
+              notEmptyTrending && "scroll-container"
+            } py-3    `}
           >
             <div
               className={`${
-                notEmpty && "wrapper-div"
+                notEmptyTrending && "wrapper-div"
               } hide-scrollbar`}
             >
-              {!notEmpty ? (
+              {!notEmptyTrending ? (
                 <div className='flex gap-3'>
                   {loadingArr.map((_, index) => (
                     <div key={index} className='loading-placeholder'>
@@ -95,7 +96,7 @@ export default function Home() {
       )}
 
       {/* Recommended Section */}
-      {recommenedItems.length < 1 && searching ? (
+      {recommenedItems.length === 0 && searching ? (
         <h1 className='text-[25px] text-white mt-5'>
           <div className='text-[20px] md:text-[25px]'>
             No Recommended items found for{" "}
@@ -119,10 +120,10 @@ export default function Home() {
               : recommenedItems.map((item) => (
                   <div
                     key={item.id}
-                    className='flex flex-col  gap-2 w-[150px] md:min-w-[200px] hover:scale-105 lg:min-w-[220px] relative group hover:opacity-90'
+                    className='flex flex-col  gap-2 w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
                   >
                     {/* Play Icon */}
-                    <svg
+                    {/* <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='40'
                       height='40'
@@ -135,7 +136,7 @@ export default function Home() {
                       className='absolute cursor-pointer inset-0 m-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-black'
                     >
                       <polygon points='5,3 19,12 5,21 5,3' />
-                    </svg>
+                    </svg> */}
                     <img
                       src={item.image}
                       alt={item.title}
