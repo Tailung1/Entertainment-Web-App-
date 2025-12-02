@@ -3,14 +3,12 @@ import { useEffect } from "react";
 import ItemsFiltering from "../features/ItemsFiltering";
 import SharedComponent from "../shared/SharedComponent";
 
-
 export default function Movies() {
-
   ItemsFiltering();
-  const { movies, setPath, searching } = useMyContext();
+  const { movies, setPath, path, searching } = useMyContext();
 
   useEffect(() => {
-    setPath("/movies");
+    setPath("Movies");
   }, []);
 
   return (
@@ -27,7 +25,7 @@ export default function Movies() {
       ) : (
         <SharedComponent
           currentComponent={movies}
-          currentSection='Bookmarked'
+          currentSection={path}
         />
       )}
     </div>

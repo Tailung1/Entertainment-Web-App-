@@ -5,10 +5,13 @@ import SharedComponent from "../shared/SharedComponent";
 
 export default function Series() {
   ItemsFiltering();
-  const { series, setPath, searching } = useMyContext();
+  const { series, setPath, path, searching } = useMyContext();
+
+
+    
 
   useEffect(() => {
-    setPath("/series");
+    setPath("Series");
   }, []);
 
   return (
@@ -25,7 +28,7 @@ export default function Series() {
       ) : (
         <SharedComponent
           currentComponent={series}
-          currentSection='Bookmarked'
+          currentSection={path}
         />
       )}
     </div>
