@@ -12,11 +12,9 @@ export default function Header() {
   );
   let iconsArr = ["home", "movies", "series", "bookmarked"];
   const handleClick = (iconName: string) => {
-    console.log(iconName)
     navigate(iconName);
     setActiveIcon(iconName);
   };
-
 
   return (
     <div className=' md:p-4 lg:p-6   '>

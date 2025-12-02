@@ -2,10 +2,7 @@ import { useMyContext } from "../useContext";
 import { useEffect } from "react";
 import SharedComponent from "../shared/SharedComponent";
 
-import ItemsFiltering from "../ItemsFiltering";
-
 export default function BookMarked() {
-  //   ItemsFiltering();
   const {
     bookMarked,
     setPath,

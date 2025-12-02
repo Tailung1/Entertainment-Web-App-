@@ -9,7 +9,10 @@ export default function SharedComponent({
   currentComponent: moviesType;
   currentSection: string;
 }) {
+
   ItemsFiltering();
+  
+
   const loadingDivs = new Array(6).fill(null);
 
   return (

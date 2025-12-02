@@ -13,7 +13,6 @@ export default function ItemsFiltering() {
   } = useMyContext();
 
   useEffect(() => {
-  
     if (searching) {
       switch (location.pathname) {
         case "/home":
