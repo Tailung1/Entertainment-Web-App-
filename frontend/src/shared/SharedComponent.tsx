@@ -1,6 +1,6 @@
 import { BookMarkIcon } from "./Icon";
 import { DotIcon } from "./Icon";
-import ItemsFiltering from "../ItemsFiltering";
+import ItemsFiltering from "../features/ItemsFiltering";
 
 export default function SharedComponent({
   currentComponent,
@@ -9,9 +9,7 @@ export default function SharedComponent({
   currentComponent: moviesType;
   currentSection: string;
 }) {
-
   ItemsFiltering();
-  
 
   const loadingDivs = new Array(6).fill(null);
 
@@ -29,41 +27,30 @@ export default function SharedComponent({
           : currentComponent.map((item: movieType) => (
               <div
                 key={item.id}
-                className='flex   flex-col gap-2  relative w-[153px] lg:w-[220px] hover:scale-105 group hover:opacity-90    '
+                className='lg:w-[220px] item-container'
               >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='40'
-                  height='40'
-                  viewBox='0 0 24 24'
-                  fill='red'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  className='absolute cursor-pointer top-[40px] left-[55px]  opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-black'
-                >
-                  <polygon points='5,3 19,12 5,21 5,3' />
-                </svg>
                 <img
                   src={item.image}
                   alt={item.title}
-                  className='rounded-lg h-[110px] lg:h-[120px]  '
+                  className='rounded-lg h-[110px] lg:h-[120px]'
                   loading='lazy'
                 />
 
-                <div className='flex flex-col '>
-                  <div className='flex items-center text-yellow-500   text-[14px] gap-2 '>
+                <div className='flex flex-col'>
+                  <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
                     <p>{item.year}</p>
                     <DotIcon />
                     <p>{item.type}</p>
                     <DotIcon />
                     <p>{item.raiting}</p>
                   </div>
-                  <p className='text-[18px] text-white '>
+                  <p className='text-[18px] text-white'>
                     {item.title}
                   </p>
                 </div>
+
+                {/* Play button */}
+                <div className='play-button'>Play</div>
 
                 <BookMarkIcon item={item} />
               </div>

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
-import ItemsFiltering from "../ItemsFiltering";
+import ItemsFiltering from "../features/ItemsFiltering";
 
 export default function Home() {
   ItemsFiltering();
@@ -50,22 +50,8 @@ export default function Home() {
                 trendingItems.map((item) => (
                   <div
                     key={item.id}
-                    className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[200px]  lg:min-w-[220px] relative hover:scale-105 group hover:opacity-90'
+                    className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[200px]  lg:min-w-[220px] relative '
                   >
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='40'
-                      height='40'
-                      viewBox='0 0 24 24'
-                      fill='red'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      className='absolute cursor-pointer inset-0 m-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-black'
-                    >
-                      <polygon points='5,3 19,12 5,21 5,3' />
-                    </svg>
                     <img
                       src={item.image}
                       alt={item.title}

@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.my-toast-container {
+/* .my-toast-container {
   border-radius: 10px;
   padding-top: 20px;
   padding-right: 40px;
-}
+} */
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
@@ -24,7 +24,6 @@
 .loading-placeholder::before {
   content: "";
   position: absolute;
-  top: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(
@@ -35,6 +34,14 @@
   );
 
   animation: loading 0.5s infinite ease-in-out;
+}
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .otp-container {
@@ -49,14 +56,14 @@
   height: 40px;
   text-align: center;
   font-size: 24px;
-  border: 3px solid  rgb(104, 11, 104);
+  border: 3px solid rgb(104, 11, 104);
   border-radius: 5px;
 }
 
 .submit-otp {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -67,28 +74,20 @@
   background-color: #0056b3;
 }
 
-
-@keyframes loading {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
 .scroll-container {
   width: 100%;
   overflow: hidden;
-  animation-play-state: running;
+
+  /* animation-play-state: running; */
 }
 .wrapper-div:hover {
   animation-play-state: paused;
 }
 .wrapper-div {
   display: flex;
-  animation: scroll 25s linear infinite;
-  animation-play-state: running;
+  animation: scroll 20s linear infinite;
+
+  /* animation-play-state:running; */
 }
 
 @keyframes scroll {
@@ -97,5 +96,56 @@
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 153px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.item-container .play-button {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: rgba(255, 2, 2, 0.6);
+  padding: 7px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Prevent interaction until hover */
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.item-container:hover .play-button {
+  opacity: 1; /* Show button on hover */
+  cursor: pointer;
+}
+
+.item-container:hover:before {
+  background-color: rgba(0, 0, 0, 0.7);
+  content: "";
+  position: absolute;
+  height: 110px;
+  width: 100%;
+  animation: playUI 0.3s ease-in-out forwards;
+  border-radius: 8px;
+  /* z-index: 1; */
+}
+
+@keyframes playUI {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
   }
 }

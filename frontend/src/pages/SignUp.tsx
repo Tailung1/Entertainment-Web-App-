@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 
 export default function SignUp() {
-  const { loading, setLoading,signInBackError } = useMyContext();
+  const { loading, setLoading, signInBackError } = useMyContext();
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({
     email: "",
@@ -144,7 +144,7 @@ export default function SignUp() {
                 ? "emailRegexError"
                 : ""
             }
-            backError={signInBackError}
+            backError={""}
           />
           <FloatingInput
             PropsedOnChange={(val) => handleChange("password", val)}
