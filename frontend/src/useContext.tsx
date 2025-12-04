@@ -286,7 +286,7 @@ export default function MovieContext({
         showPassSuccessMessage,
         setShowPassSuccessMessage,
         signInBackError,
-        setSignInBackError
+        setSignInBackError,
       }}
     >
       {children}
