@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { auth } from "../features/firebase";
 
 export default function SignUp() {
   const { loading, setLoading, signInBackError } = useMyContext();
