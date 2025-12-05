@@ -8,9 +8,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 import { signInWithPopup, signOut } from "firebase/auth";
-import { auth } from "../features/firebase";
+import { auth, githubProvider } from "../features/firebase";
 
 export default function SignUp() {
+  const handleGithubSignUp = async () => {
+    try {
+      const result = await signInWithPopup(auth, githubProvider);
+      const user = result.user;
+      console.log("User signed up with Github", user);
+    } catch (error: any) {
+      console.error("Error signing up with Google:", error.message);
+    }
+  };
+
   const { loading, setLoading, signInBackError } = useMyContext();
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({
@@ -210,6 +220,12 @@ export default function SignUp() {
             Sign in
           </Link>
         </p>
+        <button
+          onClick={handleGithubSignUp}
+          className='cursor-pointer mt-5'
+        >
+          sign up with githyb
+        </button>
       </motion.div>
       <ToastContainer
         theme='dark'
