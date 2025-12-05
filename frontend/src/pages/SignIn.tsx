@@ -8,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 import OtpComponent from "../features/OTP/OtpComponent";
+import { handleGithubSignUp } from "../features/firebase";
+
 
 export default function SignIn() {
   const {
@@ -191,6 +193,7 @@ export default function SignIn() {
                 Sign Up
               </Link>
             </p>
+            <button onClick={handleGithubSignUp}>Sign in with github</button>
           </div>
         )}
       </motion.div>

@@ -7,20 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
-import { signInWithPopup, signOut } from "firebase/auth";
-import { auth, githubProvider } from "../features/firebase";
+import { handleGithubSignUp } from "../features/firebase";
 
 export default function SignUp() {
-  const handleGithubSignUp = async () => {
-    try {
-      const result = await signInWithPopup(auth, githubProvider);
-      const user = result.user;
-      console.log("User signed up with Github", user);
-    } catch (error: any) {
-      console.error("Error signing up with Google:", error.message);
-    }
-  };
-
   const { loading, setLoading, signInBackError } = useMyContext();
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({

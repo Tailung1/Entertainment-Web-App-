@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
-        loader: checkAuthLoader,
+      
       },
       {
         path: "/series",
