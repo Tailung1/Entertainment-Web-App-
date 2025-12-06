@@ -32,7 +32,6 @@ const GithubAuth = () => {
     try {
       const result = await signInWithPopup(auth, githubProvider);
       const user = result.user;
-      console.log(user);
       if (user) {
         localStorage.setItem("auth-token", user.accessToken);
         navigate("/home");

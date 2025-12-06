@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Spin } from "antd";
 import OtpComponent from "../features/OTP/OtpComponent";
 import { GithubAuth } from "../features/firebase";
-import "../assets/github-mark.png"
+import "../assets/github-mark.png";
 
 export default function SignIn() {
   const {
@@ -93,7 +93,6 @@ export default function SignIn() {
           navigate("/home");
         }
       } catch (e: any) {
-      
         setSignInBackError(e.message);
         setLoading(false);
         // toast.error("Unexpected error");
@@ -193,7 +192,7 @@ export default function SignIn() {
                 Sign Up
               </Link>
             </p>
-           <GithubAuth />
+            <GithubAuth />
           </div>
         )}
       </motion.div>
