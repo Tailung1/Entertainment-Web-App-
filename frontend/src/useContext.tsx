@@ -150,6 +150,7 @@ export default function MovieContext({
         setTrendingItems(
           response.filter((item: movieType) => item.trending)
         );
+
         setRecommenedItems(
           response.filter((item: movieType) =>
             item.title

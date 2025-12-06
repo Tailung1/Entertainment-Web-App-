@@ -32,12 +32,14 @@ const GithubAuth = () => {
     try {
       const result = await signInWithPopup(auth, githubProvider);
       const user = result.user;
+      console.log(user);
       if (user) {
+        localStorage.setItem("auth-token", user.accessToken);
         navigate("/home");
       }
     } catch (error: any) {
       console.error(
-        "Error signing up/in with Google:",
+        "Error signing up/in with Github:",
         error.message
       );
     }
