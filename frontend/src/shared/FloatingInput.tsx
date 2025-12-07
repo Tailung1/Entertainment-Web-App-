@@ -134,12 +134,12 @@ export default function FloatingInput({
         type === "password" &&
         location.pathname === "/" &&
         !enablePassChange && (
-          <p
+          <button
             onClick={() => setResetPassword(true)}
-            className='cursor-pointer mt-[10px] hover:text-orange-300 text-orange-500'
+            className='cursor-pointer mt-[10px]  hover:text-orange-300 text-orange-500'
           >
             Forgot password?
-          </p>
+          </button>
         )
       )}
     </div>

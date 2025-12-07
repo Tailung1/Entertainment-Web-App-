@@ -19,8 +19,8 @@ export default function OtpComponent({
     enablePassChange,
     setEnablePassChange,
     setResetPassword,
-    signInBackError,
   } = useMyContext();
+
   const [timer, setTimer] = useState(10);
   const [enableOtpEnter, setEnableOtpEnter] =
     useState<boolean>(false);
@@ -131,7 +131,7 @@ export default function OtpComponent({
                 ? "emailRegexError"
                 : ""
             }`}
-            backError={signInBackError}
+            backError={backError}
           />
         </div>
       )}
@@ -176,7 +176,7 @@ export default function OtpComponent({
           </button>
         )}
 
-        <motion.div
+        <div
           onClick={() => {
             setResetPassword(false),
               setEnablePassChange(false),
@@ -187,7 +187,7 @@ export default function OtpComponent({
                 passwordLengthError: false,
               });
           }}
-          className=' h-[10px] flex items-center justify-center gap-2 pr-[170px] cursor-pointer '
+          className='h-[10px] flex items-center justify-start gap-2  max-w-[160px]  cursor-pointer '
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -195,7 +195,7 @@ export default function OtpComponent({
             viewBox='0 0 24 24'
             strokeWidth='1.5'
             stroke='yellow'
-            className='transition-all duration-100 size-6 hover:pr-1'
+            className='transition-all duration-100 size-5 hover:size-7 '
           >
             <path
               strokeLinecap='round'
@@ -207,7 +207,7 @@ export default function OtpComponent({
           <button className='text-violet-500 text-lg font-semibold hover:text-violet-700 transition duration-300'>
             Back to sign in
           </button>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
