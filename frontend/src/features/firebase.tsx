@@ -37,7 +37,7 @@ const GoogleAuth = () => {
       const user = result.user;
       if (user) {
         console.log(user);
-        localStorage.setItem("auth-token", user.accessToken);
+        localStorage.setItem("auth-token", user.uid);
         navigate("/home");
       }
     } catch (error: any) {
@@ -73,8 +73,8 @@ const GithubAuth = () => {
       const result = await signInWithPopup(auth, githubProvider);
       const user = result.user;
       if (user) {
-        console.log(user.displayName?.split(" ")[0])
-        localStorage.setItem("auth-token", user.accessToken);
+        console.log(user.displayName?.split(" ")[0]);
+        localStorage.setItem("auth-token", user.uid);
         navigate("/home");
       }
     } catch (error: any) {
