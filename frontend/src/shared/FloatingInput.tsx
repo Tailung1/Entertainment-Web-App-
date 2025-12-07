@@ -19,11 +19,8 @@ export default function FloatingInput({
   isError,
   backError,
 }: FloatingInputProps) {
-  const {
-    setResetPassword,
-    enablePassChange,
-    setSignInBackError,
-  } = useMyContext();
+  const { setResetPassword, enablePassChange, setSignInBackError } =
+    useMyContext();
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -126,7 +123,9 @@ export default function FloatingInput({
           )}
         </button>
       )}
-      {backError && type === "password" && location.pathname ==="/" ? (
+      {backError &&
+      type === "password" &&
+      location.pathname === "/" ? (
         <p className='text-red-600 cursor-pointer mt-[10px]'>
           {backError || "Incorect credentials"}
         </p>
