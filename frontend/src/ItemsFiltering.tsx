@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useMyContext } from "../useContext";
+import { useMyContext } from "./useContext";
 
 export default function ItemsFiltering() {
   let {

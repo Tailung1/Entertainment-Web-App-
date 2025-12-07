@@ -2,11 +2,13 @@ import { initializeApp } from "firebase/app";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import githubLogo from "../assets/github-mark.png";
+import googleLogo from "../assets/google-color.svg"
 
 import {
   getAuth,
   signInWithPopup,
   GithubAuthProvider,
+  GoogleAuthProvider
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -23,6 +25,45 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 const githubProvider = new GithubAuthProvider();
+const googleProvider=new GoogleAuthProvider()
+
+
+const GoogleAuth = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleGoogleAuth = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      if (user) {
+        console.log(user)
+        localStorage.setItem("auth-token", user.accessToken);
+        navigate("/home");
+      }
+    } catch (error: any) {
+      console.error(
+        "Error signing up/in with Google:",
+        error.message
+      );
+    }
+  };
+  return (
+    <div>
+      <button
+        className='mt-5 bg-gradient-to-r from-blue-500 to-cyan-400 flex gap-3 py-2 items-center justify-center w-full rounded-[6px]'
+        onClick={handleGoogleAuth}
+      >
+        <img className='w-8 h-8' src={googleLogo} alt='google logo' />
+        <span className='text-white text-[18px]'>
+          {`${
+            location.pathname === "/" ? "Sign in" : "Sign up"
+          } with Google`}
+        </span>
+      </button>
+    </div>
+  );
+};
 
 const GithubAuth = () => {
   const location = useLocation();
@@ -60,4 +101,4 @@ const GithubAuth = () => {
   );
 };
 
-export { GithubAuth };
+export { GithubAuth, GoogleAuth };
