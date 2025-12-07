@@ -73,6 +73,7 @@ const GithubAuth = () => {
       const result = await signInWithPopup(auth, githubProvider);
       const user = result.user;
       if (user) {
+        console.log(user.displayName?.split(" ")[0])
         localStorage.setItem("auth-token", user.accessToken);
         navigate("/home");
       }
