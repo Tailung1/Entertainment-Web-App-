@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 import OtpComponent from "../features/OTP/OtpComponent";
-import { GithubAuth } from "../features/firebase";
+import { GithubAuth, GoogleAuth } from "../features/firebase";
 import "../assets/github-mark.png";
 
 export default function SignIn() {
@@ -192,7 +192,10 @@ export default function SignIn() {
                 Sign Up
               </Link>
             </p>
-            <GithubAuth />
+            <div className='flex flex-col'>
+              <GithubAuth />
+              <GoogleAuth />
+            </div>
           </div>
         )}
       </motion.div>

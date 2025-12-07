@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
-import { GithubAuth,GoogleAuth } from "../features/firebase";
+import { GithubAuth, GoogleAuth } from "../features/firebase";
 
 export default function SignUp() {
   const { loading, setLoading, signInBackError } = useMyContext();
@@ -209,7 +209,7 @@ export default function SignUp() {
             Sign in
           </Link>
         </p>
-        <div className="flex flex-col gap-5">
+        <div className='flex flex-col'>
           <GithubAuth />
           <GoogleAuth />
         </div>
