@@ -4,7 +4,6 @@ import { useMyContext } from "../../useContext";
 import { Spin } from "antd";
 import OtpInput from "./OtpInput";
 import ResetPassword from "./ResetPassword";
-import { motion } from "framer-motion";
 
 export default function OtpComponent({
   setErrors,
@@ -79,7 +78,14 @@ export default function OtpComponent({
         setBackError(response.message);
       }
     } catch (err: any) {
-      setBackError(err.message);
+      if (
+        err instanceof TypeError &&
+        err.message === "Failed to fetch"
+      ) {
+        setBackError("No internet. Please check your connection");
+      } else {
+        setBackError("check internett");
+      }
       setLoading(false);
     }
   };
