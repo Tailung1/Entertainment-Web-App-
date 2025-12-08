@@ -166,7 +166,6 @@ export const BookMarkIcon = ({ item }: { item: movieType }) => {
   const { fetchedItems, setFetchtedItems } = useMyContext();
 
   const ToggleMarkIcon = (id: number) => {
-
     if (!id) return;
     setFetchtedItems(
       fetchedItems.map((item: movieType) =>
