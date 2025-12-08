@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import moviesRouter from "./routing/moviesRouter.js";
 import usersRouter from "./routing/usersRouter.js";
 import cors from "cors";
@@ -51,7 +51,6 @@ app.use("/api/users", usersRouter);
 const mongoURL = process.env.MONGO_URL;
 
 if (!mongoURL) {
-console.log(mongoURL);
   throw new Error("Environment variable 'MONGO_URL' doesn't exist");
 }
 

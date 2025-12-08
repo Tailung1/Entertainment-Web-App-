@@ -21,7 +21,7 @@ export default function OtpInput({
   useEffect(() => {
     if (timer === 0) {
       setOtp(["", "", "", "", "", ""]);
-      setBackError(false)
+      setBackError(false);
       return;
     }
     const interval = setInterval(() => {
@@ -92,8 +92,11 @@ export default function OtpInput({
           ))}
           {timer !== 0 && (
             <div className='absolute flex gap-3 top-[-35px] right-0  text-violet-700'>
-              <p className="relative">
-                Time left: <span className="absolute text-red-600 right-[-30px]">{timer}s</span>
+              <p className='relative'>
+                Time left:{" "}
+                <span className='absolute text-red-600 right-[-30px]'>
+                  {timer}s
+                </span>
               </p>
             </div>
           )}
