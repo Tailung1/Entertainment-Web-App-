@@ -1,10 +1,3 @@
-// type iconProps =
-//   | "logo"
-//   | "home"
-//   | "series"
-//   | "movies"
-//   | "bookmarks"
-//   | "profilePic";
 interface IconClickHandler {
   handleClick: (iconName: string) => void;
 }
