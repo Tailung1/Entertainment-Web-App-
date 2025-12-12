@@ -13,7 +13,7 @@ export default function ResetPassword({
     loading,
     showPassSuccessMessage,
     setShowPassSuccessMessage,
-    signInBackError
+    signInBackError,
   } = useMyContext();
   const [inputValues, setInputValues] = useState({
     newPassword: "",

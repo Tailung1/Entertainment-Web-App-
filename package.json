@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vercel/functions": "^3.3.4",
     "antd": "^5.27.5",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
