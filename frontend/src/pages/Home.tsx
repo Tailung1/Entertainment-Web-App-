@@ -4,6 +4,7 @@ import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../ItemsFiltering";
 
+
 export default function Home() {
   ItemsFiltering();
   const { trendingItems, recommenedItems, searching } =
