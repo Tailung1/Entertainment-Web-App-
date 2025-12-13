@@ -7,6 +7,7 @@ export default function BookMarked() {
 
   useEffect(() => {
     setPath("Bookmarked");
+    document.title = "Bookmarked";
   }, []);
 
   return (

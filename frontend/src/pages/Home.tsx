@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../ItemsFiltering";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 export default function Home() {
   ItemsFiltering();
@@ -12,16 +12,19 @@ export default function Home() {
   const loadingArr = new Array(6).fill("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const notEmptyTrending = trendingItems.length !== 0;
+  useEffect(()=>{
+document.title="Home"
+  },[])
 
   return (
     <div className='bg-[#10141E] pl-6 pr-1 min-h-screen'>
-      <Helmet>
+      {/* <Helmet>
         <title>Home</title>
         <meta
           name='description'
           content='there you can see trending anf recommened movies and tv series'
         />
-      </Helmet>
+      </Helmet> */}
       {/* Trending Section */}
       {!notEmptyTrending && searching ? (
         <h1 className='text-[25px] text-white'>

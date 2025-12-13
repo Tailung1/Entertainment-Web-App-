@@ -7,6 +7,8 @@ export default function Series() {
 
   useEffect(() => {
     setPath("Series");
+    document.title = "Series";
+
   }, []);
 
   return (
