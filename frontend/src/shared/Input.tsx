@@ -40,7 +40,7 @@ export default function Input() {
         placeholder={searchMessage}
         type='text'
         value={searching}
-        className='text-white outline-none bg-transparent  min-w-[250px] '
+        className='text-white outline-none bg-transparent   '
         onChange={(e) => setSearching(e.target.value)}
       />
     </div>

@@ -6,6 +6,7 @@ import Series from "../pages/Series";
 import Movies from "../pages/Movies";
 import BookMarked from "../pages/BookMarked";
 import LayoutWithHeader from "../shared/LayoutWithHeader";
+
 const checkAuthLoader = () => {
   const AuthToken = localStorage.getItem("auth-token");
   if (!AuthToken) {
