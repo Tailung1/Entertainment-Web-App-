@@ -12,9 +12,9 @@ export default function Home() {
   const loadingArr = new Array(6).fill("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const notEmptyTrending = trendingItems.length !== 0;
-  useEffect(()=>{
-document.title="Home"
-  },[])
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
 
   return (
     <div className='bg-[#10141E] pl-6 pr-1 min-h-screen'>
@@ -61,12 +61,12 @@ document.title="Home"
                 trendingItems.map((item) => (
                   <div
                     key={item.id}
-                    className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[200px]  lg:min-w-[220px] relative '
+                    className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
                   >
                     <img
                       src={item.image}
                       alt={item.title}
-                      className='h-[110px] lg:h-[120px] rounded-lg'
+                      className='h-[110px] lg:h-[140px] rounded-lg'
                       loading='lazy'
                     />
                     <div className='flex flex-col absolute bottom-1 left-2 cursor-default'>
@@ -80,6 +80,7 @@ document.title="Home"
                       <p className='text-[16px] text-white'>
                         {item.title}
                       </p>
+                      <div className='play-button'>Play</div>
                     </div>
                     <button className='absolute right-0.5'>
                       <BookMarkIcon item={item} />
@@ -117,23 +118,8 @@ document.title="Home"
               : recommenedItems.map((item) => (
                   <div
                     key={item.id}
-                    className='flex flex-col  gap-2 w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
+                    className=' item-container flex flex-col  gap-2 w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
                   >
-                    {/* Play Icon */}
-                    {/* <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='40'
-                      height='40'
-                      viewBox='0 0 24 24'
-                      fill='red'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      className='absolute cursor-pointer inset-0 m-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-black'
-                    >
-                      <polygon points='5,3 19,12 5,21 5,3' />
-                    </svg> */}
                     <img
                       src={item.image}
                       alt={item.title}
@@ -152,6 +138,8 @@ document.title="Home"
                         {item.title}
                       </p>
                     </div>
+                    <div className='play-button'>Play</div>
+
                     <button className='absolute right-0.5'>
                       <BookMarkIcon item={item} />
                     </button>

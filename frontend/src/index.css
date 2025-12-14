@@ -103,49 +103,16 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 153px;
+  width: 150px;
   position: relative;
-  overflow: hidden;
   border-radius: 8px;
+
 }
 
-.item-container .play-button {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  background-color: rgba(255, 2, 2, 0.6);
-  padding: 7px 20px;
-  border-radius: 10px;
-  font-size: 16px;
-  opacity: 0; /* Initially hidden */
-  pointer-events: none; /* Prevent interaction until hover */
-  transition: opacity 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.item-container:hover .play-button {
-  opacity: 1; /* Show button on hover */
-  cursor: pointer;
-}
-
-.item-container:hover:before {
-  background-color: rgba(0, 0, 0, 0.7);
-  content: "";
-  position: absolute;
-  height: 110px;
+.item-container-image {
   width: 100%;
-  animation: playUI 0.3s ease-in-out forwards;
   border-radius: 8px;
-  /* z-index: 1; */
 }
 
-@keyframes playUI {
-  0% {
-    top: -100%;
-  }
-  100% {
-    top: 0;
-  }
-}
+
+

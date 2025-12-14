@@ -20,7 +20,7 @@ export default function Input() {
   }, [path, location.pathname]);
 
   return (
-    <div className='flex items-center pl-6 gap-5   bg-[#10141E] pb-[24px]    '>
+    <div className='flex items-center pl-6 gap-5  bg-[#10141E] pb-[24px]    '>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='24'

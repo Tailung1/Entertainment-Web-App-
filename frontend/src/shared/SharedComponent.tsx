@@ -1,6 +1,7 @@
 import { BookMarkIcon } from "./Icon";
 import { DotIcon } from "./Icon";
 import ItemsFiltering from "../ItemsFiltering";
+import { motion } from "framer-motion";
 
 export default function SharedComponent({
   currentComponent,
@@ -25,18 +26,23 @@ export default function SharedComponent({
               <div key={index} className='loading-placeholder'></div>
             ))
           : currentComponent.map((item: movieType) => (
-              <div
+              <motion.div
+              initial={{opacity:0,y:20}}
+              animate={{opacity:1,y:0}}
+              transition={{duration:0.3}}
                 key={item.id}
-                className='lg:w-[220px] item-container'
+                className='item-container md:w-[220px] lg:w-[220px] '
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className='rounded-lg h-[110px] lg:h-[120px]'
-                  loading='lazy'
-                />
+                <div className='item-container-image-wrapper'>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className='item-container-image h-[100px] md:h-[120px]  lg:h-[130px]'
+                    loading='lazy'
+                  />
+                </div>
 
-                <div className='flex flex-col'>
+                <div className='flex flex-col items-start animation-container'>
                   <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
                     <p>{item.year}</p>
                     <DotIcon />
@@ -44,16 +50,17 @@ export default function SharedComponent({
                     <DotIcon />
                     <p>{item.raiting}</p>
                   </div>
-                  <p className='text-[18px] text-white'>
+                  <p className='text-[16px] text-white'>
                     {item.title}
                   </p>
+                  <button className='play-button text-red-500'>
+                    Play
+                  </button>{" "}
+                  /
                 </div>
 
-                {/* Play button */}
-                <div className='play-button'>Play</div>
-
                 <BookMarkIcon item={item} />
-              </div>
+              </motion.div>
             ))}
       </div>
     </div>
