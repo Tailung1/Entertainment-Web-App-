@@ -63,13 +63,18 @@ export default function Home() {
                     key={item.id}
                     className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
                   >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className='h-[110px] lg:h-[140px] rounded-lg'
-                      loading='lazy'
-                    />
-                    <div className='flex flex-col absolute bottom-1 left-2 cursor-default'>
+                    <div className='relative group'>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className='h-[125px] w-full lg:h-[140px] rounded-lg'
+                        loading='lazy'
+                      />
+                      <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
+                        <button className='play-button'>Play</button>
+                      </div>
+                    </div>
+                    <div className='flex flex-col absolute bottom-0 left-1  pointer-events-none'>
                       <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
                         <p>{item.year}</p>
                         <DotIcon />
@@ -80,7 +85,7 @@ export default function Home() {
                       <p className='text-[16px] text-white'>
                         {item.title}
                       </p>
-                      <div className='play-button'>Play</div>
+                   
                     </div>
                     <button className='absolute right-0.5'>
                       <BookMarkIcon item={item} />
@@ -118,7 +123,7 @@ export default function Home() {
               : recommenedItems.map((item) => (
                   <div
                     key={item.id}
-                    className=' item-container flex flex-col  w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
+                    className='item-container flex flex-col gap-2  w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
                   >
                     <div className='relative group'>
                       <img
