@@ -85,7 +85,6 @@ export default function Home() {
                       <p className='text-[16px] text-white'>
                         {item.title}
                       </p>
-                   
                     </div>
                     <button className='absolute right-0.5'>
                       <BookMarkIcon item={item} />
