@@ -42,7 +42,7 @@ export default function Home() {
             ref={scrollRef}
             className={` ${
               notEmptyTrending && "scroll-container"
-            } py-3    `}
+            } py-3`}
           >
             <div
               className={`${
@@ -118,15 +118,20 @@ export default function Home() {
               : recommenedItems.map((item) => (
                   <div
                     key={item.id}
-                    className=' item-container flex flex-col  gap-2 w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
+                    className=' item-container flex flex-col  w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
                   >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className='h-[110px] lg:h-[120px] rounded-lg hover:bg-black'
-                      loading='lazy'
-                    />
-                    <div className='flex flex-col absolute bottom-1 left-2 cursor-default'>
+                    <div className='relative group'>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className=' item-image h-[110px] lg:h-[120px] rounded-lg hover:bg-black'
+                        loading='lazy'
+                      />
+                      <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
+                        <button className='play-button'>Play</button>
+                      </div>
+                    </div>
+                    <div className='flex flex-col  left-2 cursor-default'>
                       <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
                         <p>{item.year}</p>
                         <DotIcon />
@@ -138,7 +143,6 @@ export default function Home() {
                         {item.title}
                       </p>
                     </div>
-                    <div className='play-button'>Play</div>
 
                     <button className='absolute right-0.5'>
                       <BookMarkIcon item={item} />
