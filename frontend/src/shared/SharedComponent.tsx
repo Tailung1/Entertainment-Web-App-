@@ -27,9 +27,9 @@ export default function SharedComponent({
             ))
           : currentComponent.map((item: movieType) => (
               <motion.div
-              initial={{opacity:0,y:20}}
-              animate={{opacity:1,y:0}}
-              transition={{duration:0.3}}
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.3 }}
                 key={item.id}
                 className='item-container md:w-[220px] lg:w-[220px] '
               >
