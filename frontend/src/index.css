@@ -99,20 +99,46 @@
   }
 }
 
-.item-container {
+.items-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 150px;
   position: relative;
   border-radius: 8px;
-
 }
 
-.item-container-image {
+.item-image {
   width: 100%;
   border-radius: 8px;
+  cursor: pointer;
 }
 
+.overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
 
+.group:hover .overlay {
+  opacity: 1;
+}
 
+.play-button {
+  background: rgba(255, 0, 0, 0.8);
+  padding: 5px 15px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+}
