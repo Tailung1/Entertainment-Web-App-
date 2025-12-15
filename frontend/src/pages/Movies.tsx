@@ -8,7 +8,7 @@ export default function Movies() {
 
   useEffect(() => {
     setPath("Movies");
-        document.title = "Movies";
+    document.title = "Movies";
   }, []);
 
   return (
