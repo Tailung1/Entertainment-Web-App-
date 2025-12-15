@@ -7,7 +7,14 @@ import cors from "cors";
 
 const app = express();
 dotenv.config();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://entertainment-web-8mg2svhbg-tailung1s-projects.vercel.app",
+    ],
+  })
+);
 app.use(express.json());
 // app.use(express.raw({ type: "application/json" }));
 
