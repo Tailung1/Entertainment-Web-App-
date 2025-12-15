@@ -3,6 +3,9 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import githubLogo from "../assets/github-mark.png";
 import googleLogo from "../assets/google-color.svg";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 import {
   getAuth,
