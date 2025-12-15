@@ -3,18 +3,18 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import moviesRouter from "./routing/moviesRouter.js";
 import usersRouter from "./routing/usersRouter.js";
-import cors from "cors";
+// import cors from "cors";
 
 const app = express();
 dotenv.config();
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://entertainment-web-8mg2svhbg-tailung1s-projects.vercel.app",
-    ],
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:5173",
+//       "https://entertainment-web-8mg2svhbg-tailung1s-projects.vercel.app",
+//     ],
+//   })
+// );
 app.use(express.json());
 // app.use(express.raw({ type: "application/json" }));
 
