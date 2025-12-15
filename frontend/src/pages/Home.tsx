@@ -67,7 +67,7 @@ export default function Home() {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className='h-[125px] w-full lg:h-[140px] rounded-lg'
+                        className='h-[125px] w-full lg:h-[150px] rounded-lg'
                         loading='lazy'
                       />
                       <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>

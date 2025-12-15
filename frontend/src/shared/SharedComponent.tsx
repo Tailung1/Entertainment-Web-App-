@@ -41,7 +41,7 @@ export default function SharedComponent({
                     loading='lazy'
                   />
 
-                  <motion.div className='overlay absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg opacity-0 transition-opacity duration-300'>
+                  <motion.div className='overlay inset-0  absolute  bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
                     <button className='play-button text-red-500 text-lg font-bold'>
                       Play
                     </button>
