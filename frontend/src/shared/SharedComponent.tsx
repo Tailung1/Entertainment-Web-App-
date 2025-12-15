@@ -54,7 +54,7 @@ export default function SharedComponent({
                     <DotIcon />
                     <p>{item.type}</p>
                     <DotIcon />
-                    <p>{item.raiting}</p>
+                    <p>{item.rating}</p>
                   </div>
                   <p className='text-[16px] text-white'>
                     {item.title}

@@ -9,7 +9,7 @@ export default function Home() {
   ItemsFiltering();
   const { trendingItems, recommenedItems, searching } =
     useMyContext();
-  const loadingArr = new Array(6).fill("");
+  const loadingArr = new Array(5).fill("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const notEmptyTrending = trendingItems.length !== 0;
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function Home() {
                 trendingItems.map((item) => (
                   <div
                     key={item.id}
-                    className='flex flex-col ml-4 gap-2 min-w-[180px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
+                    className='flex flex-col ml-4 gap-2 min-w-[200px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
                   >
                     <div className='relative group'>
                       <img
@@ -80,7 +80,7 @@ export default function Home() {
                         <DotIcon />
                         <p>{item.type}</p>
                         <DotIcon />
-                        <p>{item.raiting}</p>
+                        <p>{item.rating}</p>
                       </div>
                       <p className='text-[16px] text-white'>
                         {item.title}
@@ -141,7 +141,7 @@ export default function Home() {
                         <DotIcon />
                         <p>{item.type}</p>
                         <DotIcon />
-                        <p>{item.raiting}</p>
+                        <p>{item.rating}</p>
                       </div>
                       <p className='text-[16px] text-white'>
                         {item.title}

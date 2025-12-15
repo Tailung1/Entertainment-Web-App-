@@ -13,7 +13,7 @@
 }
 
 .loading-placeholder {
-  width: 200px;
+  width: 150px;
   height: 110px;
   background: #e0e0e01e;
   position: relative;
@@ -144,5 +144,16 @@
     background: rgba(255, 0, 0, 0.8);
     padding: 7px 20px;
     font-size: 20px;
+  }
+  .loading-placeholder {
+    width: 170px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .loading-placeholder {
+    width: 230px;
+    height: 130px;
   }
 }

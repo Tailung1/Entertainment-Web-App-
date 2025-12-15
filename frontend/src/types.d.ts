@@ -7,7 +7,7 @@ interface movieType {
   title: string;
   year: number;
   type: string;
-  raiting: string;
+  rating: string;
   image: string;
   trending: boolean;
   bookMarked: boolean;
