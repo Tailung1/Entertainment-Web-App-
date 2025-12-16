@@ -7,6 +7,8 @@ import {
   SetStateAction,
 } from "react";
 
+
+
 interface contextTypes {
   path: string;
   setPath: React.Dispatch<SetStateAction<string>>;
@@ -114,7 +116,7 @@ export default function MovieContext({
     const handleBeforeUnload = async () => {
       try {
         const data = await fetch(
-          import.meta.env.VITE_ITEMS_FETCH_API,
+          import.meta.env.VITE_BOOKMARKUPDATE_API,
           {
             method: "PATCH",
             headers: {
@@ -136,12 +138,15 @@ export default function MovieContext({
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const data = await fetch("http://localhost:3000/api/movies", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const data = await fetch(
+          import.meta.env.VITE_ITEMS_FETCH_API,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const response = await data.json();
         if (!data.ok) {
           setServerMessage("Failed to fetch movies data");
