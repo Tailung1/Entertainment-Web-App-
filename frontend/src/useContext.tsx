@@ -114,7 +114,7 @@ export default function MovieContext({
     const handleBeforeUnload = async () => {
       try {
         const data = await fetch(
-          "http://localhost:3000/api/movies/unload",
+          import.meta.env.VITE_ITEMS_FETCH_API,
           {
             method: "PATCH",
             headers: {

@@ -4,7 +4,6 @@ import SharedComponent from "../shared/SharedComponent";
 
 export default function Series() {
   const { series, setPath, path, searching } = useMyContext();
-
   useEffect(() => {
     setPath("Series");
     document.title = "Series";
