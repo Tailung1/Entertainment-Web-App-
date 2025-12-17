@@ -26,16 +26,19 @@ export default function Home() {
         />
       </Helmet> */}
       {/* Trending Section */}
-      {!notEmptyTrending && searching ? (
-        <h1 className='text-[25px] text-white'>
-          <div className='text-[20px] md:text-[25px]'>
-            No Trending items found for{" "}
-            <span className='text-green-700'>"</span>
-            <p className='text-red-500 inline'>{searching}</p>
-            <span className='text-green-700'>"</span>
-          </div>
-        </h1>
-      ) : (
+      {
+        // SCROLL CONTAINER TITLE !!!!!!!! {}{}{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}
+
+        //   !notEmptyTrending && searching ? (
+        //     <h1 className='text-[25px] text-white'>
+        //       <div className='text-[20px] md:text-[25px]'>
+        //         No Trending items found for{" "}
+        //         <span className='text-green-700'>"</span>
+        //         <p className='text-red-500 inline'>{searching}</p>
+        //         <span className='text-green-700'>"</span>
+        //       </div>
+        //     </h1>
+        //   ) :
         <>
           <h2 className='text-white text-[20px]'>Trending</h2>
           <div
@@ -49,15 +52,17 @@ export default function Home() {
                 notEmptyTrending && "wrapper-div"
               } hide-scrollbar`}
             >
-              {!notEmptyTrending ? (
-                <div className='flex gap-3'>
-                  {loadingArr.map((_, index) => (
-                    <div key={index} className='loading-placeholder'>
-                      {" "}
-                    </div>
-                  ))}
-                </div>
-              ) : (
+              {
+                // SCROLL CONTAINER items !!!!!!!! {}{}{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}
+                //   !notEmptyTrending ? (
+                //     <div className='flex gap-3'>
+                //       {loadingArr.map((_, index) => (
+                //         <div key={index} className='loading-placeholder'>
+                //           {" "}
+                //         </div>
+                //       ))}
+                //     </div>
+                //   ) :
                 trendingItems.map((item) => (
                   <div
                     key={item.id}
@@ -91,11 +96,11 @@ export default function Home() {
                     </button>
                   </div>
                 ))
-              )}
+              }
             </div>{" "}
           </div>
         </>
-      )}
+      }
 
       {/* Recommended Section */}
       {recommenedItems.length === 0 && searching ? (

@@ -17,20 +17,20 @@ export default function ItemsFiltering() {
     if (searching) {
       switch (location.pathname) {
         case "/home":
-          const itemsToSearchTrending = fetchedItems.filter(
-            (item) => item.trending
-          );
+          //   const itemsToSearchTrending = fetchedItems.filter(
+          //     (item) => item.trending
+          //   );
           const itemsToSearchRecommened = fetchedItems.filter(
             (item) => item.recommended
           );
 
-          setTrendingItems(
-            itemsToSearchTrending.filter((item) =>
-              item.title
-                .toLocaleLowerCase()
-                .includes(searching.toLocaleLowerCase())
-            )
-          );
+          //   setTrendingItems(
+          //     itemsToSearchTrending.filter((item) =>
+          //       item.title
+          //         .toLocaleLowerCase()
+          //         .includes(searching.toLocaleLowerCase())
+          //     )
+          //   );
           setRecommenedItems(
             itemsToSearchRecommened.filter((item) =>
               item.title
@@ -85,9 +85,9 @@ export default function ItemsFiltering() {
     } else {
       switch (location.pathname) {
         case "/home":
-          setTrendingItems(
-            fetchedItems.filter((item: movieType) => item.trending)
-          );
+          //   setTrendingItems(
+          //     fetchedItems.filter((item: movieType) => item.trending)
+          //   );
           setRecommenedItems(
             fetchedItems.filter((item: movieType) => item.recommended)
           );
