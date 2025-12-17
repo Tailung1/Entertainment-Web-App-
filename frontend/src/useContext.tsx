@@ -7,8 +7,6 @@ import {
   SetStateAction,
 } from "react";
 
-
-
 interface contextTypes {
   path: string;
   setPath: React.Dispatch<SetStateAction<string>>;
@@ -39,6 +37,8 @@ interface contextTypes {
   setShowPassSuccessMessage: React.Dispatch<SetStateAction<boolean>>;
   signInBackError: string;
   setSignInBackError: React.Dispatch<SetStateAction<string>>;
+  bookmarkChangeImpact:boolean,
+  setBookmarkChangeImpact: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const MyContext = createContext({} as contextTypes);
@@ -67,6 +67,8 @@ export default function MovieContext({
   const [searching, setSearching] = useState<string>("");
   const [itemsToShow, setItemsToShows] = useState<moviesType>([]);
   const [enablePassChange, setEnablePassChange] =
+    useState<boolean>(false);
+  const [bookmarkChangeImpact, setBookmarkChangeImpact] =
     useState<boolean>(false);
 
   //   useEffect(() => {
@@ -293,6 +295,8 @@ export default function MovieContext({
         setShowPassSuccessMessage,
         signInBackError,
         setSignInBackError,
+        bookmarkChangeImpact,
+        setBookmarkChangeImpact
       }}
     >
       {children}

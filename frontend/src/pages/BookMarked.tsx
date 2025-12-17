@@ -1,9 +1,16 @@
 import { useMyContext } from "../useContext";
 import { useEffect } from "react";
 import SharedComponent from "../shared/SharedComponent";
+import ItemsFiltering from "../ItemsFiltering";
 
 export default function BookMarked() {
-  const { bookMarked, setPath, path, searching } = useMyContext();
+  const {
+    bookMarked,
+    setPath,
+    path,
+    searching,
+    bookmarkChangeImpact,
+  } = useMyContext();
 
   useEffect(() => {
     setPath("Bookmarked");
@@ -12,19 +19,23 @@ export default function BookMarked() {
 
   return (
     <div className='min-h-screen'>
-      {bookMarked.length < 1 && searching ? (
+      {bookMarked.length === 0 && bookmarkChangeImpact ? (
         <h1 className='text-[25px] text-white pl-7'>
-          {searching ? (
-            <div className='text-[20px] md:text-[25px]'>
+          No bookmarked items available :(
+        </h1>
+      ) : bookMarked.length === 0 && searching ? (
+        <div className='text-[25px] text-white pl-7'>
+          {searching && bookMarked.length !== 0 ? (
+            <h1 className='text-[20px] md:text-[25px]'>
               No Bookmarked items found for{" "}
               <span className='text-green-700'>"</span>
               <p className=' text-red-500 inline'>{searching}</p>
               <span className='text-green-700'>"</span>{" "}
-            </div>
+            </h1>
           ) : (
             "No bookmarked items available :("
           )}
-        </h1>
+        </div>
       ) : (
         <SharedComponent
           currentComponent={bookMarked}

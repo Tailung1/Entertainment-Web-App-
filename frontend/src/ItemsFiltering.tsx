@@ -10,6 +10,7 @@ export default function ItemsFiltering() {
     setMovies,
     setSeries,
     setBookMarked,
+    bookmarkChangeImpact,
   } = useMyContext();
 
   useEffect(() => {
@@ -118,5 +119,8 @@ export default function ItemsFiltering() {
           break;
       }
     }
-  }, [searching, fetchedItems]);
+    setBookMarked(
+      fetchedItems.filter((item: movieType) => item.bookMarked)
+    );
+  }, [searching, fetchedItems, bookmarkChangeImpact]);
 }

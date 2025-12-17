@@ -162,10 +162,11 @@ export default function Icon({
 //   setFetchtedItems: React.Dispatch<SetStateAction<moviesType>>;
 // }
 export const BookMarkIcon = ({ item }: { item: movieType }) => {
-  const { fetchedItems, setFetchtedItems } = useMyContext();
+  const { fetchedItems, setFetchtedItems,setBookmarkChangeImpact } = useMyContext();
 
   const ToggleMarkIcon = (id: number) => {
     if (!id) return;
+    setBookmarkChangeImpact(true)
     setFetchtedItems(
       fetchedItems.map((item: movieType) =>
         item.id === id
