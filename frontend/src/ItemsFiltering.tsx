@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useMyContext } from "./useContext";
 
 export default function ItemsFiltering() {
-  let {
+     let {
     searching,
     fetchedItems,
     setTrendingItems,
@@ -85,9 +85,9 @@ export default function ItemsFiltering() {
     } else {
       switch (location.pathname) {
         case "/home":
-          //   setTrendingItems(
-          //     fetchedItems.filter((item: movieType) => item.trending)
-          //   );
+            setTrendingItems(
+              fetchedItems.filter((item: movieType) => item.trending)
+            );
           setRecommenedItems(
             fetchedItems.filter((item: movieType) => item.recommended)
           );
@@ -122,5 +122,6 @@ export default function ItemsFiltering() {
     setBookMarked(
       fetchedItems.filter((item: movieType) => item.bookMarked)
     );
+    console.log("dddd")
   }, [searching, fetchedItems, bookmarkChangeImpact]);
 }

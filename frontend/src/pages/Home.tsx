@@ -54,48 +54,54 @@ export default function Home() {
             >
               {
                 // SCROLL CONTAINER items !!!!!!!! {}{}{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}
-                  !notEmptyTrending ? (
-                    <div className='flex gap-3'>
-                      {loadingArr.map((_, index) => (
-                        <div key={index} className='loading-placeholder'>
-                          {" "}
-                        </div>
-                      ))}
-                    </div>
-                  ) :
-                trendingItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className='flex flex-col ml-4 gap-2 min-w-[200px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
-                  >
-                    <div className='relative group'>
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className='h-[125px] w-full lg:h-[150px] rounded-lg'
-                        loading='lazy'
-                      />
-                      <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
-                        <button className='play-button'>Play</button>
+                !notEmptyTrending ? (
+                  <div className='flex gap-3'>
+                    {loadingArr.map((_, index) => (
+                      <div
+                        key={index}
+                        className='loading-placeholder'
+                      >
+                        {" "}
                       </div>
-                    </div>
-                    <div className='flex flex-col absolute bottom-0 left-1  pointer-events-none'>
-                      <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
-                        <p>{item.year}</p>
-                        <DotIcon />
-                        <p>{item.type}</p>
-                        <DotIcon />
-                        <p>{item.rating}</p>
-                      </div>
-                      <p className='text-[16px] text-white'>
-                        {item.title}
-                      </p>
-                    </div>
-                    <button className='absolute right-0.5'>
-                      <BookMarkIcon item={item} />
-                    </button>
+                    ))}
                   </div>
-                ))
+                ) : (
+                  trendingItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className='flex flex-col ml-4 gap-2 min-w-[200px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
+                    >
+                      <div className='relative group'>
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className='h-[125px] w-full lg:h-[150px] rounded-lg'
+                          loading='lazy'
+                        />
+                        <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
+                          <button className='play-button'>
+                            Play
+                          </button>
+                        </div>
+                      </div>
+                      <div className='flex flex-col absolute bottom-0 left-1  pointer-events-none'>
+                        <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
+                          <p>{item.year}</p>
+                          <DotIcon />
+                          <p>{item.type}</p>
+                          <DotIcon />
+                          <p>{item.rating}</p>
+                        </div>
+                        <p className='text-[16px] text-white'>
+                          {item.title}
+                        </p>
+                      </div>
+                      <button className='absolute right-0.5'>
+                        <BookMarkIcon item={item} />
+                      </button>
+                    </div>
+                  ))
+                )
               }
             </div>{" "}
           </div>
