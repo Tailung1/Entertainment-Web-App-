@@ -122,6 +122,5 @@ export default function ItemsFiltering() {
     setBookMarked(
       fetchedItems.filter((item: movieType) => item.bookMarked)
     );
-    console.log("dddd")
   }, [searching, fetchedItems, bookmarkChangeImpact]);
 }
