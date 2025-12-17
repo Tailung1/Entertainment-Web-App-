@@ -54,15 +54,15 @@ export default function Home() {
             >
               {
                 // SCROLL CONTAINER items !!!!!!!! {}{}{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}
-                //   !notEmptyTrending ? (
-                //     <div className='flex gap-3'>
-                //       {loadingArr.map((_, index) => (
-                //         <div key={index} className='loading-placeholder'>
-                //           {" "}
-                //         </div>
-                //       ))}
-                //     </div>
-                //   ) :
+                  !notEmptyTrending ? (
+                    <div className='flex gap-3'>
+                      {loadingArr.map((_, index) => (
+                        <div key={index} className='loading-placeholder'>
+                          {" "}
+                        </div>
+                      ))}
+                    </div>
+                  ) :
                 trendingItems.map((item) => (
                   <div
                     key={item.id}
