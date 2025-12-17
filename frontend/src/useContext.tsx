@@ -72,7 +72,7 @@ export default function MovieContext({
     useState<boolean>(false);
   const [bookmarkChangeImpact, setBookmarkChangeImpact] =
     useState<boolean>(false);
-    const [dbIsEmpty, setDbIsEmpty]=useState(false)
+  const [dbIsEmpty, setDbIsEmpty] = useState(false);
 
   //   useEffect(() => {
   //     if (fetchedItems.length < 1) return;
@@ -301,7 +301,7 @@ export default function MovieContext({
         bookmarkChangeImpact,
         setBookmarkChangeImpact,
         dbIsEmpty,
-        setDbIsEmpty
+        setDbIsEmpty,
       }}
     >
       {children}

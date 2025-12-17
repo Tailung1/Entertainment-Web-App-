@@ -116,7 +116,7 @@ export default function ItemsFiltering() {
             (item: movieType) => item.bookMarked
           );
           setBookMarked(bookMarked);
-          if (bookMarked.length === 0) {
+          if (fetchedItems.length !== 0 && bookMarked.length === 0) {
             setDbIsEmpty(true);
           }
           break;

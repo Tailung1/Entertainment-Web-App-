@@ -17,7 +17,7 @@ export default function Movies() {
         <title>Movies</title>
         <meta name='description' content='there you can see movies' />
       </Helmet> */}
-      {movies.length < 1 && searching ? (
+      {movies.length ===0 && searching ? (
         <h1 className='text-[25px] text-white pl-7'>
           <div className='text-[20px] md:text-[25px]'>
             No movies found for{" "}
