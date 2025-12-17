@@ -37,8 +37,10 @@ interface contextTypes {
   setShowPassSuccessMessage: React.Dispatch<SetStateAction<boolean>>;
   signInBackError: string;
   setSignInBackError: React.Dispatch<SetStateAction<string>>;
-  bookmarkChangeImpact:boolean,
+  bookmarkChangeImpact: boolean;
   setBookmarkChangeImpact: React.Dispatch<SetStateAction<boolean>>;
+  dbIsEmpty: boolean;
+  setDbIsEmpty: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const MyContext = createContext({} as contextTypes);
@@ -70,6 +72,7 @@ export default function MovieContext({
     useState<boolean>(false);
   const [bookmarkChangeImpact, setBookmarkChangeImpact] =
     useState<boolean>(false);
+    const [dbIsEmpty, setDbIsEmpty]=useState(false)
 
   //   useEffect(() => {
   //     if (fetchedItems.length < 1) return;
@@ -296,7 +299,9 @@ export default function MovieContext({
         signInBackError,
         setSignInBackError,
         bookmarkChangeImpact,
-        setBookmarkChangeImpact
+        setBookmarkChangeImpact,
+        dbIsEmpty,
+        setDbIsEmpty
       }}
     >
       {children}

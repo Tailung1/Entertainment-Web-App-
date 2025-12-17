@@ -9,6 +9,7 @@ export default function BookMarked() {
     path,
     searching,
     bookmarkChangeImpact,
+    dbIsEmpty,
   } = useMyContext();
 
   useEffect(() => {
@@ -18,7 +19,8 @@ export default function BookMarked() {
 
   return (
     <div className='min-h-screen'>
-      {bookMarked.length === 0 && bookmarkChangeImpact ? (
+      {(bookMarked.length === 0 && bookmarkChangeImpact) ||
+      dbIsEmpty ? (
         <h1 className='text-[25px] text-white pl-7'>
           No bookmarked items available :(
         </h1>
