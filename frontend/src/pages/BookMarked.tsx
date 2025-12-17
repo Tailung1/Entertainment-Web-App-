@@ -22,7 +22,7 @@ export default function BookMarked() {
       {(bookMarked.length === 0 && bookmarkChangeImpact) ||
       dbIsEmpty ? (
         <h1 className='text-[25px] text-white pl-7'>
-          No bookmarked items available :(
+          No bookmarked items available 
         </h1>
       ) : bookMarked.length === 0 && searching ? (
         <div className='text-[25px] text-white pl-7'>
@@ -32,7 +32,6 @@ export default function BookMarked() {
             <p className=' text-red-500 inline'>{searching}</p>
             <span className='text-green-700'>"</span>{" "}
           </h1>
-          ) : ( "No bookmarked items available :("
         </div>
       ) : (
         <SharedComponent
