@@ -31,7 +31,7 @@ export default function SharedComponent({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 key={item.id}
-                className='items-container md:w-[220px] lg:w-[220px] relative'
+                className='items-container  md:w-[220px] lg:w-[260px] relative'
               >
                 <div className='relative group'>
                   <img

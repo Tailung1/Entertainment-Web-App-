@@ -103,7 +103,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 150px;
+  width: 140px;
   position: relative;
   border-radius: 8px;
 }

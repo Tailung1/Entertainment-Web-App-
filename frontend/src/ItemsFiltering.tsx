@@ -128,10 +128,10 @@ export default function ItemsFiltering() {
           break;
       }
     }
-    if(!searching) {
-        setBookMarked(
-          fetchedItems.filter((item: movieType) => item.bookMarked)
-        );
+    if (!searching) {
+      setBookMarked(
+        fetchedItems.filter((item: movieType) => item.bookMarked)
+      );
     }
   }, [searching, fetchedItems, bookmarkChangeImpact]);
 }
