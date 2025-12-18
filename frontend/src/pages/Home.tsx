@@ -3,6 +3,7 @@ import { useMyContext } from "../useContext";
 import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../ItemsFiltering";
+import { easeInOut, motion } from "framer-motion";
 // import { Helmet } from "react-helmet";
 
 export default function Home() {
@@ -131,7 +132,10 @@ export default function Home() {
                   </div>
                 ))
               : recommenedItems.map((item) => (
-                  <div
+                  <motion.div
+                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                    animate={{ y: 0, opacity: 100, scale: 1 }}
+                    transition={{ duration: 0.3, ease: easeInOut }}
                     key={item.id}
                     className='item-container flex flex-col gap-2  w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
                   >
@@ -162,7 +166,7 @@ export default function Home() {
                     <button className='absolute right-0.5'>
                       <BookMarkIcon item={item} />
                     </button>
-                  </div>
+                  </motion.div>
                 ))}
           </div>
         </>
