@@ -16,7 +16,6 @@ export default function BookMarked() {
     setPath("Bookmarked");
     document.title = "Bookmarked";
   }, []);
-
   return (
     <div className='min-h-screen'>
       {(bookMarked.length === 0 && bookmarkChangeImpact) ||

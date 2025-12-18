@@ -17,6 +17,7 @@ export default function ItemsFiltering() {
   useEffect(() => {
     setDbIsEmpty(false);
     if (searching) {
+      console.log("join filtering");
       switch (location.pathname) {
         case "/home":
           //   const itemsToSearchTrending = fetchedItems.filter(
@@ -69,16 +70,17 @@ export default function ItemsFiltering() {
           break;
 
         case "/bookmarked":
-          const itemsToSearchBookmarked = fetchedItems.filter(
+          const searchedBookMarked = fetchedItems.filter(
             (item) => item.bookMarked
           );
           setBookMarked(
-            itemsToSearchBookmarked.filter((item) =>
+            searchedBookMarked.filter((item) =>
               item.title
                 .toLocaleLowerCase()
                 .includes(searching.toLocaleLowerCase())
             )
           );
+
           break;
 
         default:
@@ -116,6 +118,7 @@ export default function ItemsFiltering() {
             (item: movieType) => item.bookMarked
           );
           setBookMarked(bookMarked);
+
           if (fetchedItems.length !== 0 && bookMarked.length === 0) {
             setDbIsEmpty(true);
           }
@@ -125,8 +128,10 @@ export default function ItemsFiltering() {
           break;
       }
     }
-    setBookMarked(
-      fetchedItems.filter((item: movieType) => item.bookMarked)
-    );
+    if(!searching) {
+        setBookMarked(
+          fetchedItems.filter((item: movieType) => item.bookMarked)
+        );
+    }
   }, [searching, fetchedItems, bookmarkChangeImpact]);
 }

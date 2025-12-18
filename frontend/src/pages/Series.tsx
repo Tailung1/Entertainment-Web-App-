@@ -11,7 +11,7 @@ export default function Series() {
 
   return (
     <div className='min-h-screen'>
-      {series.length < 1 && searching ? (
+      {series.length ===0 && searching ? (
         <h1 className='text-[25px] text-white pl-7'>
           <div className='text-[20px] md:text-[25px]'>
             No Series found for{" "}
