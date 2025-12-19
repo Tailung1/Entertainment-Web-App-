@@ -112,7 +112,7 @@ export default function Home() {
       {/* Recommended Section */}
       {recommenedItems.length === 0 && searching ? (
         <h1 className='text-[25px] text-white mt-5'>
-          <div className='text-[20px] md:text-[25px]'>
+          <div className='text-[25px]'>
             No Recommended items found for{" "}
             <span className='text-green-700'>"</span>
             <p className='text-red-500 inline'>{searching}</p>
@@ -121,7 +121,7 @@ export default function Home() {
         </h1>
       ) : (
         <>
-          <h2 className='text-white text-[20px] mt-5'>
+          <h2 className='text-white text-[25px] mt-5'>
             Recommended for you
           </h2>
           <div className='py-5 flex flex-wrap gap-x-4  gap-y-6'>

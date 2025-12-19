@@ -3,16 +3,26 @@ import { useEffect } from "react";
 import SharedComponent from "../shared/SharedComponent";
 
 export default function Series() {
-  const { series, setPath, path, searching } = useMyContext();
+  const { series,setSeries,fetchedItems, setPath, path, searching } = useMyContext();
   useEffect(() => {
     setPath("Series");
     document.title = "Series";
-  }, []);
+ const seriesItems = fetchedItems.filter(
+   (item) => item.type === "Series"
+ );
+ setSeries(
+   seriesItems.filter((item) =>
+     item.title
+       .toLocaleLowerCase()
+       .includes(searching.toLocaleLowerCase())
+   )
+ );
+  }, [searching]);
 
   return (
     <div className='min-h-screen'>
       {series.length ===0 && searching ? (
-        <h1 className='text-[25px] text-white pl-7'>
+        <h1 className='text-[25px] text-white'>
           <div className='text-[20px] md:text-[25px]'>
             No Series found for{" "}
             <span className='text-green-700'>"</span>

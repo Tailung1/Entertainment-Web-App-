@@ -11,6 +11,7 @@ export default function BookMarked() {
     bookmarkChangeImpact,
     dbIsEmpty,
     searchInputChangeImpact,
+    setBookmarkChangeImpact,
     fetchedItems,
     setBookMarked,
   } = useMyContext();
@@ -29,6 +30,7 @@ export default function BookMarked() {
           .includes(searching.toLocaleLowerCase())
       )
     );
+    setBookmarkChangeImpact(false);
   }, [searching]);
 
   return (
@@ -39,7 +41,7 @@ export default function BookMarked() {
           No bookmarked items available
         </h1>
       ) : bookMarked.length === 0 && searching ? (
-        <div className='text-[25px] text-white pl-7'>
+        <div className='text-[25px] text-white'>
           <h1 className=''>
             No Bookmarked items found for{" "}
             <span className='text-green-700'>"</span>

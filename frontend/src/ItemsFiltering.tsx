@@ -75,7 +75,7 @@ export default function ItemsFiltering() {
           const searchedBookMarked = fetchedItems.filter(
             (item) => item.bookMarked
           );
-          console.log("yess");
+
           setBookMarked(
             searchedBookMarked.filter((item) =>
               item.title

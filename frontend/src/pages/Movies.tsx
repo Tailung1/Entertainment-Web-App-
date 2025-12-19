@@ -4,12 +4,29 @@ import SharedComponent from "../shared/SharedComponent";
 // import { Helmet } from "react-helmet";
 
 export default function Movies() {
-  const { movies, setPath, path, searching } = useMyContext();
+  const {
+    movies,
+    setPath,
+    path,
+    searching,
+    setMovies,
+    fetchedItems,
+  } = useMyContext();
 
   useEffect(() => {
     setPath("Movies");
     document.title = "Movies";
-  }, []);
+    const movieItems = fetchedItems.filter(
+      (item) => item.type === "Movie"
+    );
+    setMovies(
+      movieItems.filter((item) =>
+        item.title
+          .toLocaleLowerCase()
+          .includes(searching.toLocaleLowerCase())
+      )
+    );
+  }, [searching]);
 
   return (
     <div className='min-h-screen '>
@@ -18,7 +35,7 @@ export default function Movies() {
         <meta name='description' content='there you can see movies' />
       </Helmet> */}
       {movies.length === 0 && searching ? (
-        <h1 className='text-[25px] text-white pl-7'>
+        <h1 className='text-[25px] text-white '>
           <div className='text-[20px] md:text-[25px]'>
             No movies found for{" "}
             <span className='text-green-700'>"</span>
