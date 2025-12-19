@@ -2,23 +2,22 @@ import { useMyContext } from "../useContext";
 import { useEffect } from "react";
 import SharedComponent from "../shared/SharedComponent";
 // import { Helmet } from "react-helmet";
-import dotenv from "dotenv"
 
 export default function Movies() {
   const { movies, setPath, path, searching } = useMyContext();
-//   dotenv.config();
+
   useEffect(() => {
     setPath("Movies");
     document.title = "Movies";
   }, []);
-console.log(import.meta.env.VITE_FIREBASE_MEASUREMENT_ID);
+
   return (
     <div className='min-h-screen '>
       {/* <Helmet>
         <title>Movies</title>
         <meta name='description' content='there you can see movies' />
       </Helmet> */}
-      {movies.length ===0 && searching ? (
+      {movies.length === 0 && searching ? (
         <h1 className='text-[25px] text-white pl-7'>
           <div className='text-[20px] md:text-[25px]'>
             No movies found for{" "}
