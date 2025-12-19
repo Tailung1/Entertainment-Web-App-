@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import FloatingInput from "../../shared/FloatingInput";
 import { useMyContext } from "../../useContext";
 import { Spin } from "antd";
@@ -7,8 +7,12 @@ import ResetPassword from "./ResetPassword";
 
 export default function OtpComponent({
   setErrors,
+  setEmailInput,
+  setPasswordInput,
 }: {
   setErrors: any;
+  setEmailInput: React.Dispatch<SetStateAction<string>>;
+  setPasswordInput: React.Dispatch<SetStateAction<string>>;
 }) {
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -210,7 +214,12 @@ export default function OtpComponent({
             />
           </svg>
 
-          <button className='text-violet-500 text-lg font-semibold hover:text-violet-700 transition duration-300'>
+          <button
+            onClick={() => {
+              setEmailInput(""), setPasswordInput("");
+            }}
+            className='text-violet-500 text-lg font-semibold hover:text-violet-700 transition duration-300'
+          >
             Back to sign in
           </button>
         </div>
