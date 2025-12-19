@@ -12,12 +12,13 @@ export default function ItemsFiltering() {
     setBookMarked,
     bookmarkChangeImpact,
     setDbIsEmpty,
+    setSearchInputChangeImpact
   } = useMyContext();
 
   useEffect(() => {
     setDbIsEmpty(false);
+    setSearchInputChangeImpact(false)
     if (searching) {
-      console.log("join filtering");
       switch (location.pathname) {
         case "/home":
           //   const itemsToSearchTrending = fetchedItems.filter(
@@ -70,9 +71,11 @@ export default function ItemsFiltering() {
           break;
 
         case "/bookmarked":
+            setSearchInputChangeImpact(true)
           const searchedBookMarked = fetchedItems.filter(
             (item) => item.bookMarked
           );
+          console.log("yess");
           setBookMarked(
             searchedBookMarked.filter((item) =>
               item.title
@@ -80,7 +83,8 @@ export default function ItemsFiltering() {
                 .includes(searching.toLocaleLowerCase())
             )
           );
-
+      
+         
           break;
 
         default:

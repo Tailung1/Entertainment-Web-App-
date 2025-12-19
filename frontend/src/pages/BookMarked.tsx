@@ -10,22 +10,37 @@ export default function BookMarked() {
     searching,
     bookmarkChangeImpact,
     dbIsEmpty,
+    searchInputChangeImpact,
+    fetchedItems,
+    setBookMarked,
   } = useMyContext();
 
   useEffect(() => {
     setPath("Bookmarked");
     document.title = "Bookmarked";
-  }, []);
+
+    const bookMarkedItems = fetchedItems.filter(
+      (item) => item.bookMarked
+    );
+    setBookMarked(
+      bookMarkedItems.filter((item) =>
+        item.title
+          .toLocaleLowerCase()
+          .includes(searching.toLocaleLowerCase())
+      )
+    );
+  }, [searching]);
+
   return (
-    <div className='min-h-screen'>
+    <div>
       {(bookMarked.length === 0 && bookmarkChangeImpact) ||
       dbIsEmpty ? (
-        <h1 className='text-[25px] text-white pl-7'>
-          No bookmarked items available 
+        <h1 className='text-[25px] text-white '>
+          No bookmarked items available
         </h1>
       ) : bookMarked.length === 0 && searching ? (
         <div className='text-[25px] text-white pl-7'>
-          <h1 className='text-[20px] md:text-[25px]'>
+          <h1 className=''>
             No Bookmarked items found for{" "}
             <span className='text-green-700'>"</span>
             <p className=' text-red-500 inline'>{searching}</p>

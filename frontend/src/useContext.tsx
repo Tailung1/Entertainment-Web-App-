@@ -41,6 +41,8 @@ interface contextTypes {
   setBookmarkChangeImpact: React.Dispatch<SetStateAction<boolean>>;
   dbIsEmpty: boolean;
   setDbIsEmpty: React.Dispatch<SetStateAction<boolean>>;
+  searchInputChangeImpact: boolean;
+  setSearchInputChangeImpact: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const MyContext = createContext({} as contextTypes);
@@ -73,6 +75,8 @@ export default function MovieContext({
   const [bookmarkChangeImpact, setBookmarkChangeImpact] =
     useState<boolean>(false);
   const [dbIsEmpty, setDbIsEmpty] = useState(false);
+  const [searchInputChangeImpact, setSearchInputChangeImpact] =
+    useState(false);
 
   //   useEffect(() => {
   //     if (fetchedItems.length < 1) return;
@@ -177,7 +181,6 @@ export default function MovieContext({
     fetchMovies();
   }, []);
 
-
   return (
     <MyContext.Provider
       value={{
@@ -214,6 +217,8 @@ export default function MovieContext({
         setBookmarkChangeImpact,
         dbIsEmpty,
         setDbIsEmpty,
+        searchInputChangeImpact,
+        setSearchInputChangeImpact,
       }}
     >
       {children}

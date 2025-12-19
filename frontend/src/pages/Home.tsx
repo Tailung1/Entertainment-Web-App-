@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='bg-[#10141E] pl-6 pr-1 min-h-screen'>
+    <div className=''>
       {/* <Helmet>
         <title>Home</title>
         <meta
@@ -41,7 +41,7 @@ export default function Home() {
         //     </h1>
         //   ) :
         <>
-          <h2 className='text-white text-[20px]'>Trending</h2>
+          <h2 className='text-white text-[25px]'>Trending</h2>
           <div
             ref={scrollRef}
             className={` ${

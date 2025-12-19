@@ -15,13 +15,13 @@ export default function SharedComponent({
   const loadingDivs = new Array(6).fill(null);
 
   return (
-    <div className='bg-[#10141E] px-6 min-h-screen'>
-      <h2 className='text-white text-[20px] mb-3'>
+    <div>
+      <h2 className='text-white text-[25px] mb-3'>
         {currentSection}
       </h2>
 
       <div className='flex flex-wrap gap-x-4 gap-y-5 '>
-        {currentComponent.length < 1
+        {currentComponent.length === 0
           ? loadingDivs.map((_, index) => (
               <div key={index} className='loading-placeholder'></div>
             ))
