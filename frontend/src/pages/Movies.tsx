@@ -29,14 +29,14 @@ export default function Movies() {
   }, [searching]);
 
   return (
-    <div className='min-h-screen '>
+    <div className='p-3 md:p-5'>
       {/* <Helmet>
         <title>Movies</title>
         <meta name='description' content='there you can see movies' />
       </Helmet> */}
       {movies.length === 0 && searching ? (
         <h1 className='text-[25px] text-white '>
-          <div className='text-[20px] md:text-[25px]'>
+          <div className=' md:text-[25px]'>
             No movies found for{" "}
             <span className='text-green-700'>"</span>
             <p className=' text-red-500 inline'>{searching}</p>

@@ -20,10 +20,10 @@ export default function Series() {
   }, [searching]);
 
   return (
-    <div className='min-h-screen'>
-      {series.length ===0 && searching ? (
+    <div className='p-3 md:p-5'>
+      {series.length === 0 && searching ? (
         <h1 className='text-[25px] text-white'>
-          <div className='text-[20px] md:text-[25px]'>
+          <div className=' md:text-[25px]'>
             No Series found for{" "}
             <span className='text-green-700'>"</span>
             <p className=' text-red-500 inline'>{searching}</p>

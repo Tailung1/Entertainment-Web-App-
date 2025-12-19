@@ -8,7 +8,7 @@ export default function LayoutWithHeader() {
       <header>
         <Header />
       </header>
-      <main className='pt-3 lg:pt-16 pl-3 md:pl-5  min-h-screen  bg-[#10141E] '>
+      <main className='pt-3 lg:pt-16   min-h-screen  bg-[#10141E] '>
         <Input />
         <Outlet />
       </main>

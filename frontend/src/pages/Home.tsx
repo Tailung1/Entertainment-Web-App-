@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className=''>
+    <div className='pl-3 pt-3 md:pt-5 md:pl-5'>
       {/* <Helmet>
         <title>Home</title>
         <meta
@@ -110,6 +110,7 @@ export default function Home() {
       }
 
       {/* Recommended Section */}
+
       {recommenedItems.length === 0 && searching ? (
         <h1 className='text-[25px] text-white mt-5'>
           <div className='text-[25px]'>
