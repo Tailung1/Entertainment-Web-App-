@@ -47,12 +47,12 @@
 .otp-container {
   display: flex;
   justify-content: center;
-  gap: 10px;
   position: relative;
+  gap: 5px;
 }
 
 .otp-input {
-  width: 40px;
+  width: 35px;
   height: 40px;
   text-align: center;
   font-size: 24px;

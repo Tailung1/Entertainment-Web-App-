@@ -85,7 +85,7 @@ export default function OtpInput({
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className={"otp-container"}
+          className='otp-container md:gap-4 lg:gap-5'
         >
           {otp.map((digit, index) => (
             <input
@@ -94,7 +94,7 @@ export default function OtpInput({
               value={digit}
               maxLength={1}
               onChange={(e) => handleChange(e, index)}
-              className='otp-input'
+              className='otp-input md:w-[40px]'
             />
           ))}
           {timer !== 0 && (
