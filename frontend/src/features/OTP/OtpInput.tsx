@@ -44,6 +44,13 @@ export default function OtpInput({
       }
     }
   };
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const secondsLeft = seconds % 60;
+    return `${minutes < 10 ? `0${minutes}` : minutes}:${
+      secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft
+    }`;
+  };
 
   return (
     <motion.div
@@ -91,13 +98,8 @@ export default function OtpInput({
             />
           ))}
           {timer !== 0 && (
-            <div className='absolute flex gap-3 top-[-35px] right-0  text-violet-700'>
-              <p className='relative'>
-                Time left:{" "}
-                <span className='absolute text-red-600 right-[-30px]'>
-                  {timer}s
-                </span>
-              </p>
+            <div className='absolute w-[30px] top-[-35px] right-10 text-violet-700'>
+              {formatTime(timer)}
             </div>
           )}
         </motion.div>
