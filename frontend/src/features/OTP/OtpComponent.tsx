@@ -81,6 +81,7 @@ export default function OtpComponent({
       if (!data.ok) {
         setBackError(response.message);
       }
+      setBackError("");
     } catch (err: any) {
       if (
         err instanceof TypeError &&
@@ -88,7 +89,7 @@ export default function OtpComponent({
       ) {
         setBackError("No internet. Please check your connection");
       } else {
-        setBackError("check internett");
+        setBackError("Request failed.Try again");
       }
       setLoading(false);
     }
