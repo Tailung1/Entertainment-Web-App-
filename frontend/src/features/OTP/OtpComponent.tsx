@@ -5,6 +5,15 @@ import { Spin } from "antd";
 import OtpInput from "./OtpInput";
 import ResetPassword from "./ResetPassword";
 
+class HttpError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
+
 export default function OtpComponent({
   setErrors,
   setEmailInput,
@@ -61,6 +70,7 @@ export default function OtpComponent({
     setErrorss(newErrors);
     if (Object.values(newErrors).includes(true)) return;
     setLoading(true);
+
     try {
       const data = await fetch(
         "http://localhost:3000/api/users/generate-otp",
@@ -74,24 +84,35 @@ export default function OtpComponent({
           }),
         }
       );
+
       setLoading(false);
       const response = await data.json();
+      if (!data.ok) {
+        const customErrorObj = new HttpError(
+          response.message,
+          data.status
+        );
+        throw customErrorObj;
+      }
+
       setEnableOtpEnter(data.ok);
       setTimer(60);
-      if (!data.ok) {
-        setBackError(response.message);
-      }
       setBackError("");
     } catch (err: any) {
-      if (
-        err instanceof TypeError &&
+      setLoading(false);
+
+      if (err instanceof HttpError) {
+        setBackError(err.message);
+      } else if (
+        err.name === "TypeError" &&
         err.message === "Failed to fetch"
       ) {
-        setBackError("No internet. Please check your connection");
+        setBackError(
+          "Failed to connect to the server. Please make sure it's running"
+        );
       } else {
-        setBackError("Request failed.Try again");
+        setBackError("An unexpected error occurred.");
       }
-      setLoading(false);
     }
   };
 

@@ -8,30 +8,46 @@ dotenv.config();
 
 const generateOTP = async (req, res) => {
   const { email } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) {
-    return res.status(401).send({ message: "Invalid Email" });
-  }
-  async function generate() {
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    const otpExpiry = moment().add(10, "minutes").toISOString();
-    const response = await User.updateOne(
-      { email },
-      { $set: { otp, otpExpiry } }
-    );
-    if (response.acknowledged) {
-      await emailService(email, otp);
-      return res.status(200).send({ message: "sent" });
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).send({ message: "Invalid Email" });
     }
+
+    const generate = async () => {
+      const otp = Math.floor(100000 + Math.random() * 900000);
+      const otpExpiry = moment().add(10, "minutes").toISOString();
+
+      const response = await User.updateOne(
+        { email },
+        { $set: { otp, otpExpiry } }
+      );
+
+      if (response.acknowledged) {
+        await emailService(email, otp);
+
+        return res.status(200).send({});
+      } else {
+        return res
+          .status(400)
+          .send({ message: "Failed to process request" });
+      }
+    };
+
+    await generate();
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Request failed. Check the internet" });
   }
-  generate();
 };
 
 const checkOTP = async (req, res) => {
   const { otpEmailInput, otpString } = req.body;
   const user = await User.findOne({ email: otpEmailInput });
   if (user.otp === otpString) {
-    res.status(200).json({ message: "OPT mached" });
+    res.status(200).json({ message: "OPT matched" });
   } else {
     res
       .status(400)
