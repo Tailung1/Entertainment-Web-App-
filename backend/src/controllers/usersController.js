@@ -37,9 +37,9 @@ const generateOTP = async (req, res) => {
 
     await generate();
   } catch (err) {
-    res
-      .status(500)
-      .send({ message: "Request failed. Check the internet" });
+    res.status(500).send({
+      message: "Unable to connect. Please check the internet",
+    });
   }
 };
 

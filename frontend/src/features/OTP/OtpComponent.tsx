@@ -4,6 +4,7 @@ import { useMyContext } from "../../useContext";
 import { Spin } from "antd";
 import OtpInput from "./OtpInput";
 import ResetPassword from "./ResetPassword";
+import { easeInOut, motion } from "framer-motion";
 
 class HttpError extends Error {
   status: number;
@@ -39,7 +40,6 @@ export default function OtpComponent({
   const [otpEmailInput, setOtpEmailInput] = useState<string>("");
   const [backError, setBackError] = useState<string>("");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-
   const [errors, setErrorss] = useState<{
     email: boolean;
     emailRegexError: boolean;
@@ -107,9 +107,7 @@ export default function OtpComponent({
         err.name === "TypeError" &&
         err.message === "Failed to fetch"
       ) {
-        setBackError(
-          "Failed to connect to the server. Please make sure it's running"
-        );
+        setBackError("Unable to connect. Please check the server.");
       } else {
         setBackError("An unexpected error occurred.");
       }
@@ -184,7 +182,12 @@ export default function OtpComponent({
           <p className='absolute text-red-600 top-1'>{backError} </p>
         )}
       </div>
-      <div className='flex flex-col'>
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{ y: backError ? 26 : 0 }}
+        transition={{duration:0.3, ease:easeInOut}}
+        className='flex flex-col'
+      >
         {!enablePassChange && (
           <button
             disabled={loading}
@@ -193,7 +196,7 @@ export default function OtpComponent({
             }
             className={` bg-red-800 {${
               loading && "bg-violet-900 cursor-progress "
-            }} w-full cursor-pointer   text-white py-3 mt-10  mb-6  rounded-lg ${
+            }} w-full cursor-pointer   text-white py-3 mt-6 md:mt-6  mb-5  rounded-lg ${
               !loading && "hover:bg-red-700"
             } `}
           >
@@ -219,7 +222,7 @@ export default function OtpComponent({
                 passwordLengthError: false,
               });
           }}
-          className='h-[10px] flex items-center justify-start gap-2  max-w-[160px]  cursor-pointer '
+          className='h-[10px] mb-3 flex items-center justify-start gap-2  max-w-[160px]  cursor-pointer '
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -240,12 +243,12 @@ export default function OtpComponent({
             onClick={() => {
               setEmailInput(""), setPasswordInput("");
             }}
-            className='text-violet-500 text-lg font-semibold hover:text-violet-700 transition duration-300'
+            className='text-violet-500  text-lg font-semibold hover:text-violet-700 transition duration-300'
           >
             Back to sign in
           </button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
