@@ -30,20 +30,26 @@ export default function OtpInput({
 
     return () => clearInterval(interval);
   }, [timer]);
-
+  console.log(otp);
   const handleChange = (e: any, index: number) => {
     setBackError("");
     const value = e.target.value;
+
     if (/^\d*$/.test(value)) {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
 
-      if (index < otp.length - 1) {
+      if (value !== "" && index < otp.length - 1) {
         document.getElementById(`Otp-input-${index + 1}`)?.focus();
+      }
+
+      if (value === "") {
+        document.getElementById(`Otp-input-${index}`)?.focus();
       }
     }
   };
+
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const secondsLeft = seconds % 60;
@@ -59,7 +65,7 @@ export default function OtpInput({
       transition={{ duration: 0.4 }}
       className='flex flex-col items-center gap-[20px] mt-[30px]'
     >
-      <p
+      <div
         className={`${
           backError ? "text-red-600" : "text-green-600 "
         } h-[55px]`}
@@ -78,7 +84,7 @@ export default function OtpInput({
         ) : (
           "OTP Sent! Check your email and enter the code below."
         )}
-      </p>
+      </div>
 
       {timer !== 0 && (
         <motion.div
