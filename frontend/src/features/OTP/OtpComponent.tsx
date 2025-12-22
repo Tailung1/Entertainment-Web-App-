@@ -15,7 +15,6 @@ class HttpError extends Error {
   }
 }
 
-
 export default function OtpComponent({
   setErrors,
   setEmailInput,
@@ -185,8 +184,8 @@ export default function OtpComponent({
       </div>
       <motion.div
         initial={{ y: 0 }}
-        animate={{ y: backError ? 26 : 0 }}
-        transition={{duration:0.3, ease:easeInOut}}
+        animate={{ y: backError && !enableOtpEnter ? 26 : 0 }}
+        transition={{ duration: 0.3, ease: easeInOut }}
         className='flex flex-col'
       >
         {!enablePassChange && (
