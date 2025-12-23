@@ -26,16 +26,12 @@ const router = createBrowserRouter([
   {
     element: <LayoutWithHeader />,
     children: [
+
       {
-        path: "/series",
-        element: <Series />,
+        path: "/home",
+        element: <Home />,
         loader: checkAuthLoader,
       },
-    //   {
-    //     path: "/home",
-    //     element: <Home />,
-    //     loader: checkAuthLoader,
-    //   },
       {
         path: "/series",
         element: <Series />,
