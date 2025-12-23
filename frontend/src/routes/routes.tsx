@@ -27,10 +27,15 @@ const router = createBrowserRouter([
     element: <LayoutWithHeader />,
     children: [
       {
-        path: "/home",
-        element: <Home />,
+        path: "/series",
+        element: <Series />,
         loader: checkAuthLoader,
       },
+    //   {
+    //     path: "/home",
+    //     element: <Home />,
+    //     loader: checkAuthLoader,
+    //   },
       {
         path: "/series",
         element: <Series />,
