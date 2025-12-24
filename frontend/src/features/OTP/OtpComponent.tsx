@@ -179,12 +179,19 @@ export default function OtpComponent({
             setTimer={setTimer}
           />
         ) : (
-          <p className='absolute text-red-600 top-1'>{backError} </p>
+          <p className='absolute text-red-600 top-0.5'>
+            {backError}{" "}
+          </p>
         )}
       </div>
       <motion.div
-        initial={{ y: 0 }}
-        animate={{ y: backError && !enableOtpEnter ? 26 : 0 }}
+        initial={{ y: 8 }}
+        animate={{
+          y:
+            backError && !enableOtpEnter && window.innerWidth < 425
+              ? 27
+              : 8,
+        }}
         transition={{ duration: 0.3, ease: easeInOut }}
         className='flex flex-col'
       >
