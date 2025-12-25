@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
-    "dev:back": " nodemon backend/src/server.js",
+     "heroku-postbuild": "cd frontend && npm install && npm run build", 
+  "start": "node backend/server.js",  
+    "dev:back": "nodemon backend/src/server.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vite": "^4.0.0",
-    "@vitejs/plugin-react": "^5.0.2",
     "@vercel/functions": "^3.3.4",
+    "@vitejs/plugin-react": "^5.0.2",
     "antd": "^5.27.5",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -30,7 +30,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^7.8.2",
     "react-toastify": "^11.0.5",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "vite": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
