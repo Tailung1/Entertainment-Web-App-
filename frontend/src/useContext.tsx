@@ -180,7 +180,6 @@ export default function MovieContext({
 
     fetchMovies();
   }, []);
-
   return (
     <MyContext.Provider
       value={{
