@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+   "engines": {
+    "node": "16.x" },
   "scripts": {
     "heroku-postbuild": "cd frontend && npm install && npm run build",
     "start": "node backend/server.js",
