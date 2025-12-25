@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-     "heroku-postbuild": "cd frontend && npm install && npm run build", 
-  "start": "node backend/server.js",  
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
+    "start": "node backend/server.js",
     "dev:back": "nodemon backend/src/server.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -14,6 +14,7 @@
   "dependencies": {
     "@vercel/functions": "^3.3.4",
     "@vitejs/plugin-react": "^5.0.2",
+    "typescript": "~5.8.3",
     "antd": "^5.27.5",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
