@@ -6,7 +6,6 @@
    "engines": {
     "node": "24.x" },
   "scripts": {
-    "heroku-postbuild": "cd frontend && npm install && npm run build",
     "start": "node backend/server.js",
     "dev:back": "nodemon backend/src/server.js",
     "build": "tsc -b && vite build",
