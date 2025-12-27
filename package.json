@@ -7,6 +7,7 @@
     "node": "24.x" },
   "scripts": {
     "start": "node backend/server.js",
+    "dev:front":"vite",
     "dev:back": "nodemon backend/src/server.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

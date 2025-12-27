@@ -27,7 +27,6 @@ export default function OtpInput({
     const interval = setInterval(() => {
       setTimer((prevTimer: number) => prevTimer - 1);
     }, 1000);
-console.log(window.innerWidth);
 
     return () => clearInterval(interval);
   }, [timer]);
