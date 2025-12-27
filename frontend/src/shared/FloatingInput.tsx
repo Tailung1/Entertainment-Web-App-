@@ -29,7 +29,7 @@ export default function FloatingInput({
     if (backError) {
       setTimeout(() => {
         setSignInBackError("");
-      }, 3000);
+      }, 5000);
     }
   }, [backError]);
 
