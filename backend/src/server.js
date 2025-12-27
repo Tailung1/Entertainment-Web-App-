@@ -16,6 +16,7 @@ app.use(
   })
 );
 app.use(express.json());
+
 // app.use(express.raw({ type: "application/json" }));
 
 // app.post("/api/movies/unload", async (req, res) => {
