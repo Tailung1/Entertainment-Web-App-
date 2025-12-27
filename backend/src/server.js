@@ -11,7 +11,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://entertainment-web-coa17g0m0-tailung1s-projects.vercel.app/",
+      "https://entertainment-web-app-sandy-five.vercel.app/",
     ],
   })
 );
