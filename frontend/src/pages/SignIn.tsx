@@ -93,7 +93,7 @@ export default function SignIn() {
           navigate("/home");
         }
       } catch (e: any) {
-        setSignInBackError(e.message);
+        setSignInBackError("Request failed. Check the connection");
         setLoading(false);
         // toast.error("Unexpected error");
       }
