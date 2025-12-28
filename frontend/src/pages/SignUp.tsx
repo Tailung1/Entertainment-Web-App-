@@ -102,7 +102,9 @@ export default function SignUp() {
           toast.error(response.message);
         }
       } catch (error) {
-        toast.error("Network error");
+        toast.error(
+          "Network error. Please check your connection and try again."
+        );
         setLoading(false);
       }
     }
