@@ -94,7 +94,7 @@ export default function SignIn() {
         }
       } catch (e: any) {
         setSignInBackError(
-          "Network error. Please check your connection and try again."
+          "Network error. Please check your connection"
         );
         setLoading(false);
         // toast.error("Unexpected error");
