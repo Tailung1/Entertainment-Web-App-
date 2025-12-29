@@ -56,10 +56,13 @@ app.use(express.json());
 app.use("/api/movies", moviesRouter);
 app.use("/api/users", usersRouter);
 
-const mongoURL = process.env.MONGO_URL;
+// const mongoURL = process.env.MONGO_URL;
+const backendURL = process.env.HEROKU_DB_SERVER;
 
-if (!mongoURL) {
-  throw new Error("Environment variable 'MONGO_URL' doesn't exist");
+if (!backendURL) {
+  throw new Error(
+    "Environment variable 'HEROKU_DB_SERVER' doesn't exist"
+  );
 }
 
 const port =
@@ -68,7 +71,7 @@ const port =
     : 3000;
 
 mongoose
-  .connect(mongoURL)
+  .connect(backendURL)
   .then(() => console.log("Connected successfully"))
   .catch((err) => console.log(err));
 
