@@ -12,14 +12,13 @@ const getMovies = async (req, res) => {
   }
 };
 
-
 const handleUnload = async (req, res) => {
   const data = req.body;
 
   if (!req.body || req.body.length === 0) {
     console.log("No data recived");
     return;
-  } 
+  }
   try {
     for (const item of data) {
       const movie = await Movie.findOne({ id: item.id });
@@ -77,4 +76,4 @@ const handleUnload = async (req, res) => {
 //     });
 //   }
 // };
-export { getMovies,handleUnload };
+export { getMovies, handleUnload };
