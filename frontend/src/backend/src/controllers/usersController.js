@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import moment from "moment";
-import emailService from "../../../utils/emailService.js";
+import emailService from "../../../../../utils/emailService.js";
 dotenv.config();
 
 const generateOTP = async (req, res) => {
