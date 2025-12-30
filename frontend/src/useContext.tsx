@@ -127,7 +127,8 @@ export default function MovieContext({
     const handleBeforeUnload = async () => {
       try {
         const data = await fetch(
-          import.meta.env.VITE_BOOKMARKUPDATE_API,
+        //   import.meta.env.VITE_BOOKMARKUPDATE_API,
+          import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
           {
             method: "PATCH",
             headers: {
@@ -150,7 +151,8 @@ export default function MovieContext({
     const fetchMovies = async () => {
       try {
         const data = await fetch(
-          import.meta.env.VITE_ITEMS_FETCH_API,
+        //   import.meta.env.VITE_ITEMS_FETCH_API,
+          import.meta.env.VITE_HEROKU_ITEMS_FETCH_API,
           {
             method: "GET",
             headers: {
