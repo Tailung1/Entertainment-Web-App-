@@ -10,6 +10,7 @@ import { Spin } from "antd";
 import { GithubAuth, GoogleAuth } from "../features/firebase";
 
 export default function SignUp() {
+  const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
   const { loading, setLoading, signInBackError } = useMyContext();
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({
@@ -82,7 +83,8 @@ export default function SignUp() {
       try {
         setLoading(true);
         const validateRequest = await fetch(
-          "http://localhost:3000/api/users/register",
+          //   "http://localhost:3000/api/users/register",
+          `${DB_SERVER_URL}/api/users/register`,
           {
             method: "POST",
             headers: {
@@ -94,6 +96,7 @@ export default function SignUp() {
             }),
           }
         );
+
         const response = await validateRequest.json();
         setLoading(false);
         if (validateRequest.ok) {

@@ -52,6 +52,8 @@ export default function MovieContext({
 }: {
   children: ReactNode;
 }) {
+  const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
+
   const [signInBackError, setSignInBackError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const [resetPassword, setResetPassword] = useState<boolean>(false);
