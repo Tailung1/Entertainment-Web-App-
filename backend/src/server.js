@@ -21,10 +21,10 @@ app.use(express.json());
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 30,
-  message: "Too many requests from this IP, please try again later",
+  message: "Too many requests from this IP, please try again after an hour",
 });
 
-app.use(limiter)
+app.use(limiter);
 
 // app.use(express.raw({ type: "application/json" }));
 
