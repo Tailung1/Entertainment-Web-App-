@@ -29,7 +29,7 @@ export default function SignIn() {
     passwordLengthError: false,
   });
   const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
-  console.log(DB_SERVER_URL)
+  console.log(DB_SERVER_URL);
 
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -75,7 +75,7 @@ export default function SignIn() {
 
       try {
         const validateReuqest = await fetch(
-        //   "localhost:3000/api/users/signin",
+          //   "localhost:3000/api/users/signin",
           `${DB_SERVER_URL}/api/users/signin`,
           {
             method: "POST",
