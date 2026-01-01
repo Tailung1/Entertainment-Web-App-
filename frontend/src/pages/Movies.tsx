@@ -1,7 +1,6 @@
 import { useMyContext } from "../useContext";
 import { useEffect } from "react";
 import SharedComponent from "../shared/SharedComponent";
-// import { Helmet } from "react-helmet";
 
 export default function Movies() {
   const {
@@ -30,10 +29,6 @@ export default function Movies() {
 
   return (
     <div className='p-3 md:p-5'>
-      {/* <Helmet>
-        <title>Movies</title>
-        <meta name='description' content='there you can see movies' />
-      </Helmet> */}
       {movies.length === 0 && searching ? (
         <h1 className='text-[25px] text-white '>
           <div className=' md:text-[25px]'>
