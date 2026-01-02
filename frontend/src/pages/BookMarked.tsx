@@ -10,12 +10,11 @@ export default function BookMarked() {
     searching,
     bookmarkChangeImpact,
     dbIsEmpty,
-    searchInputChangeImpact,
     setBookmarkChangeImpact,
     fetchedItems,
     setBookMarked,
   } = useMyContext();
-
+  console.log(fetchedItems);
   useEffect(() => {
     setPath("Bookmarked");
     document.title = "Bookmarked";

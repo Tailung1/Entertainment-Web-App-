@@ -80,78 +80,76 @@ export default function MovieContext({
   const [searchInputChangeImpact, setSearchInputChangeImpact] =
     useState(false);
 
-  //   useEffect(() => {
-  //     if (fetchedItems.length < 1) return;
-
-  //     const handleBeforeUnload = async () => {
-  //       if (fetchedItems.length < 1) return;
-
-  //       const data = JSON.stringify(fetchedItems);
-
-  //       localStorage.setItem("dataToSend", data);
-  //       localStorage.setItem("testt", "sent");
-
-  //       const response = navigator.sendBeacon(
-  //         "http://localhost:3000/api/movies/unload",
-  //         data
-  //       );
-
-  //       if (response) {
-  //         localStorage.setItem("resMessage", "good");
-  //       } else if (!response) {
-  //         localStorage.setItem("resMessage2", "bad");
-  //       }
-  //     };
-
-  //     // Listen for the beforeunload event to trigger data sending
-  //     window.addEventListener("beforeunload", handleBeforeUnload);
-
-  //     return () => {
-  //       // Clean up the event listener
-  //       window.removeEventListener("beforeunload", handleBeforeUnload);
-  //     };
-  //   }, [fetchedItems]);
-
-  {
-  }
-  {
-    {
-    }
-    {
-    }
-    {
-    }
-  }
-
   useEffect(() => {
+    console.log(0);
+          console.log(fetchedItems);
     const handleBeforeUnload = async () => {
-      try {
-        const data = await fetch(
-        //   import.meta.env.VITE_BOOKMARKUPDATE_API,
-          import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(fetchedItems),
-          }
-        );
-        const resp = await data.json();
-      } catch (err) {
-        console.log(err, "Failed in front");
+      console.log(1);
+   
+      if (fetchedItems.length < 1) return;
+      console.log(2);
+   
+      const data = JSON.stringify(fetchedItems);
+
+      localStorage.setItem("sendData", data);
+
+      const response = navigator.sendBeacon(
+        `${DB_SERVER_URL}/api/movies/unload"`,
+        data
+      );
+
+      if (!response) {
+        localStorage.setItem("resMessage", "good");
+        window.alert("Faillll");
       }
     };
-    if (fetchedItems.length > 0) {
-      handleBeforeUnload();
-    }
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, [fetchedItems]);
+
+  {
+  }
+  {
+    {
+    }
+    {
+    }
+    {
+    }
+  }
+
+  //   useEffect(() => {
+  //     const handleBookMarkUpdate = async () => {
+  //       try {
+  //         const data = await fetch(
+  //         //   import.meta.env.VITE_BOOKMARKUPDATE_API,
+  //           import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
+  //           {
+  //             method: "PATCH",
+  //             headers: {
+  //               "Content-Type": "application/json",
+  //             },
+  //             body: JSON.stringify(fetchedItems),
+  //           }
+  //         );
+  //         const resp = await data.json();
+  //       } catch (err) {
+  //         console.log(err, "Failed in front");
+  //       }
+  //     };
+  //     if (fetchedItems.length > 0) {
+  //       handleBookMarkUpdate();
+  //     }
+  //   }, [fetchedItems]);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const data = await fetch(
-        //   import.meta.env.VITE_ITEMS_FETCH_API,
+          //   import.meta.env.VITE_ITEMS_FETCH_API,
           import.meta.env.VITE_HEROKU_ITEMS_FETCH_API,
           {
             method: "GET",

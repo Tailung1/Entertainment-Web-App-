@@ -29,7 +29,6 @@ export default function SignIn() {
     passwordLengthError: false,
   });
   const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
-  console.log(DB_SERVER_URL);
 
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

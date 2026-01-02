@@ -114,7 +114,7 @@ const signIn = async (req, res) => {
     });
     res.status(201).send({ message: "Logined sucessfully", token });
   } catch (err) {
-    res.status(400).send(err.message);
+    res.status(405).send({message:"eh"});
   }
 };
 
