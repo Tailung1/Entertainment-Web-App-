@@ -83,9 +83,9 @@ export default function MovieContext({
   useEffect(() => {
     const handleBookMarkUpdate = async () => {
       try {
-        const data = await fetch(
-          //   import.meta.env.VITE_BOOKMARKUPDATE_API,
-          import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
+        const response = await fetch(
+          import.meta.env.VITE_BOOKMARKUPDATE_API,
+          //   import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
           {
             method: "PATCH",
             headers: {
@@ -94,8 +94,17 @@ export default function MovieContext({
             body: JSON.stringify(fetchedItems),
           }
         );
+        if (!response) {
+            console.log(response)
+          throw new Error("Throwed error !!");
+        }
       } catch (err) {
-        console.log(err, "Failed in front");
+        console.log("what")
+        if (err instanceof Error) {
+          console.log("instancee");
+        } else {
+          console.log("unknown");
+        }
       }
     };
     if (fetchedItems.length > 0) {
@@ -107,8 +116,8 @@ export default function MovieContext({
     const fetchMovies = async () => {
       try {
         const data = await fetch(
-          //   import.meta.env.VITE_ITEMS_FETCH_API,
-          import.meta.env.VITE_HEROKU_ITEMS_FETCH_API,
+          import.meta.env.VITE_ITEMS_FETCH_API,
+          //   import.meta.env.VITE_HEROKU_ITEMS_FETCH_API,
           {
             method: "GET",
             headers: {
