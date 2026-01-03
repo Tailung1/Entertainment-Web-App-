@@ -81,26 +81,27 @@ export default function MovieContext({
     useState(false);
 
   useEffect(() => {
-    console.log(0);
-          console.log(fetchedItems);
     const handleBeforeUnload = async () => {
-      console.log(1);
-   
       if (fetchedItems.length < 1) return;
-      console.log(2);
-   
+      //   const response = await fetch(
+      //     `${DB_SERVER_URL}/api/movies/unload`,
+      //     {
+      //       method: "PATCH",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify(fetchedItems),
+      //     }
+      //   );
       const data = JSON.stringify(fetchedItems);
-
-      localStorage.setItem("sendData", data);
-
-      const response = navigator.sendBeacon(
-        `${DB_SERVER_URL}/api/movies/unload"`,
+      const success = navigator.sendBeacon(
+        `${DB_SERVER_URL}/api/movies/unload`,
         data
       );
-
-      if (!response) {
-        localStorage.setItem("resMessage", "good");
-        window.alert("Faillll");
+      if (!success) {
+        localStorage.setItem("beaconResponse", "bad");
+      } else {
+        localStorage.setItem("beaconResponse", "good");
       }
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -121,29 +122,29 @@ export default function MovieContext({
     }
   }
 
-  //   useEffect(() => {
-  //     const handleBookMarkUpdate = async () => {
-  //       try {
-  //         const data = await fetch(
-  //         //   import.meta.env.VITE_BOOKMARKUPDATE_API,
-  //           import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
-  //           {
-  //             method: "PATCH",
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //             },
-  //             body: JSON.stringify(fetchedItems),
-  //           }
-  //         );
-  //         const resp = await data.json();
-  //       } catch (err) {
-  //         console.log(err, "Failed in front");
-  //       }
-  //     };
-  //     if (fetchedItems.length > 0) {
-  //       handleBookMarkUpdate();
+  // useEffect(() => {
+  //   const handleBookMarkUpdate = async () => {
+  //     try {
+  //       const data = await fetch(
+  //       //   import.meta.env.VITE_BOOKMARKUPDATE_API,
+  //         import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
+  //         {
+  //           method: "PATCH",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify(fetchedItems),
+  //         }
+  //       );
+  //       const resp = await data.json();
+  //     } catch (err) {
+  //       console.log(err, "Failed in front");
   //     }
-  //   }, [fetchedItems]);
+  //   };
+  //   if (fetchedItems.length > 0) {
+  //     handleBookMarkUpdate();
+  //   }
+  // }, [fetchedItems]);
 
   useEffect(() => {
     const fetchMovies = async () => {

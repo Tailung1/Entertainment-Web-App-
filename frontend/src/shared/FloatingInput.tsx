@@ -1,4 +1,4 @@
-import { motion, number } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useMyContext } from "../useContext";
 
