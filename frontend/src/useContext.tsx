@@ -5,6 +5,7 @@ import {
   useEffect,
   useContext,
   SetStateAction,
+  useRef,
 } from "react";
 
 interface contextTypes {
@@ -80,6 +81,8 @@ export default function MovieContext({
   const [searchInputChangeImpact, setSearchInputChangeImpact] =
     useState(false);
 
+  const isFirstMount = useRef(true);
+
   useEffect(() => {
     const handleBookMarkUpdate = async () => {
       try {
@@ -94,20 +97,19 @@ export default function MovieContext({
             body: JSON.stringify(fetchedItems),
           }
         );
-        if (!response) {
-            console.log(response)
-          throw new Error("Throwed error !!");
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message);
         }
-      } catch (err) {
-        console.log("what")
-        if (err instanceof Error) {
-          console.log("instancee");
-        } else {
-          console.log("unknown");
-        }
+      } catch (err: any) {
+        console.log(err.message);
       }
     };
     if (fetchedItems.length > 0) {
+      if (isFirstMount.current) {
+        isFirstMount.current = false;
+        return;
+      }
       handleBookMarkUpdate();
     }
   }, [fetchedItems]);
