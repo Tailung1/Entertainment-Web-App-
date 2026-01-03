@@ -14,23 +14,28 @@ const getMovies = async (req, res) => {
 
 const handleUnload = async (req, res) => {
   const data = req.body;
-   console.log("No data recived");
+  console.log("No data recived");
   if (!req.body || req.body.length === 0) {
     console.log("No data recived");
     return;
   }
   try {
+    const bulkOps = [];
     for (const item of data) {
       const movie = await Movie.findOne({ id: item.id });
-      if (movie) {
-        await Movie.findOneAndUpdate(
-          { id: movie.id },
-          {
-            bookMarked: item.bookMarked,
-          }
-        );
-      } else {
-        console.log(`Movie with id ${item.id} not found`);
+      if (!movie) {
+        return res
+          .status(401)
+          .send({ message: `Item with id "${item.id}" not Found` });
+      }
+      bulkOps.push({
+        updateOne: {
+          filter: { id: item.id },
+          update: { $set: { bookmarked: item.bookmarked } },
+        },
+      });
+      if (bulkOps.length > 0) {
+        await Movie.bulkWrite(bulkOps);
       }
     }
     res.status(200).json({ message: "Items updated successfully " });
@@ -41,6 +46,5 @@ const handleUnload = async (req, res) => {
     });
   }
 };
-
 
 export { getMovies, handleUnload };

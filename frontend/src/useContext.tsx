@@ -81,70 +81,27 @@ export default function MovieContext({
     useState(false);
 
   useEffect(() => {
-    const handleBeforeUnload = async () => {
-      if (fetchedItems.length < 1) return;
-      //   const response = await fetch(
-      //     `${DB_SERVER_URL}/api/movies/unload`,
-      //     {
-      //       method: "PATCH",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify(fetchedItems),
-      //     }
-      //   );
-      const data = JSON.stringify(fetchedItems);
-      const success = navigator.sendBeacon(
-        `${DB_SERVER_URL}/api/movies/unload`,
-        data
-      );
-      if (!success) {
-        localStorage.setItem("beaconResponse", "bad");
-      } else {
-        localStorage.setItem("beaconResponse", "good");
+    const handleBookMarkUpdate = async () => {
+      try {
+        const data = await fetch(
+          //   import.meta.env.VITE_BOOKMARKUPDATE_API,
+          import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(fetchedItems),
+          }
+        );
+      } catch (err) {
+        console.log(err, "Failed in front");
       }
     };
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+    if (fetchedItems.length > 0) {
+      handleBookMarkUpdate();
+    }
   }, [fetchedItems]);
-
-  {
-  }
-  {
-    {
-    }
-    {
-    }
-    {
-    }
-  }
-
-  // useEffect(() => {
-  //   const handleBookMarkUpdate = async () => {
-  //     try {
-  //       const data = await fetch(
-  //       //   import.meta.env.VITE_BOOKMARKUPDATE_API,
-  //         import.meta.env.VITE_HEROKU_BOOKMARKUPDATE_API,
-  //         {
-  //           method: "PATCH",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify(fetchedItems),
-  //         }
-  //       );
-  //       const resp = await data.json();
-  //     } catch (err) {
-  //       console.log(err, "Failed in front");
-  //     }
-  //   };
-  //   if (fetchedItems.length > 0) {
-  //     handleBookMarkUpdate();
-  //   }
-  // }, [fetchedItems]);
 
   useEffect(() => {
     const fetchMovies = async () => {
