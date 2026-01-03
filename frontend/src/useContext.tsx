@@ -81,7 +81,7 @@ export default function MovieContext({
   const [searchInputChangeImpact, setSearchInputChangeImpact] =
     useState(false);
 
-  const isFirstMount = useRef(true);
+  const isFirstMount = useRef(2);
 
   useEffect(() => {
     const handleBookMarkUpdate = async () => {
@@ -97,6 +97,7 @@ export default function MovieContext({
             body: JSON.stringify(fetchedItems),
           }
         );
+        const data = await response.json();
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.message);
@@ -106,8 +107,8 @@ export default function MovieContext({
       }
     };
     if (fetchedItems.length > 0) {
-      if (isFirstMount.current) {
-        isFirstMount.current = false;
+      if (isFirstMount.current > 0) {
+        isFirstMount.current = isFirstMount.current - 1;
         return;
       }
       handleBookMarkUpdate();

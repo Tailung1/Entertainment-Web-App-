@@ -14,7 +14,7 @@ export default function BookMarked() {
     fetchedItems,
     setBookMarked,
   } = useMyContext();
-  console.log(fetchedItems);
+
   useEffect(() => {
     setPath("Bookmarked");
     document.title = "Bookmarked";
