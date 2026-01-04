@@ -8,9 +8,10 @@
   padding-right: 40px;
 } */
 
-.hide-scrollbar::-webkit-scrollbar {
+/* Isnot needed but setted anyways !!!!!!!!!!!!!! */
+/* .hide-scrollbar::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .loading-placeholder {
   width: 150px;
@@ -74,19 +75,16 @@
   background-color: #0056b3;
 }
 
-.scroll-container {
-  width: 100%;
+/* .scroll-container {
   overflow: hidden;
-
   /* animation-play-state: running; */
-}
-.wrapper-div:hover {
+/* } */ */
+.scroll-container-wrapper:hover {
   animation-play-state: paused;
 }
-.wrapper-div {
+.scroll-container-wrapper {
   display: flex;
   animation: scroll 60s linear infinite;
-
   /* animation-play-state:running; */
 }
 
@@ -99,7 +97,7 @@
   }
 }
 
-.items-container {
+.item-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -151,7 +149,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   .loading-placeholder {
     width: 230px;
     height: 130px;

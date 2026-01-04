@@ -16,9 +16,8 @@ export default function Home() {
   useEffect(() => {
     document.title = "Home";
   }, []);
-
   return (
-    <div className='pl-3 pt-3 md:pt-5 md:pl-5'>
+    <div className=' pl-3 pt-3 md:pt-5 md:pl-5'>
       {/* <Helmet>
         <title>Home</title>
         <meta
@@ -50,7 +49,7 @@ export default function Home() {
           >
             <div
               className={`${
-                notEmptyTrending && "wrapper-div"
+                notEmptyTrending && "scroll-container-wrapper"
               } hide-scrollbar`}
             >
               {
@@ -121,11 +120,11 @@ export default function Home() {
           </div>
         </h1>
       ) : (
-        <>
+        <div className='min-h-screen'>
           <h2 className='text-white text-[25px] mt-5'>
             Recommended for you
           </h2>
-          <div className='py-5 flex flex-wrap gap-x-4  gap-y-6'>
+          <div className='py-5  flex flex-wrap  gap-x-4  gap-y-6'>
             {recommenedItems.length < 1
               ? loadingArr.map((_, idnex) => (
                   <div key={idnex} className='loading-placeholder'>
@@ -144,7 +143,7 @@ export default function Home() {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className=' item-image h-[110px] lg:h-[120px] rounded-lg hover:bg-black'
+                        className='item-image h-[110px] lg:h-[120px] rounded-lg hover:bg-black'
                         loading='lazy'
                       />
                       <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
@@ -170,7 +169,7 @@ export default function Home() {
                   </motion.div>
                 ))}
           </div>
-        </>
+        </div>
       )}
     </div>
   );
