@@ -8,7 +8,7 @@ export default function LayoutWithHeader() {
       <header>
         <Header />
       </header>
-      <main className='flex flex-col  pt-3 lg:pt-16   bg-[#10141E] '>
+      <main className='flex flex-col overflow-hidden pt-3 lg:pt-16   bg-[#10141E] '>
         <Input />
         <Outlet />
       </main>
