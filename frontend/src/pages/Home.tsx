@@ -17,7 +17,7 @@ export default function Home() {
     document.title = "Home";
   }, []);
   return (
-    <div className=' pl-3 pt-3 md:pt-5 md:pl-5'>
+    <div className='pt-3 md:pt-5'>
       {/* <Helmet>
         <title>Home</title>
         <meta

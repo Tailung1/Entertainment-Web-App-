@@ -28,7 +28,7 @@ export default function Movies() {
   }, [searching]);
 
   return (
-    <div className='p-3 md:p-5'>
+    <div>
       {/* <Helmet>
         <title>Movies</title>
         <meta name='description' content='there you can see movies' />

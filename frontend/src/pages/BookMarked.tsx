@@ -33,7 +33,7 @@ export default function BookMarked() {
   }, [searching]);
 
   return (
-    <div className='p-3 md:p-5'>
+    <div>
       {(bookMarked.length === 0 && bookmarkChangeImpact) ||
       dbIsEmpty ? (
         <h1 className='text-[25px] text-white '>

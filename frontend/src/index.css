@@ -79,8 +79,10 @@
   overflow: hidden;
   /* animation-play-state: running; */
 /* } */
-*/ .scroll-container-wrapper:hover {
+
+ .scroll-container-wrapper:hover {
   animation-play-state: paused;
+
 }
 .scroll-container-wrapper {
   display: flex;
@@ -90,7 +92,7 @@
 
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-100%);

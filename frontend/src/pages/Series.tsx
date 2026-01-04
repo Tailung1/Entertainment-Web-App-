@@ -27,7 +27,7 @@ export default function Series() {
   }, [searching]);
 
   return (
-    <div className='p-3 md:p-5'>
+    <div>
       {series.length === 0 && searching ? (
         <h1 className='text-[25px] text-white'>
           <div className=' md:text-[25px]'>

@@ -15,7 +15,7 @@ export default function SharedComponent({
   const loadingDivs = new Array(6).fill(null);
 
   return (
-    <div>
+    <div className="pt-3 md:pt-5 pr-3">
       <h2 className='text-white text-[25px] mb-3'>
         {currentSection}
       </h2>
@@ -31,7 +31,7 @@ export default function SharedComponent({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 key={item.id}
-                className='items-container  md:w-[220px] lg:w-[260px] relative'
+                className='items-container w-[150px]  md:w-[220px] lg:w-[260px] relative'
               >
                 <div className='relative group'>
                   <img
