@@ -29,7 +29,7 @@ export default function Series() {
   return (
     <div>
       {series.length === 0 && searching ? (
-        <h1 className='text-[25px] text-white'>
+        <h1 className='text-[25px] text-white pt-3 md:pt-5'>
           <div className=' md:text-[25px]'>
             No Series found for{" "}
             <span className='text-green-700'>"</span>

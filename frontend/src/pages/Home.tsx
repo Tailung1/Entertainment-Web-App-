@@ -4,7 +4,7 @@ import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../ItemsFiltering";
 import { easeInOut, motion } from "framer-motion";
-import { useState } from "react";
+
 // import { Helmet } from "react-helmet";
 
 export default function Home() {
@@ -18,7 +18,6 @@ export default function Home() {
   useEffect(() => {
     document.title = "Home";
   }, []);
-  const isSearching = searching;
 
   const calculatedAnimationDuration =
     document.getElementById("scrollParent")?.scrollWidth;
@@ -49,7 +48,7 @@ export default function Home() {
               }  hide-scrollbar `}
               style={{
                 width: `${calculatedAnimationDuration}px`,
-                animationPlayState: isSearching && "paused",
+                animationPlayState: searching? "paused":"running",
               }}
             >
               {
@@ -116,7 +115,7 @@ export default function Home() {
           <div className='text-[25px]'>
             No Recommended items found for{" "}
             <span className='text-green-700'>"</span>
-            <p className='text-red-500 inline'>{searching}</p>
+            <p className='text-red-500 inline '>{searching}</p>
             <span className='text-green-700'>"</span>
           </div>
         </h1>
