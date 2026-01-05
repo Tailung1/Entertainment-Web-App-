@@ -4,6 +4,7 @@ import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../ItemsFiltering";
 import { easeInOut, motion } from "framer-motion";
+import { useState } from "react";
 // import { Helmet } from "react-helmet";
 
 export default function Home() {
@@ -13,9 +14,13 @@ export default function Home() {
   const loadingArr = new Array(5).fill("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const notEmptyTrending = trendingItems.length !== 0;
+
   useEffect(() => {
     document.title = "Home";
   }, []);
+  const calculatedAnimationDuration =
+    document.getElementById("scrollParent")?.scrollWidth;
+
   return (
     <div className='pt-3 md:pt-5'>
       {/* <Helmet>
@@ -27,21 +32,10 @@ export default function Home() {
       </Helmet> */}
       {/* Trending Section */}
       {
-        // SCROLL CONTAINER TITLE !!!!!!!! {}{}{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}
-
-        //   !notEmptyTrending && searching ? (
-        //     <h1 className='text-[25px] text-white'>
-        //       <div className='text-[20px] md:text-[25px]'>
-        //         No Trending items found for{" "}
-        //         <span className='text-green-700'>"</span>
-        //         <p className='text-red-500 inline'>{searching}</p>
-        //         <span className='text-green-700'>"</span>
-        //       </div>
-        //     </h1>
-        //   ) :
         <>
           <h2 className='text-white text-[25px]'>Trending</h2>
           <div
+            id='scrollParent'
             ref={scrollRef}
             className={` ${
               notEmptyTrending && "scroll-container"
@@ -50,7 +44,8 @@ export default function Home() {
             <div
               className={`${
                 notEmptyTrending && "scroll-container-wrapper"
-              } hide-scrollbar`}
+              } hide-scrollbar `}
+              style={{ width: calculatedAnimationDuration + "px" }}
             >
               {
                 // SCROLL CONTAINER items !!!!!!!! {}{}{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}
@@ -68,8 +63,9 @@ export default function Home() {
                 ) : (
                   trendingItems.map((item) => (
                     <div
+                      id='movie'
                       key={item.id}
-                      className='flex flex-col ml-4 gap-2 min-w-[200px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
+                      className='flex gap-3 min-w-[200px] md:min-w-[230px]  lg:min-w-[300px] relative  item-container'
                     >
                       <div className='relative group'>
                         <img

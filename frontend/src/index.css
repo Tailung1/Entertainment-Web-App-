@@ -80,22 +80,25 @@
   /* animation-play-state: running; */
 /* } */
 
- .scroll-container-wrapper:hover {
+.scroll-container-wrapper:hover {
   animation-play-state: paused;
-
 }
 .scroll-container-wrapper {
   display: flex;
-  animation: scroll 60s linear infinite;
-  /* animation-play-state:running; */
+  gap: 15px;
+  animation: scroll 45s  linear infinite ;
+
 }
 
 @keyframes scroll {
   0% {
     transform: translateX(0%);
   }
-  100% {
+  95% {
     transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
   }
 }
 
