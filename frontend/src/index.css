@@ -86,15 +86,15 @@
 .scroll-container-wrapper {
   display: flex;
   gap: 15px;
-  animation: scroll 45s  linear infinite ;
-
+  animation: scroll 45s linear infinite;
+  transition: ease-in-out;
 }
 
 @keyframes scroll {
   0% {
     transform: translateX(0%);
   }
-  95% {
+  90% {
     transform: translateX(-100%);
   }
   100% {

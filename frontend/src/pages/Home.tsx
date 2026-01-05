@@ -18,6 +18,8 @@ export default function Home() {
   useEffect(() => {
     document.title = "Home";
   }, []);
+  const isSearching = searching;
+
   const calculatedAnimationDuration =
     document.getElementById("scrollParent")?.scrollWidth;
 
@@ -44,8 +46,11 @@ export default function Home() {
             <div
               className={`${
                 notEmptyTrending && "scroll-container-wrapper"
-              } hide-scrollbar `}
-              style={{ width: calculatedAnimationDuration + "px" }}
+              }  hide-scrollbar `}
+              style={{
+                width: `${calculatedAnimationDuration}px`,
+                animationPlayState: isSearching && "paused",
+              }}
             >
               {
                 // SCROLL CONTAINER items !!!!!!!! {}{}{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}
