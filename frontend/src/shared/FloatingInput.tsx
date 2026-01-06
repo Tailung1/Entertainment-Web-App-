@@ -85,7 +85,7 @@ export default function FloatingInput({
       {type === "password" && value && (
         <button
           type='button'
-          className='absolute right-0 top-1'
+          className={`absolute ${isError?"right-[-20px]":"right-0"} lg:right-0  top-0 duration-300 transition-all`}
           onClick={() => setShowPassword((prev) => !prev)}
         >
           {showPassword ? <ShowPasswordIcon /> : <HidePasswordIcon />}
