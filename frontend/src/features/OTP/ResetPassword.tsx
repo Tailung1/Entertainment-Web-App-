@@ -72,10 +72,10 @@ export default function ResetPassword({
     let sendRequest = async () => {
       try {
         const sendData = await fetch(
-          //   "http://localhost:3000/api/users/change-password",
-          `${
-            import.meta.env.VITE_HEROKU_DB_SERVER
-          }api/users/change-password`,
+          "http://localhost:3000/api/users/change-password",
+          //   `${
+          //     import.meta.env.VITE_HEROKU_DB_SERVER
+          //   }api/users/change-password`,
           {
             method: "POST",
             headers: {

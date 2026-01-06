@@ -73,10 +73,10 @@ export default function OtpComponent({
 
     try {
       const data = await fetch(
-        // "http://localhost:3000/api/users/generate-otp",
-        `${
-          import.meta.env.VITE_HEROKU_DB_SERVER
-        }/api/users/generate-otp`,
+        "http://localhost:3000/api/users/generate-otp",
+        // `${
+        //   import.meta.env.VITE_HEROKU_DB_SERVER
+        // }/api/users/generate-otp`,
         {
           method: "POST",
           headers: {
@@ -124,10 +124,10 @@ export default function OtpComponent({
     try {
       const otpString = Number(otp.join(""));
       const request = await fetch(
-        // "http://localhost:3000/api/users/check-OTP",
-        `${
-          import.meta.env.VITE_HEROKU_DB_SERVER
-        }/api/users/check-OTP`,
+        "http://localhost:3000/api/users/check-OTP",
+        // `${
+        //   import.meta.env.VITE_HEROKU_DB_SERVER
+        // }/api/users/check-OTP`,
         {
           method: "POST",
           headers: {
