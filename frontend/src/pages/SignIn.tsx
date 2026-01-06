@@ -28,7 +28,7 @@ export default function SignIn() {
     emailRegexError: false,
     passwordLengthError: false,
   });
-  const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
+//   const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
 
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -114,7 +114,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className='bg-[#10141E] flex flex-col gap-16 items-center  h-screen pt-[48px] px-[24px] '>
+    <div className='bg-[#10141E] flex flex-col gap-4 md:gap-8 lg:gap-16 items-center  h-screen pt-[48px] px-[24px] '>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'

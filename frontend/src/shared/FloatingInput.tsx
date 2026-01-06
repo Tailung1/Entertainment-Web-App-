@@ -37,7 +37,7 @@ export default function FloatingInput({
     <div className='relative w-full'>
       {/* Floating label */}
       <motion.label
-        className={`absolute left-0 pointer-events-none ${
+        className={`absolute text-[12px] md:text-[16px] left-0 pointer-events-none ${
           isActive ? "text-indigo-500" : "text-gray-500"
         }`}
         animate={{
@@ -63,9 +63,9 @@ export default function FloatingInput({
         autoComplete='off'
       />
       <p
-        className={`text-red-500 text-[14px] absolute transition-all duration-300 ease-in-out  ${
-          value.length > 16 ? " top-[-23px]" : "top-1"
-        } right-7`}
+        className={`text-red-500 text-[12px] md:text-[16px] absolute transition-all duration-300 ease-in-out  ${
+          value.length > 16 ? " top-[-23px]" : "top-1 md:top-0"
+        } right-2 md:right-4 lg:right-7`}
       >
         {isError === "emailEmptyError"
           ? "Can't be empty"
@@ -126,7 +126,7 @@ export default function FloatingInput({
       {backError &&
       type === "password" &&
       location.pathname === "/" ? (
-        <p className='text-red-600 cursor-pointer mt-[10px]'>
+        <p className='text-red-600 h-[24px]  cursor-pointer mt-[10px]'>
           {backError || "Incorect credentials"}
         </p>
       ) : (
@@ -135,7 +135,7 @@ export default function FloatingInput({
         !enablePassChange && (
           <button
             onClick={() => setResetPassword(true)}
-            className='cursor-pointer mt-[10px]  hover:text-orange-300 text-orange-500'
+            className='cursor-pointer mt-[10px] h-[18px]  hover:text-orange-300 text-orange-500'
           >
             Forgot password?
           </button>
