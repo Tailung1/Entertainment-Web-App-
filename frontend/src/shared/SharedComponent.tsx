@@ -31,7 +31,7 @@ export default function SharedComponent({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 key={item.id}
-                className='items-container w-[150px]  md:w-[220px] lg:w-[260px] relative'
+                className='item-container w-[150px]  md:w-[220px] lg:w-[260px] relative'
               >
                 <div className='relative group'>
                   <img
@@ -48,7 +48,7 @@ export default function SharedComponent({
                   </motion.div>
                 </div>
 
-                <div className='flex flex-col items-start item-animation-container'>
+                <div className='flex flex-col items-start '>
                   <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
                     <p>{item.year}</p>
                     <DotIcon />

@@ -83,8 +83,8 @@ export default function SignUp() {
       try {
         setLoading(true);
         const validateRequest = await fetch(
-          //   "http://localhost:3000/api/users/register",
-          `${DB_SERVER_URL}/api/users/register`,
+            "http://localhost:3000/api/users/register",
+        //   `${DB_SERVER_URL}/api/users/register`,
           {
             method: "POST",
             headers: {

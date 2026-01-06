@@ -48,7 +48,7 @@ export default function Home() {
               }  hide-scrollbar `}
               style={{
                 width: `${calculatedAnimationDuration}px`,
-                animationPlayState: searching? "paused":"running",
+                animationPlayState: searching && "paused",
               }}
             >
               {
@@ -137,7 +137,7 @@ export default function Home() {
                     animate={{ y: 0, opacity: 100, scale: 1 }}
                     transition={{ duration: 0.3, ease: easeInOut }}
                     key={item.id}
-                    className='item-container flex flex-col gap-2  w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
+                    className='item-container flex flex-col  gap-2  w-[150px] md:min-w-[200px]  lg:min-w-[220px] relative  '
                   >
                     <div className='relative group'>
                       <img

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import { Spin } from "antd";
 import OtpComponent from "../features/OTP/OtpComponent";
@@ -74,8 +74,8 @@ export default function SignIn() {
 
       try {
         const validateReuqest = await fetch(
-          //   "localhost:3000/api/users/signin",
-          `${DB_SERVER_URL}/api/users/signin`,
+          "http://localhost:3000/api/users/signin",
+          //   `${DB_SERVER_URL}/api/users/signin`,
           {
             method: "POST",
             headers: {
@@ -87,6 +87,7 @@ export default function SignIn() {
             }),
           }
         );
+
         const response = await validateReuqest.json();
         setLoading(false);
         if (!validateReuqest.ok) {
@@ -96,9 +97,16 @@ export default function SignIn() {
           navigate("/home");
         }
       } catch (e: any) {
-        setSignInBackError(
-          "Network error. Please check your connection"
-        );
+        if (
+          e.name === "TypeError" &&
+          e.message === "Failed to fetch"
+        ) {
+          setSignInBackError(
+            "Network error. Please check your connection"
+          );
+        } else {
+          setSignInBackError(e.message);
+        }
         setLoading(false);
         // toast.error("Unexpected error");
       }
