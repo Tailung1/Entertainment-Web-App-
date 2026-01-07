@@ -76,12 +76,12 @@ export default function SharedComponent({
             Exit
           </button>
           <iframe
-            width='47%'
-            height='80%'
+            width='700px'
+            height='400px'
             src='https://www.youtube.com/embed/StYhR1pWqQw?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
-            className='rounded-[20px]'
+            className='rounded-[20px] absolute top-12'
           ></iframe>
         </div>
       )}

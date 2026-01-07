@@ -4,6 +4,7 @@ import { BookMarkIcon } from "../shared/Icon";
 import { DotIcon } from "../shared/Icon";
 import ItemsFiltering from "../ItemsFiltering";
 import { easeInOut, motion } from "framer-motion";
+import { useState } from "react";
 
 // import { Helmet } from "react-helmet";
 
@@ -11,6 +12,7 @@ export default function Home() {
   ItemsFiltering();
   const { trendingItems, recommenedItems, searching } =
     useMyContext();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const loadingArr = new Array(5).fill("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const notEmptyTrending = trendingItems.length !== 0;
@@ -23,7 +25,25 @@ export default function Home() {
     document.getElementById("scrollParent")?.scrollWidth;
 
   return (
-    <div className='pt-3 md:pt-5'>
+    <div className='pt-3 md:pt-5 relative'>
+      {isOpen && (
+        <div className='absolute inset-0 top-2   flex justify-center items-center  z-50 bg-black bg-opacity-50'>
+          <button
+            onClick={() => setIsOpen(false)}
+            className='absolute top-1 traslatex-[50%] text-white text-[18px] bg-red-700 rounded-full px-8 py-1 hover:bg-red-500 '
+          >
+            Exit
+          </button>
+          <iframe
+            width='700px'
+            height='400px'
+            src='https://www.youtube.com/embed/StYhR1pWqQw?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0'
+            allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            className='rounded-[20px] absolute top-12'
+          ></iframe>
+        </div>
+      )}
       {/* <Helmet>
         <title>Home</title>
         <meta
@@ -48,7 +68,8 @@ export default function Home() {
               }  hide-scrollbar `}
               style={{
                 width: `${calculatedAnimationDuration}px`,
-                animationPlayState: searching && "paused",
+                animationPlayState:
+                  searching || isOpen ? "paused" : "",
               }}
             >
               {
@@ -79,7 +100,10 @@ export default function Home() {
                           loading='lazy'
                         />
                         <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
-                          <button className='play-button'>
+                          <button
+                            onClick={() => setIsOpen(true)}
+                            className='play-button'
+                          >
                             Play
                           </button>
                         </div>
@@ -147,7 +171,7 @@ export default function Home() {
                         loading='lazy'
                       />
                       <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
-                        <button className='play-button'>Play</button>
+                        <button onClick={()=>setIsOpen(true)} className='play-button'>Play</button>
                       </div>
                     </div>
                     <div className='flex flex-col  left-2 cursor-default'>
