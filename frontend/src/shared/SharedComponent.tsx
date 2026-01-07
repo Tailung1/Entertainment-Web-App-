@@ -69,10 +69,16 @@ export default function SharedComponent({
       </div>
       {isOpen && (
         <div className='absolute inset-0 top-2 flex justify-center items-center z-50 bg-black bg-opacity-50'>
+          <button
+            onClick={() => setIsOpen(false)}
+            className='absolute top-1 traslatex-[50%] text-white text-[18px] bg-red-700 rounded-full px-8 py-1 hover:bg-red-500 '
+          >
+            Exit
+          </button>
           <iframe
             width='47%'
             height='80%'
-            src='https://www.youtube.com/embed/StYhR1pWqQw?autoplay=1&si=5ktIMq-Kku5DDgKr'
+            src='https://www.youtube.com/embed/StYhR1pWqQw?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
             className='rounded-[20px]'
