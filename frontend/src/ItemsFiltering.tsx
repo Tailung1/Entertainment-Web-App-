@@ -12,29 +12,19 @@ export default function ItemsFiltering() {
     setBookMarked,
     bookmarkChangeImpact,
     setDbIsEmpty,
-    setSearchInputChangeImpact
+    setSearchInputChangeImpact,
   } = useMyContext();
 
   useEffect(() => {
     setDbIsEmpty(false);
-    setSearchInputChangeImpact(false)
+    setSearchInputChangeImpact(false);
     if (searching) {
       switch (location.pathname) {
         case "/home":
-          //   const itemsToSearchTrending = fetchedItems.filter(
-          //     (item) => item.trending
-          //   );
           const itemsToSearchRecommened = fetchedItems.filter(
             (item) => item.recommended
           );
 
-          //   setTrendingItems(
-          //     itemsToSearchTrending.filter((item) =>
-          //       item.title
-          //         .toLocaleLowerCase()
-          //         .includes(searching.toLocaleLowerCase())
-          //     )
-          //   );
           setRecommenedItems(
             itemsToSearchRecommened.filter((item) =>
               item.title
@@ -71,7 +61,7 @@ export default function ItemsFiltering() {
           break;
 
         case "/bookmarked":
-            setSearchInputChangeImpact(true)
+          setSearchInputChangeImpact(true);
           const searchedBookMarked = fetchedItems.filter(
             (item) => item.bookMarked
           );
@@ -83,8 +73,7 @@ export default function ItemsFiltering() {
                 .includes(searching.toLocaleLowerCase())
             )
           );
-      
-         
+
           break;
 
         default:
