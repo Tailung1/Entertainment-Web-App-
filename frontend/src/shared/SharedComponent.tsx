@@ -2,6 +2,7 @@ import { BookMarkIcon } from "./Icon";
 import { DotIcon } from "./Icon";
 import ItemsFiltering from "../ItemsFiltering";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function SharedComponent({
   currentComponent,
@@ -11,11 +12,10 @@ export default function SharedComponent({
   currentSection: string;
 }) {
   ItemsFiltering();
-
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const loadingDivs = new Array(6).fill(null);
-
   return (
-    <div className="pt-3 md:pt-5 pr-3">
+    <div className='pt-3 md:pt-5 pr-3 relative'>
       <h2 className='text-white text-[25px] mb-3'>
         {currentSection}
       </h2>
@@ -42,12 +42,14 @@ export default function SharedComponent({
                   />
 
                   <motion.div className='overlay inset-0  absolute  bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
-                    <button className='play-button text-red-500 text-lg font-bold'>
+                    <button
+                      onClick={() => setIsOpen(true)}
+                      className='play-button text-red-500 text-lg font-bold'
+                    >
                       Play
                     </button>
                   </motion.div>
                 </div>
-
                 <div className='flex flex-col items-start '>
                   <div className='flex items-center text-yellow-500 text-[14px] gap-2'>
                     <p>{item.year}</p>
@@ -65,6 +67,18 @@ export default function SharedComponent({
               </motion.div>
             ))}
       </div>
+      {isOpen && (
+        <div className='absolute inset-0 top-2 flex justify-center items-center z-50 bg-black bg-opacity-50'>
+          <iframe
+            width='47%'
+            height='80%'
+            src='https://www.youtube.com/embed/StYhR1pWqQw?autoplay=1&si=5ktIMq-Kku5DDgKr'
+            allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            className='rounded-[20px]'
+          ></iframe>
+        </div>
+      )}
     </div>
   );
 }
