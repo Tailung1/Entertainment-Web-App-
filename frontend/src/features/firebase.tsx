@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import githubLogo from "../assets/github-mark.png";
 import googleLogo from "../assets/google-color.svg";
+import { useMyContext } from "../useContext";
 
 import {
   getAuth,
@@ -10,6 +11,8 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
+
+
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -29,6 +32,7 @@ const githubProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
 
 const GoogleAuth = () => {
+        const { setProfilePicture } = useMyContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -37,7 +41,7 @@ const GoogleAuth = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       if (user) {
-        console.log(user);
+        setProfilePicture(user.photoURL as string);
         localStorage.setItem("auth-token", user.uid);
         navigate("/home");
       }
@@ -66,6 +70,7 @@ const GoogleAuth = () => {
 };
 
 const GithubAuth = () => {
+    const { setProfilePicture } = useMyContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -74,7 +79,7 @@ const GithubAuth = () => {
       const result = await signInWithPopup(auth, githubProvider);
       const user = result.user;
       if (user) {
-        console.log(user.displayName?.split(" ")[0]);
+            setProfilePicture(user.photoURL as string);
         localStorage.setItem("auth-token", user.uid);
         navigate("/home");
       }

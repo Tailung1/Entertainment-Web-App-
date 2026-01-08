@@ -44,6 +44,8 @@ interface contextTypes {
   setDbIsEmpty: React.Dispatch<SetStateAction<boolean>>;
   searchInputChangeImpact: boolean;
   setSearchInputChangeImpact: React.Dispatch<SetStateAction<boolean>>;
+  profilePicture: string;
+  setProfilePicture: React.Dispatch<SetStateAction<string>>;
 }
 
 const MyContext = createContext({} as contextTypes);
@@ -80,6 +82,8 @@ export default function MovieContext({
   const [dbIsEmpty, setDbIsEmpty] = useState(false);
   const [searchInputChangeImpact, setSearchInputChangeImpact] =
     useState(false);
+
+  const [profilePicture, setProfilePicture] = useState<string>("");
 
   const isFirstMount = useRef(2);
 
@@ -152,6 +156,7 @@ export default function MovieContext({
 
     fetchMovies();
   }, []);
+
   return (
     <MyContext.Provider
       value={{
@@ -190,14 +195,17 @@ export default function MovieContext({
         setDbIsEmpty,
         searchInputChangeImpact,
         setSearchInputChangeImpact,
+        profilePicture,
+        setProfilePicture,
       }}
     >
       {children}
     </MyContext.Provider>
   );
 }
+
 export const useMyContext = () => {
   const context = useContext(MyContext);
-  if (!context) throw new Error("Context must be within  Provider");
+  if (!context) throw new Error("Context must be within Provider");
   return context;
 };

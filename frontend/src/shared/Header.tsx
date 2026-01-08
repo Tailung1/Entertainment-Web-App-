@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
+import { useMyContext } from "../useContext";
 import Icon from "./Icon";
+
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { profilePicture } = useMyContext();
+
 
   const [activeIcon, setActiveIcon] = useState<string>(
     location.pathname.split("/")[1]
@@ -18,29 +21,34 @@ export default function Header() {
 
   return (
     <div className=' md:p-4 lg:p-6 '>
-        <header className='bg-[#161D2F] py-2  md:rounded-lg lg:p-3 lg:py-7 flex justify-around items-center lg:flex-col lg:justify-between lg:h-[600px] '>
-          <Icon
-            iconType='logo'
-            handleClick={() => handleClick("")}
-            fillColor={activeIcon === "logo" ? "white" : "red"}
-          />
-          <div className='flex gap-5 lg:flex-col'>
-            {iconsArr.map((icon) => (
-              <Icon
-                key={icon}
-                iconType={icon}
-                handleClick={() => handleClick(icon)}
-                fillColor={activeIcon === icon ? "white" : "#5A698F"}
-              />
-            ))}
-          </div>
-          <Icon
-            iconType='profilePic'
-            handleClick={handleClick}
-            fillColor={activeIcon === "icon" ? "white" : "none"}
-          />
-        </header>
-      
+      <header className='bg-[#161D2F] py-2  md:rounded-lg lg:p-3 lg:py-7 flex justify-around items-center lg:flex-col lg:justify-between lg:h-[600px] '>
+        <Icon
+          iconType='logo'
+          handleClick={() => handleClick("")}
+          fillColor={activeIcon === "logo" ? "white" : "red"}
+        />
+        <div className='flex gap-5 lg:flex-col'>
+          {iconsArr.map((icon) => (
+            <Icon
+              key={icon}
+              iconType={icon}
+              handleClick={() => handleClick(icon)}
+              fillColor={activeIcon === icon ? "white" : "#5A698F"}
+            />
+          ))}
+        </div>
+        <>
+          {profilePicture ? (
+            <img className="w-[35px] h-[30px] rounded-lg" src={profilePicture} />
+          ) : (
+            <Icon
+              iconType='profilePic'
+              handleClick={handleClick}
+              fillColor={activeIcon === "icon" ? "white" : "none"}
+            />
+          )}
+        </>
+      </header>
     </div>
   );
 }
