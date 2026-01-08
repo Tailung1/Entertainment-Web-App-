@@ -35,12 +35,10 @@ export default function Home() {
             Exit
           </button>
           <iframe
-            width='700px'
-            height='400px'
             src='https://www.youtube.com/embed/StYhR1pWqQw?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
-            className='rounded-[20px] absolute top-12'
+            className='rounded-[20px] absolute top-12 sm:w-[200px] h-[250px]   md:w-[500px] md:h-[300px] lg:w-[600px] lg:h-[370px]'
           ></iframe>
         </div>
       )}
@@ -171,7 +169,12 @@ export default function Home() {
                         loading='lazy'
                       />
                       <div className='overlay  absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg  transition-opacity duration-300'>
-                        <button onClick={()=>setIsOpen(true)} className='play-button'>Play</button>
+                        <button
+                          onClick={() => setIsOpen(true)}
+                          className='play-button'
+                        >
+                          Play
+                        </button>
                       </div>
                     </div>
                     <div className='flex flex-col  left-2 cursor-default'>
