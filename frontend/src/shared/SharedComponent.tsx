@@ -68,7 +68,7 @@ export default function SharedComponent({
             ))}
       </div>
       {isOpen && (
-        <div className='absolute inset-0 top-2 flex justify-center items-center z-50 bg-black bg-opacity-50'>
+        <div className='absolute inset-0 top-2 flex justify-center items-center z-50 bg-black bg-opacity-80'>
           <button
             onClick={() => setIsOpen(false)}
             className='absolute top-1 traslatex-[50%] text-white text-[18px] bg-red-700 rounded-full px-8 py-1 hover:bg-red-500 '
