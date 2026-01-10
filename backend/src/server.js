@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import moviesRouter from "./routing/moviesRouter.js";
 import usersRouter from "./routing/usersRouter.js";
 import cors from "cors";
-import rateLimit from "express-rate-limit";
+
 
 const app = express();
 dotenv.config();
@@ -18,11 +18,7 @@ app.use(
 );
 app.use(express.json());
 
-const limiter = rateLimit({
-  windowMs: 60 * 60 * 1000,
-  max: 50,
-  message: "Too many requests from this IP, please try again after an hour",
-});
+
 
 // app.use(limiter);
 
