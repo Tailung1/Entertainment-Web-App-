@@ -4,6 +4,7 @@ This app was created for training purposes. Clicking on any item will start play
 
 Tech Stack:
 Frontend: React, TypeScript,
+
 Backend: Node.js, Express, MongoDB, Mongoose
 
 Authentication: Direct database requests for credentials-based auth, Firebase Auth for Google and GitHub logins, and JWT for password validation
@@ -12,5 +13,7 @@ State Management: useContext
 
 Features:
 Password reset functionality,
-User accounts and items (movies) managed by Mongoose schemas,
+
+User accounts and items (movies) managed by Mongoose schemas
+
 Search and bookmark functionality for each section
