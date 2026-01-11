@@ -12,5 +12,5 @@ State Management: useContext
 
 Features:
 Password reset functionality,
-User accounts and items (movies) managed by Mongoose schemas
+User accounts and items (movies) managed by Mongoose schemas,
 Search and bookmark functionality for each section
