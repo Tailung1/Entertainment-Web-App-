@@ -64,7 +64,6 @@ const GoogleAuth = () => {
 
 const GithubAuth = () => {
   const { setProfilePicture } = useMyContext();
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleGithubAuth = async () => {

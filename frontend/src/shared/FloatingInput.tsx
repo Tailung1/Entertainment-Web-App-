@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, number } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useMyContext } from "../useContext";
 import { ShowPasswordIcon } from "./Icon";
@@ -27,6 +27,8 @@ export default function FloatingInput({
   const [showPassword, setShowPassword] = useState(false);
 
   const isActive = focused || value;
+ const inputId = label.toLowerCase().replace(" ", "-"); 
+
 
   useEffect(() => {
     if (backError) {
@@ -40,6 +42,7 @@ export default function FloatingInput({
     <div className='relative w-full'>
       {/* Floating label */}
       <motion.label
+        htmlFor={inputId}
         className={`absolute text-[12px] md:text-[16px] left-0 pointer-events-none ${
           isActive ? "text-indigo-500" : "text-gray-500"
         }`}
@@ -55,6 +58,7 @@ export default function FloatingInput({
 
       {/* Input field */}
       <input
+        id={inputId}
         type={type === "password" && showPassword ? "text" : type}
         className={`w-full border-b text-white text-[16px] pb-[6px] pl-[16px] outline-none bg-transparent ${
           isError ? "border-red-600" : "border-white/20"
@@ -85,7 +89,9 @@ export default function FloatingInput({
       {type === "password" && value && (
         <button
           type='button'
-          className={`absolute ${isError?"right-[-20px]":"right-0"} lg:right-0  top-0 duration-300 transition-all`}
+          className={`absolute ${
+            isError ? "right-[-20px]" : "right-0"
+          } lg:right-0  top-0 duration-300 transition-all`}
           onClick={() => setShowPassword((prev) => !prev)}
         >
           {showPassword ? <ShowPasswordIcon /> : <HidePasswordIcon />}
