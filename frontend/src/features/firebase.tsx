@@ -12,8 +12,6 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 
-
-
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -32,7 +30,7 @@ const githubProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
 
 const GoogleAuth = () => {
-        const { setProfilePicture } = useMyContext();
+  const { setProfilePicture } = useMyContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -53,24 +51,19 @@ const GoogleAuth = () => {
     }
   };
   return (
-    <div>
+    <div className='w-[50px] '>
       <button
-        className='mt-5 bg-gradient-to-r  from-blue-800 to-cyan-400 flex gap-3 py-2 items-center justify-center w-full rounded-[6px]'
+        className=' bg-gradient-to-r rounded-[50%] from-blue-100 to-cyan-400 p-2 hover:from-violet-300 hover:to-violet-400'
         onClick={handleGoogleAuth}
       >
         <img className='w-8 h-8' src={googleLogo} alt='google logo' />
-        <span className='text-white text-[18px]'>
-          {`${
-            location.pathname === "/" ? "Sign in" : "Sign up"
-          } with Google`}
-        </span>
       </button>
     </div>
   );
 };
 
 const GithubAuth = () => {
-    const { setProfilePicture } = useMyContext();
+  const { setProfilePicture } = useMyContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -79,7 +72,7 @@ const GithubAuth = () => {
       const result = await signInWithPopup(auth, githubProvider);
       const user = result.user;
       if (user) {
-            setProfilePicture(user.photoURL as string);
+        setProfilePicture(user.photoURL as string);
         localStorage.setItem("auth-token", user.uid);
         navigate("/home");
       }
@@ -93,15 +86,10 @@ const GithubAuth = () => {
   return (
     <div>
       <button
-        className='mt-5 bg-gradient-to-r from-orange-500 to-orange-400 flex gap-3 py-2 items-center justify-center w-full  rounded-[6px]'
+        className=' bg-gradient-to-r rounded-[50%] from-orange-200 to-orange-400 flex p-2 hover:from-green-400 hover:to-green-800'
         onClick={handleGithubAuth}
       >
         <img className='w-8 h-8' src={githubLogo} alt='github logo' />
-        <span className='text-white text-[18px]'>
-          {" "}
-          {`${location.pathname === "/" ? "Sign in" : "Sign up"}
-        with github`}
-        </span>
       </button>
     </div>
   );

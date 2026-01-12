@@ -214,7 +214,13 @@ export default function SignUp() {
             Sign in
           </Link>
         </p>
-        <div className='flex flex-col'>
+        <div className='flex gap-2 p-4 items-center'>
+          <hr />
+          <p className='text-cyan-300'>Or</p>
+          <hr />
+        </div>
+
+        <div className='flex gap-5 items-center justify-center'>
           <GithubAuth />
           <GoogleAuth />
         </div>

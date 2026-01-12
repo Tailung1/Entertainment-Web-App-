@@ -28,7 +28,7 @@ export default function SignIn() {
     emailRegexError: false,
     passwordLengthError: false,
   });
-//   const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
+  //   const DB_SERVER_URL = import.meta.env.VITE_HEROKU_DB_SERVER;
 
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -209,7 +209,13 @@ export default function SignIn() {
                 Sign Up
               </Link>
             </p>
-            <div className='flex flex-col'>
+            <div className='flex gap-2 p-4 items-center'>
+              <hr/>
+              <p className='text-cyan-300'>Or</p>
+              <hr/>
+            </div>
+
+            <div className='flex gap-5 items-center justify-center'>
               <GithubAuth />
               <GoogleAuth />
             </div>

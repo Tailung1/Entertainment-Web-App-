@@ -141,6 +141,21 @@
 .play-button:hover {
   transform: scale(1.1);
 }
+hr {
+  border: none;
+  border-top: 1px solid red;  
+  animation: ticker 1s forwards;
+}
+
+@keyframes ticker {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 50%;
+  }
+}
 
 @media (min-width: 768px) {
   .play-button {
