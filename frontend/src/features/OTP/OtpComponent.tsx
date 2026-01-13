@@ -226,7 +226,9 @@ export default function OtpComponent({
 
         <div
           onClick={() => {
-            setResetPassword(false),
+            setEmailInput(""),
+              setPasswordInput(""),
+              setResetPassword(false),
               setEnablePassChange(false),
               setErrors({
                 email: false,
@@ -235,15 +237,15 @@ export default function OtpComponent({
                 passwordLengthError: false,
               });
           }}
-          className='h-[10px] mb-3 flex items-center justify-start gap-2  max-w-[160px]  cursor-pointer '
+          className=' group :h-[10px] mb-3 flex items-center justify-start gap-2  max-w-[160px]  cursor-pointer '
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
             strokeWidth='1.5'
-            stroke='yellow'
-            className='transition-all duration-100 size-5 hover:size-7 '
+            stroke='orange'
+            className='transition-all duration-100 size-5 group-hover:stroke-orange-100 '
           >
             <path
               strokeLinecap='round'
@@ -252,12 +254,7 @@ export default function OtpComponent({
             />
           </svg>
 
-          <button
-            onClick={() => {
-              setEmailInput(""), setPasswordInput("");
-            }}
-            className='text-violet-500  text-lg font-semibold hover:text-violet-700 transition duration-300'
-          >
+          <button className='bg-gradient-to-r  text-violet-600   text-lg font-semibold group-hover:text-violet-300'>
             Back to sign in
           </button>
         </div>
