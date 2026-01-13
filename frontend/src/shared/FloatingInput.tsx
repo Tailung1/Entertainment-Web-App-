@@ -111,7 +111,7 @@ export default function FloatingInput({
             onClick={() => setResetPassword(true)}
             className='cursor-pointer mt-[10px] h-[18px]  hover:text-orange-300 text-orange-500'
           >
-            Forgot password?
+            Forgot password
           </button>
         )
       )}
