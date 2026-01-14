@@ -30,7 +30,7 @@ export default function OtpInput({
 
     return () => clearInterval(interval);
   }, [timer]);
-  
+
   const handleChange = (e: any, index: number) => {
     setBackError("");
     const value = e.target.value;

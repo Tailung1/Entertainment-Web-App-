@@ -12,12 +12,12 @@ export default function ItemsFiltering() {
     setBookMarked,
     bookmarkChangeImpact,
     setDbIsEmpty,
-    setSearchInputChangeImpact
+    setSearchInputChangeImpact,
   } = useMyContext();
 
   useEffect(() => {
     setDbIsEmpty(false);
-    setSearchInputChangeImpact(false)
+    setSearchInputChangeImpact(false);
     if (searching) {
       switch (location.pathname) {
         case "/home":
@@ -71,7 +71,7 @@ export default function ItemsFiltering() {
           break;
 
         case "/bookmarked":
-            setSearchInputChangeImpact(true)
+          setSearchInputChangeImpact(true);
           const searchedBookMarked = fetchedItems.filter(
             (item) => item.bookMarked
           );
@@ -83,8 +83,7 @@ export default function ItemsFiltering() {
                 .includes(searching.toLocaleLowerCase())
             )
           );
-      
-         
+
           break;
 
         default:
